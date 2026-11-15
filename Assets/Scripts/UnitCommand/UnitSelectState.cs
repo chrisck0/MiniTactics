@@ -34,6 +34,7 @@ public sealed class UnitSelectState : StateBase
     public override void Enter()
     {
         BindInputActions();
+        _controller.CalculateEnemyScore();
     }
 
     public override void Update()
@@ -50,6 +51,7 @@ public sealed class UnitSelectState : StateBase
             _controller.HideCursor();
             _controller.HideTileUI();
             HideDistanceRange();
+            _controller.HideAllTrajectories();
             return;
         }
 
@@ -115,6 +117,7 @@ public sealed class UnitSelectState : StateBase
         if (unit == _prevUnit) return;
 
         HideDistanceRange();
+        _controller.HideAllTrajectories();
 
         if (unit == null
             || unit.UnitType == UnitType.Player && !(unit as PlayerUnit).CanAction) return;
@@ -123,6 +126,9 @@ public sealed class UnitSelectState : StateBase
 
         unit.DistanceRange.ShowTargetable();
         unit.DistanceRange.ShowReachable();
+
+        EnemyUnit enemy = unit as EnemyUnit;
+        if (enemy != null) _controller.ShowTrajectory(enemy);
     }
 
     private void HideDistanceRange()

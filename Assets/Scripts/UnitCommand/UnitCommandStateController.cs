@@ -10,6 +10,7 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     [SerializeField] private PhaseStateController _phaseStateController;
     [SerializeField] private MapManager _mapManager;
     [SerializeField] private TileCursor _tileCursor;
+    [SerializeField] private TrajectoryController _trajectoryController;
     [SerializeField] private CommandUIController _commandUIController;
     [SerializeField] private InputActionReference _selectAction;
     [SerializeField] private InputActionReference _infoAction;
@@ -134,11 +135,22 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         if (unit == null)
         {
             _commandUIController.UnitInfoUI.Hide();
+            _commandUIController.AttackInfoUI.Hide();
             return;
         }
 
         _commandUIController.UnitInfoUI.Show();
         _commandUIController.UnitInfoUI.SetData(unit);
+
+        EnemyUnit enemy = unit as EnemyUnit;
+        if (enemy == null || enemy.EnemyAI.MaxAttackScore.Score == 0)
+        {
+            _commandUIController.AttackInfoUI.Hide();
+            return;
+        }
+
+        _commandUIController.AttackInfoUI.Show();
+        _commandUIController.AttackInfoUI.SetData(enemy.EnemyAI.MaxAttackScore.AttackWeaponData);
     }
 
     public void ShowUnitDetailedInfo(TileBase tile)
@@ -219,11 +231,11 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         }
     }
 
-    public void HideAllDanger()
+    public void InitAllDanger()
     {
         foreach (EnemyUnit enemyUnit in _showingDangerEnemyList)
         {
-            enemyUnit.EnemyAI.HideDanger();
+            enemyUnit.EnemyAI.InitDanger();
         }
     }
 
@@ -240,6 +252,35 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
             enemyUnit.EnemyAI.ShowDanger();
             ShowingDangerEnemyList.Add(enemyUnit);
         }
+    }
+
+    public void CalculateEnemyScore()
+    {
+        foreach (EnemyUnit enemyUnit in _phaseStateController.EnemyUnitList)
+        {
+            enemyUnit.EnemyAI.CalculateScore();
+
+            if (enemyUnit.EnemyAI.MaxAttackScore.Score == 0) continue;
+            enemyUnit.EnemyAI.SetTargets(enemyUnit.EnemyAI.MaxAttackScore.CurrentCoord);
+        }
+    }
+
+    public void ShowTrajectory(EnemyUnit enemy)
+    {
+        _trajectoryController.ShowTrajectories(enemy, _mapManager);
+    }
+
+    public void ShowAllTrajectories()
+    {
+        foreach (EnemyUnit enemyUnit in _phaseStateController.EnemyUnitList)
+        {
+            _trajectoryController.ShowTrajectories(enemyUnit, _mapManager);
+        }
+    }
+
+    public void HideAllTrajectories()
+    {
+        _trajectoryController.HideAllTrajectories();
     }
 
     private void BindPhaseEvents()

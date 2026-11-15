@@ -32,7 +32,8 @@ public class TargetSelectState : StateBase
     public override void Enter()
     {
         BindInputActions();
-        _controller.SelectedPlayerUnit.Weapon.SetRange(_controller.SelectedWeaponData, _mapManager);
+        _controller.SelectedPlayerUnit.Weapon.SetRange(
+            _controller.SelectedPlayerUnit.transform.position.WorldToCoord(), _controller.SelectedWeaponData, _mapManager);
         if (_controller.SelectedWeaponData.WeaponType == WeaponType.SelectTarget)
             _controller.SelectedPlayerUnit.DistanceRange.ShowDistance(_mapManager.TileRange.TileCostMap);
     }
@@ -64,6 +65,7 @@ public class TargetSelectState : StateBase
         _controller.SelectedPlayerUnit.DistanceRange.HideRange();
 
         _controller.SelectedPlayerUnit.Weapon.SelectWeaponRange(
+            _controller.SelectedPlayerUnit.transform.position.WorldToCoord(),
             coord, UnitType.Enemy,
             _mapManager, weaponDirection,
             _controller.SelectedWeaponData
@@ -154,7 +156,8 @@ public class TargetSelectState : StateBase
 
         if (playerWeapon.CanAttackTargets(weaponData))
         {
-            _controller.HideAllDanger();
+            _controller.InitAllDanger();
+            _controller.HideAllTrajectories();
             Attack().Forget();
         }
         else

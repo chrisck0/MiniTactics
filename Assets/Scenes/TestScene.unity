@@ -192,6 +192,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1820450259}
   _redTransparentTile: {fileID: 2131512584}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1997598141}
 --- !u!1 &3167068
 GameObject:
@@ -676,6 +677,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1277754246}
   _redTransparentTile: {fileID: 697446679}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1480826828}
 --- !u!1 &10969803
 GameObject:
@@ -2171,6 +2173,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 96532862}
   _redTransparentTile: {fileID: 226299836}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 699274922}
 --- !u!1 &37501649
 GameObject:
@@ -2245,6 +2248,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 229443138}
   _redTransparentTile: {fileID: 1633748038}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 2119674259}
 --- !u!1 &37933787
 GameObject:
@@ -3352,6 +3356,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1153582228}
   _redTransparentTile: {fileID: 99358498}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 29241623}
 --- !u!1 &63622393
 GameObject:
@@ -4183,6 +4188,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1857353177}
   _redTransparentTile: {fileID: 1743277749}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1589076859}
 --- !u!1 &80151619
 GameObject:
@@ -6353,6 +6359,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1013021574}
   _redTransparentTile: {fileID: 583793616}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 852933198}
 --- !u!1 &121621167
 GameObject:
@@ -7962,6 +7969,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 8bca44156da4d064eb1852b89e33535f, type: 2}
   _blueTransparentTile: {fileID: 628069200}
   _redTransparentTile: {fileID: 668983719}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1802951880}
 --- !u!1001 &157384069
 PrefabInstance:
@@ -8207,6 +8215,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 8bca44156da4d064eb1852b89e33535f, type: 2}
   _blueTransparentTile: {fileID: 1152708145}
   _redTransparentTile: {fileID: 830404128}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1842711951}
 --- !u!1001 &164233807
 PrefabInstance:
@@ -8608,6 +8617,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 861827284}
   _redTransparentTile: {fileID: 855548269}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 266963775}
 --- !u!1 &182240796
 GameObject:
@@ -10680,6 +10690,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1012851020}
   _redTransparentTile: {fileID: 1171961084}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1609010426}
 --- !u!1 &229443138
 GameObject:
@@ -12143,6 +12154,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: b94f4f6ac333ff04dbf8744172d879b8, type: 2}
   _blueTransparentTile: {fileID: 480746950}
   _redTransparentTile: {fileID: 2072155759}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1671256791}
 --- !u!1 &261692859
 GameObject:
@@ -12899,6 +12911,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1019911490}
   _redTransparentTile: {fileID: 683354214}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1540223437}
 --- !u!1 &270137743
 GameObject:
@@ -13035,6 +13048,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1852134150}
   _redTransparentTile: {fileID: 159295101}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1588930925}
 --- !u!1 &278246438
 GameObject:
@@ -13470,6 +13484,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 2063192870}
   _redTransparentTile: {fileID: 463667089}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 142016884}
 --- !u!1 &285351515
 GameObject:
@@ -13918,6 +13933,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 8bca44156da4d064eb1852b89e33535f, type: 2}
   _blueTransparentTile: {fileID: 1935697672}
   _redTransparentTile: {fileID: 556494157}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 611824225}
 --- !u!1001 &299012618
 PrefabInstance:
@@ -16563,6 +16579,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1989355461}
   _redTransparentTile: {fileID: 1115013984}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1243370690}
 --- !u!1 &370108351
 GameObject:
@@ -16806,6 +16823,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1767212026}
   _redTransparentTile: {fileID: 1353939437}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1156186642}
 --- !u!1 &374779461
 GameObject:
@@ -17161,7 +17179,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4351846834819390981, guid: b5eba18f600705447b4741e3802ce815, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1082545381}
+    - targetCorrespondingSourceObject: {fileID: 4351846834819390981, guid: b5eba18f600705447b4741e3802ce815, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1082545380}
   m_SourcePrefab: {fileID: 100100000, guid: b5eba18f600705447b4741e3802ce815, type: 3}
 --- !u!1 &385379539
 GameObject:
@@ -17236,6 +17260,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 2080429844}
   _redTransparentTile: {fileID: 1775060948}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 127965377}
 --- !u!1 &386587280
 GameObject:
@@ -17759,6 +17784,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 404244731}
   _redTransparentTile: {fileID: 677813729}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 415018811}
 --- !u!1 &401561482
 GameObject:
@@ -19024,6 +19050,7 @@ GameObject:
   - component: {fileID: 436214238}
   - component: {fileID: 436214237}
   - component: {fileID: 436214236}
+  - component: {fileID: 436214239}
   m_Layer: 0
   m_Name: SingleSwordPlayerUnit(Clone) 3
   m_TagString: Untagged
@@ -19059,7 +19086,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753ca01a93e6c9e40896a9baf06c2143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUnit
-  _unitStat: {fileID: 436214238}
+  _stat: {fileID: 0}
+  _distanceRange: {fileID: 0}
   _weapon: {fileID: 436214237}
   _animationController: {fileID: 0}
   _moveSpeed: 8
@@ -19091,9 +19119,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitStat
   _unit: {fileID: 436214236}
-  _unitData: {fileID: 11400000, guid: 034dc1604b9e9c6449cb13ba5294a930, type: 2}
+  _data: {fileID: 0}
   _health: 140
   _energy: 70
+--- !u!114 &436214239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436214234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3f5484d479d7f479e1950fad6eeede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitDistanceRange
+  _owner: {fileID: 0}
 --- !u!1 &436876306
 GameObject:
   m_ObjectHideFlags: 0
@@ -19167,6 +19208,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1907823223}
   _redTransparentTile: {fileID: 1523316511}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1111145074}
 --- !u!1 &437288012
 GameObject:
@@ -19566,6 +19608,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1327885268}
   _redTransparentTile: {fileID: 261010168}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1543013661}
 --- !u!1 &445861218
 GameObject:
@@ -21044,6 +21087,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 706002913}
   _redTransparentTile: {fileID: 2025928016}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 33935643}
 --- !u!1 &473051398
 GameObject:
@@ -22906,6 +22950,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 357218770}
   _redTransparentTile: {fileID: 950365425}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 355827817}
 --- !u!1 &510775203
 GameObject:
@@ -23319,6 +23364,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 2030377041}
   _redTransparentTile: {fileID: 1213229126}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 510775205}
 --- !u!1 &512601208
 GameObject:
@@ -24736,6 +24782,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1243326021}
   _redTransparentTile: {fileID: 511579310}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1129985725}
 --- !u!1 &546149608
 GameObject:
@@ -24932,6 +24979,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1848588822}
   _redTransparentTile: {fileID: 453065981}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 2115272075}
 --- !u!1 &548094770
 GameObject:
@@ -25063,6 +25111,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 6937328}
   _redTransparentTile: {fileID: 63629857}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 918450281}
 --- !u!1 &556244333
 GameObject:
@@ -25137,6 +25186,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 370108351}
   _redTransparentTile: {fileID: 1085750092}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1009708262}
 --- !u!1 &556494157
 GameObject:
@@ -27033,6 +27083,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1400037629}
   _redTransparentTile: {fileID: 1026734627}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 684921252}
 --- !u!1 &594086942
 GameObject:
@@ -27231,6 +27282,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1031034621}
   _redTransparentTile: {fileID: 2133004334}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 732093302}
 --- !u!1 &598199338
 GameObject:
@@ -27581,6 +27633,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1456743515}
   _redTransparentTile: {fileID: 838218377}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1362421991}
 --- !u!1 &605993189
 GameObject:
@@ -29677,6 +29730,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 950865982}
   _redTransparentTile: {fileID: 1971730982}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1960784017}
 --- !u!1 &656218770
 GameObject:
@@ -31119,6 +31173,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1673611822}
   _redTransparentTile: {fileID: 758041149}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1680332064}
 --- !u!1 &695483593
 GameObject:
@@ -31684,6 +31739,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1271577801}
   _redTransparentTile: {fileID: 1035842966}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1917681606}
 --- !u!1 &706002913
 GameObject:
@@ -32590,6 +32646,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1493594725}
   _redTransparentTile: {fileID: 893969700}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 954183638}
 --- !u!1 &725077732
 GameObject:
@@ -32866,6 +32923,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1863736589}
   _redTransparentTile: {fileID: 496278819}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 805530977}
 --- !u!1 &728858666
 GameObject:
@@ -33619,6 +33677,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1223877109}
   _redTransparentTile: {fileID: 1661254632}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 10969805}
 --- !u!1 &751117732
 GameObject:
@@ -34879,6 +34938,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 210479357}
   _redTransparentTile: {fileID: 1499636925}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1470294707}
 --- !u!1 &774833632
 GameObject:
@@ -36286,6 +36346,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 388362623}
   _redTransparentTile: {fileID: 261692859}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1088286360}
 --- !u!1 &796579316
 GameObject:
@@ -36940,6 +37001,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814652496}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &817974159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4351846834819390981, guid: b5eba18f600705447b4741e3802ce815, type: 3}
+  m_PrefabInstance: {fileID: 381755148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &823432058
 GameObject:
   m_ObjectHideFlags: 0
@@ -38322,6 +38388,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: b94f4f6ac333ff04dbf8744172d879b8, type: 2}
   _blueTransparentTile: {fileID: 1933651235}
   _redTransparentTile: {fileID: 1210113205}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1035446581}
 --- !u!1 &842404827
 GameObject:
@@ -40149,6 +40216,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 804101504}
   _redTransparentTile: {fileID: 1058557409}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1028071018}
 --- !u!1 &878212665
 GameObject:
@@ -40810,6 +40878,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1402143180}
   _redTransparentTile: {fileID: 1901962980}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 190401415}
 --- !u!1 &890902691
 GameObject:
@@ -40884,6 +40953,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1136970879}
   _redTransparentTile: {fileID: 656218770}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1617928474}
 --- !u!1 &893902311
 GameObject:
@@ -41132,6 +41202,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 429804809}
   _redTransparentTile: {fileID: 362894930}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1096955015}
 --- !u!1 &896836128
 GameObject:
@@ -41206,6 +41277,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 727314493}
   _redTransparentTile: {fileID: 1039798589}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 75412347}
 --- !u!1 &897548484
 GameObject:
@@ -41482,6 +41554,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 457664195}
   _redTransparentTile: {fileID: 1500488526}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1692510140}
 --- !u!1 &901489462
 GameObject:
@@ -41917,6 +41990,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 133394272}
   _redTransparentTile: {fileID: 229689919}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 2143818790}
 --- !u!1 &911914004
 GameObject:
@@ -44114,6 +44188,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 2035395294}
   _redTransparentTile: {fileID: 1651775355}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1499004452}
 --- !u!1 &955723406
 GameObject:
@@ -45292,6 +45367,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1399740681}
   _redTransparentTile: {fileID: 1802216554}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 561129925}
 --- !u!1001 &970956855
 PrefabInstance:
@@ -49289,6 +49365,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1066168596}
   _redTransparentTile: {fileID: 1245662651}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1106720179}
 --- !u!1 &1047284817
 GameObject:
@@ -50439,6 +50516,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 911914004}
   _redTransparentTile: {fileID: 482269131}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 2039430151}
 --- !u!1 &1070688052
 GameObject:
@@ -50603,6 +50681,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 814652496}
   _redTransparentTile: {fileID: 2028857507}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1680314227}
 --- !u!1 &1079138987
 GameObject:
@@ -50677,6 +50756,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 791694075}
   _redTransparentTile: {fileID: 2002335112}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 512601210}
 --- !u!1 &1080376183
 GameObject:
@@ -50715,6 +50795,131 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 747646531193069973, guid: b5eba18f600705447b4741e3802ce815, type: 3}
   m_PrefabInstance: {fileID: 381755148}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1082545380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817974159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147da2adf9a25af468acc1ca2e1e8723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Trajectory
+  _lineRenderer: {fileID: 1082545381}
+  _target: {fileID: 1243571709}
+  _startVelocity: 1
+--- !u!120 &1082545381
+LineRenderer:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817974159}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 0.08
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 0, b: 0, a: 0.78431374}
+      key1: {r: 1, g: 0.5613208, b: 0.5613208, a: 0.78431374}
+      key2: {r: 0, g: 0, b: 0, a: 0.78431374}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 65535
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 1
 --- !u!1 &1085750092
 GameObject:
   m_ObjectHideFlags: 0
@@ -52002,6 +52207,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 897548484}
   _redTransparentTile: {fileID: 305069329}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 585812188}
 --- !u!1 &1106655873
 GameObject:
@@ -52412,6 +52618,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 309954369}
   _redTransparentTile: {fileID: 147517282}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 993975834}
 --- !u!1001 &1112052026
 PrefabInstance:
@@ -53044,6 +53251,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 865633780}
   _redTransparentTile: {fileID: 1021039700}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 63622395}
 --- !u!1 &1129985723
 GameObject:
@@ -53491,6 +53699,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 8bca44156da4d064eb1852b89e33535f, type: 2}
   _blueTransparentTile: {fileID: 842404827}
   _redTransparentTile: {fileID: 1714791225}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 84633773}
 --- !u!1 &1138573186
 GameObject:
@@ -53746,6 +53955,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: b94f4f6ac333ff04dbf8744172d879b8, type: 2}
   _blueTransparentTile: {fileID: 796579316}
   _redTransparentTile: {fileID: 2076376874}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 184072420}
 --- !u!1 &1142203862
 GameObject:
@@ -53820,6 +54030,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 126089563}
   _redTransparentTile: {fileID: 1798889056}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1817233086}
 --- !u!1 &1144229960
 GameObject:
@@ -53894,6 +54105,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1329940023}
   _redTransparentTile: {fileID: 1677692719}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1247356863}
 --- !u!1 &1144261380
 GameObject:
@@ -53968,6 +54180,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 958092590}
   _redTransparentTile: {fileID: 565784522}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 708656587}
 --- !u!1 &1146403877
 GameObject:
@@ -54927,6 +55140,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1828463865}
   _redTransparentTile: {fileID: 1066468000}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 2048369515}
 --- !u!1 &1162768261
 GameObject:
@@ -55293,6 +55507,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 954777383}
   _redTransparentTile: {fileID: 1969378596}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 29839932}
 --- !u!1 &1168537921
 GameObject:
@@ -56517,6 +56732,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1713655865}
   _redTransparentTile: {fileID: 488041377}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1351498256}
 --- !u!1 &1195482860
 GameObject:
@@ -56681,6 +56897,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 422677994}
   _redTransparentTile: {fileID: 461418979}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 758566028}
 --- !u!1 &1200130174
 GameObject:
@@ -57351,6 +57568,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 754965356}
   _redTransparentTile: {fileID: 1006481668}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1842247590}
 --- !u!1 &1212764623
 GameObject:
@@ -58579,6 +58797,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: b94f4f6ac333ff04dbf8744172d879b8, type: 2}
   _blueTransparentTile: {fileID: 2021299355}
   _redTransparentTile: {fileID: 1716679184}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 353600514}
 --- !u!1 &1231651808
 GameObject:
@@ -59201,6 +59420,7 @@ GameObject:
   - component: {fileID: 1243571711}
   - component: {fileID: 1243571710}
   - component: {fileID: 1243571709}
+  - component: {fileID: 1243571712}
   m_Layer: 0
   m_Name: SingleSwordPlayerUnit(Clone) 1
   m_TagString: Untagged
@@ -59236,7 +59456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753ca01a93e6c9e40896a9baf06c2143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUnit
-  _unitStat: {fileID: 1243571711}
+  _stat: {fileID: 0}
+  _distanceRange: {fileID: 0}
   _weapon: {fileID: 1243571710}
   _animationController: {fileID: 0}
   _moveSpeed: 8
@@ -59268,9 +59489,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitStat
   _unit: {fileID: 1243571709}
-  _unitData: {fileID: 11400000, guid: dafbf3c5ff769f24fa573253dafe2656, type: 2}
+  _data: {fileID: 0}
   _health: 100
   _energy: 50
+--- !u!114 &1243571712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243571707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3f5484d479d7f479e1950fad6eeede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitDistanceRange
+  _owner: {fileID: 0}
 --- !u!1 &1243940137
 GameObject:
   m_ObjectHideFlags: 0
@@ -60314,6 +60548,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 626412122}
   _redTransparentTile: {fileID: 940012738}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 685757674}
 --- !u!1 &1266486112
 GameObject:
@@ -61876,6 +62111,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1958287394}
   _redTransparentTile: {fileID: 569538107}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1292032719}
 --- !u!1 &1289452070
 GameObject:
@@ -63469,6 +63705,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1925457058}
   _redTransparentTile: {fileID: 2093863928}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1094591820}
 --- !u!1 &1324690759
 GameObject:
@@ -64235,6 +64472,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1607627923}
   _redTransparentTile: {fileID: 1313362493}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1504114663}
 --- !u!1 &1347151334
 GameObject:
@@ -65893,6 +66131,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 57781406}
   _redTransparentTile: {fileID: 525519704}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 869518901}
 --- !u!1 &1379453655
 GameObject:
@@ -66069,6 +66308,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1421335604}
   _redTransparentTile: {fileID: 1001369151}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 878212667}
 --- !u!1 &1383918949
 GameObject:
@@ -66516,6 +66756,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: b94f4f6ac333ff04dbf8744172d879b8, type: 2}
   _blueTransparentTile: {fileID: 1436526451}
   _redTransparentTile: {fileID: 1042282839}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1660935573}
 --- !u!1 &1398677599
 GameObject:
@@ -67965,6 +68206,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 234876223}
   _redTransparentTile: {fileID: 1424178838}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1929232684}
 --- !u!1 &1430527890
 GameObject:
@@ -68485,6 +68727,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: b94f4f6ac333ff04dbf8744172d879b8, type: 2}
   _blueTransparentTile: {fileID: 1652664642}
   _redTransparentTile: {fileID: 374779461}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1104885923}
 --- !u!1 &1446950765
 GameObject:
@@ -71460,6 +71703,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1194462466}
   _redTransparentTile: {fileID: 1302100382}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 831369183}
 --- !u!1 &1520664114
 GameObject:
@@ -72610,6 +72854,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 955723406}
   _redTransparentTile: {fileID: 836746044}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 835746724}
 --- !u!1 &1552069688
 GameObject:
@@ -73447,6 +73692,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1697372577}
   _redTransparentTile: {fileID: 305107048}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1609593757}
 --- !u!1 &1564313611
 GameObject:
@@ -74858,6 +75104,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 8bca44156da4d064eb1852b89e33535f, type: 2}
   _blueTransparentTile: {fileID: 643494240}
   _redTransparentTile: {fileID: 1223395589}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 131038688}
 --- !u!1 &1597004934
 GameObject:
@@ -76678,6 +76925,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1452561895}
   _redTransparentTile: {fileID: 1630675277}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1564313613}
 --- !u!1 &1630675277
 GameObject:
@@ -78852,6 +79100,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 677763731}
   _redTransparentTile: {fileID: 1028956578}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1092620019}
 --- !u!1 &1673611822
 GameObject:
@@ -79038,6 +79287,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: acd244e71ea28bc44bad6337305842e6, type: 2}
   _blueTransparentTile: {fileID: 1784801489}
   _redTransparentTile: {fileID: 884610899}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1311418400}
 --- !u!1 &1675775638
 GameObject:
@@ -80884,6 +81134,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1052149165}
   _redTransparentTile: {fileID: 639401240}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1980323898}
 --- !u!1 &1711520091
 GameObject:
@@ -80958,6 +81209,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 838573649}
   _redTransparentTile: {fileID: 1671265546}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 689121306}
 --- !u!1 &1713468682
 GameObject:
@@ -81393,6 +81645,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1205552951}
   _redTransparentTile: {fileID: 1089716723}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 583747356}
 --- !u!1 &1716679184
 GameObject:
@@ -81964,6 +82217,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: b94f4f6ac333ff04dbf8744172d879b8, type: 2}
   _blueTransparentTile: {fileID: 1866390167}
   _redTransparentTile: {fileID: 9368109}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 537529115}
 --- !u!1 &1725442612
 GameObject:
@@ -82374,6 +82628,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1194220273}
   _redTransparentTile: {fileID: 1750575843}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1676008810}
 --- !u!1 &1727512029
 GameObject:
@@ -82828,6 +83083,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1470304838}
   _redTransparentTile: {fileID: 784273773}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 113946335}
 --- !u!1 &1743184440
 GameObject:
@@ -85630,6 +85886,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 8bca44156da4d064eb1852b89e33535f, type: 2}
   _blueTransparentTile: {fileID: 320057408}
   _redTransparentTile: {fileID: 1725864838}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1927806522}
 --- !u!1001 &1787475865
 PrefabInstance:
@@ -87464,6 +87721,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1227778645}
   _redTransparentTile: {fileID: 38757546}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 663389300}
 --- !u!1 &1828463865
 GameObject:
@@ -87960,7 +88218,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitAnimationController
   _owner: {fileID: 1243571709}
   _animator: {fileID: 1841879226}
-  _selectInput: {fileID: 6248903269001061691, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
 --- !u!1 &1842247588
 GameObject:
   m_ObjectHideFlags: 0
@@ -91586,6 +91843,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 431130664}
   _redTransparentTile: {fileID: 1399485024}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 901489464}
 --- !u!1 &1914189863
 GameObject:
@@ -92698,6 +92956,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 598199338}
   _redTransparentTile: {fileID: 2146511883}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1713468684}
 --- !u!1 &1930143556
 GameObject:
@@ -92907,6 +93166,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1163970522}
   _redTransparentTile: {fileID: 283853383}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1890052738}
 --- !u!1 &1932234417
 GameObject:
@@ -94955,6 +95215,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 1971893412}
   _redTransparentTile: {fileID: 250198398}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1296521897}
 --- !u!1 &1976832345
 GameObject:
@@ -95029,6 +95290,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 462598191}
   _redTransparentTile: {fileID: 2023487327}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1226492067}
 --- !u!1 &1979339145
 GameObject:
@@ -95103,6 +95365,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 473051398}
   _redTransparentTile: {fileID: 860737557}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 1635649047}
 --- !u!1 &1980323896
 GameObject:
@@ -96109,6 +96372,7 @@ GameObject:
   - component: {fileID: 2018960744}
   - component: {fileID: 2018960743}
   - component: {fileID: 2018960742}
+  - component: {fileID: 2018960745}
   m_Layer: 0
   m_Name: SingleSwordPlayerUnit(Clone) 2
   m_TagString: Untagged
@@ -96144,7 +96408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753ca01a93e6c9e40896a9baf06c2143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUnit
-  _unitStat: {fileID: 2018960744}
+  _stat: {fileID: 0}
+  _distanceRange: {fileID: 0}
   _weapon: {fileID: 2018960743}
   _animationController: {fileID: 0}
   _moveSpeed: 8
@@ -96176,9 +96441,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitStat
   _unit: {fileID: 2018960742}
-  _unitData: {fileID: 11400000, guid: 1571ac2411c6f1c4aaa065427969b2f8, type: 2}
+  _data: {fileID: 0}
   _health: 120
   _energy: 60
+--- !u!114 &2018960745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018960740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3f5484d479d7f479e1950fad6eeede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitDistanceRange
+  _owner: {fileID: 0}
 --- !u!1 &2019366940
 GameObject:
   m_ObjectHideFlags: 0
@@ -99462,6 +99740,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 2031415981}
   _redTransparentTile: {fileID: 1825326393}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 636920734}
 --- !u!1 &2071856494
 GameObject:
@@ -99940,6 +100219,7 @@ MonoBehaviour:
   _tileData: {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
   _blueTransparentTile: {fileID: 782383874}
   _redTransparentTile: {fileID: 1252685176}
+  _darkRedTransparentTile: {fileID: 0}
   _distanceText: {fileID: 623785738}
 --- !u!1 &2080429844
 GameObject:

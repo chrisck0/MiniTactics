@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     private bool _isShowingDanger;
 
     public event Action<bool> OnDangerRangeVisibilityChanged;
+    public AttackScore MaxAttackScore => _maxAttackScore;
     public bool IsShowingDanger => _isShowingDanger;
 
     private void Update()
@@ -212,6 +213,16 @@ public class EnemyAI : MonoBehaviour
             * Time.deltaTime * _owner.MoveSpeed);
     }
 
+    public void SetTargets(Vector2Int coord)
+    {
+        WeaponData weaponData = _maxAttackScore.AttackWeaponData;
+        Weapon weapon = _owner.Weapon;
+
+        weapon.SetRange(coord, weaponData, _mapManager);
+        weapon.SelectWeaponRange(coord, _maxAttackScore.TargetCoord, UnitType.Player, _mapManager,
+            _maxAttackScore.WeaponDirection, weaponData);
+    }
+
     private async UniTask Attack()
     {
         _canAttack = false;
@@ -219,9 +230,7 @@ public class EnemyAI : MonoBehaviour
         WeaponData weaponData = _maxAttackScore.AttackWeaponData;
         Weapon weapon = _owner.Weapon;
 
-        weapon.SetRange(weaponData, _mapManager);
-        weapon.SelectWeaponRange(_maxAttackScore.TargetCoord, UnitType.Player, _mapManager,
-            _maxAttackScore.WeaponDirection, weaponData);
+        SetTargets(transform.position.WorldToCoord());
         _owner.DistanceRange.ShowRange();
 
         if (!weapon.CanAttackTargets(weaponData)) return;
