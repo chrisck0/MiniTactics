@@ -11,7 +11,6 @@ public sealed class CommandEndState : StateBase
 
     public override void Enter()
     {
-        _controller.HideAllProjectiles();
         _controller.OnUnitCommandEnd?.Invoke(_controller.SelectedPlayerUnit);
     }
 

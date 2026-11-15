@@ -27,7 +27,8 @@ public sealed class UnitCommandState : StateBase
         BindInputActions();
         BindCommandEvents();
         _unitCommandUI.Show();
-        _controller.ShowAllProjectiles();
+        _controller.CalculateEnemyScore();
+        _controller.ShowAllTrajectories();
     }
 
     public override void Update()
@@ -58,7 +59,7 @@ public sealed class UnitCommandState : StateBase
             playerUnit.transform.position.WorldToCoord(),
             _controller.PreviousPlayerCoord);
 
-        _controller.HideAllProjectiles();
+        _controller.HideAllTrajectories();
         _controller.SetState(_controller.UnitSelectState);
     }
 
@@ -81,6 +82,7 @@ public sealed class UnitCommandState : StateBase
     private void Wait()
     {
         _controller.SelectedPlayerUnit?.Action();
+        _controller.HideAllTrajectories();
         _controller.SetState(_controller.CommandEndState);
     }
 

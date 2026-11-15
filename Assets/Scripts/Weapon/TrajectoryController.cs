@@ -18,11 +18,8 @@ public class TrajectoryController : MonoBehaviour
 
     public void ShowTrajectories(EnemyUnit enemy, MapManager mapManager)
     {
-        Debug.Log(enemy.Weapon.GlobalTargetCoords.Count);
         foreach (Vector2Int targetCoord in enemy.Weapon.GlobalTargetCoords)
         {
-            Debug.Log(targetCoord);
-
             UnitBase targetUnit = mapManager.UnitMap[targetCoord.x, targetCoord.y];
 
             if (targetUnit == null || targetUnit.UnitType != UnitType.Player) continue;
@@ -39,5 +36,7 @@ public class TrajectoryController : MonoBehaviour
         {
             _trajectoryObjectPool.Return(trajectory);
         }
+
+        _activatedTrajectories.Clear();
     }
 }

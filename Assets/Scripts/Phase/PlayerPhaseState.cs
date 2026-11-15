@@ -41,8 +41,6 @@ public sealed class PlayerPhaseState : StateBase
         foreach (EnemyUnit enemyUnit in _enemyUnitList)
         {
             enemyUnit.Stat.AddEnergy(5);
-            AttackScoreCalculator.CalculateScore(
-                enemyUnit, _mapManager, enemyUnit.transform.position.WorldToCoord());
         }
         _unitCommandStateController.ShowAllDanger();
 

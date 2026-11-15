@@ -243,19 +243,31 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         }
     }
 
-    public void ShowAllProjectiles()
+    public void CalculateEnemyScore()
     {
         foreach (EnemyUnit enemyUnit in _phaseStateController.EnemyUnitList)
         {
             enemyUnit.EnemyAI.CalculateScore();
-            if (enemyUnit.EnemyAI.MaxAttackScore.Score == 0) continue;
 
+            if (enemyUnit.EnemyAI.MaxAttackScore.Score == 0) continue;
             enemyUnit.EnemyAI.SetTargets(enemyUnit.EnemyAI.MaxAttackScore.CurrentCoord);
+        }
+    }
+
+    public void ShowTrajectory(EnemyUnit enemy)
+    {
+        _trajectoryController.ShowTrajectories(enemy, _mapManager);
+    }
+
+    public void ShowAllTrajectories()
+    {
+        foreach (EnemyUnit enemyUnit in _phaseStateController.EnemyUnitList)
+        {
             _trajectoryController.ShowTrajectories(enemyUnit, _mapManager);
         }
     }
 
-    public void HideAllProjectiles()
+    public void HideAllTrajectories()
     {
         _trajectoryController.HideAllTrajectories();
     }
