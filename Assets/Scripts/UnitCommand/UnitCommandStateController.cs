@@ -135,11 +135,22 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         if (unit == null)
         {
             _commandUIController.UnitInfoUI.Hide();
+            _commandUIController.AttackInfoUI.Hide();
             return;
         }
 
         _commandUIController.UnitInfoUI.Show();
         _commandUIController.UnitInfoUI.SetData(unit);
+
+        EnemyUnit enemy = unit as EnemyUnit;
+        if (enemy == null || enemy.EnemyAI.MaxAttackScore.Score == 0)
+        {
+            _commandUIController.AttackInfoUI.Hide();
+            return;
+        }
+
+        _commandUIController.AttackInfoUI.Show();
+        _commandUIController.AttackInfoUI.SetData(enemy.EnemyAI.MaxAttackScore.AttackWeaponData);
     }
 
     public void ShowUnitDetailedInfo(TileBase tile)
