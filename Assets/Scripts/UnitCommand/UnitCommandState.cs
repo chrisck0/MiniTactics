@@ -27,6 +27,7 @@ public sealed class UnitCommandState : StateBase
         BindInputActions();
         BindCommandEvents();
         _unitCommandUI.Show();
+        _controller.ShowAllProjectiles();
     }
 
     public override void Update()
@@ -57,6 +58,7 @@ public sealed class UnitCommandState : StateBase
             playerUnit.transform.position.WorldToCoord(),
             _controller.PreviousPlayerCoord);
 
+        _controller.HideAllProjectiles();
         _controller.SetState(_controller.UnitSelectState);
     }
 

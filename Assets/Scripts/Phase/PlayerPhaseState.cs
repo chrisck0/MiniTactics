@@ -44,6 +44,7 @@ public sealed class PlayerPhaseState : StateBase
             AttackScoreCalculator.CalculateScore(
                 enemyUnit, _mapManager, enemyUnit.transform.position.WorldToCoord());
         }
+        _unitCommandStateController.ShowAllDanger();
 
         BindCommandEvents();
     }

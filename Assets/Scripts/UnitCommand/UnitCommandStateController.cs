@@ -10,6 +10,7 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     [SerializeField] private PhaseStateController _phaseStateController;
     [SerializeField] private MapManager _mapManager;
     [SerializeField] private TileCursor _tileCursor;
+    [SerializeField] private TrajectoryController _trajectoryController;
     [SerializeField] private CommandUIController _commandUIController;
     [SerializeField] private InputActionReference _selectAction;
     [SerializeField] private InputActionReference _infoAction;
@@ -219,11 +220,11 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         }
     }
 
-    public void HideAllDanger()
+    public void InitAllDanger()
     {
         foreach (EnemyUnit enemyUnit in _showingDangerEnemyList)
         {
-            enemyUnit.EnemyAI.HideDanger();
+            enemyUnit.EnemyAI.InitDanger();
         }
     }
 
@@ -240,6 +241,23 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
             enemyUnit.EnemyAI.ShowDanger();
             ShowingDangerEnemyList.Add(enemyUnit);
         }
+    }
+
+    public void ShowAllProjectiles()
+    {
+        foreach (EnemyUnit enemyUnit in _phaseStateController.EnemyUnitList)
+        {
+            enemyUnit.EnemyAI.CalculateScore();
+            if (enemyUnit.EnemyAI.MaxAttackScore.Score == 0) continue;
+
+            enemyUnit.EnemyAI.SetTargets(enemyUnit.EnemyAI.MaxAttackScore.CurrentCoord);
+            _trajectoryController.ShowTrajectories(enemyUnit, _mapManager);
+        }
+    }
+
+    public void HideAllProjectiles()
+    {
+        _trajectoryController.HideAllTrajectories();
     }
 
     private void BindPhaseEvents()

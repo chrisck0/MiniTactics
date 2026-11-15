@@ -56,11 +56,9 @@ public class Weapon : MonoBehaviour
     /// <summary>
     /// 선택 무기 사거리, 공격 범위 설정
     /// </summary>
-    public void SetRange(WeaponData weaponData, MapManager mapManager)
+    public void SetRange(Vector2Int coord, WeaponData weaponData, MapManager mapManager)
     {
         _mapManager = mapManager;
-
-        Vector2Int coord = transform.position.WorldToCoord();
 
         switch (weaponData.WeaponType)
         {
@@ -110,11 +108,10 @@ public class Weapon : MonoBehaviour
     /// 모든 종류 무기 공격 범위 계산
     /// </summary>
     public void SelectWeaponRange(
-        Vector2Int targetCoord, UnitType targetUnitType, MapManager mapManager, DirectionType weaponDirection,
-        WeaponData weaponData)
+        Vector2Int coord, Vector2Int targetCoord, UnitType targetUnitType,
+        MapManager mapManager, DirectionType weaponDirection, WeaponData weaponData)
     {
         _mapManager = mapManager;
-        Vector2Int coord = transform.position.WorldToCoord();
 
         switch (weaponData.WeaponType)
         {

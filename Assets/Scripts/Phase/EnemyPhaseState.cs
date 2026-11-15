@@ -26,7 +26,6 @@ public sealed class EnemyPhaseState : StateBase
         foreach (EnemyUnit enemyUnit in _enemyUnitList)
         {
             enemyUnit.Stat.AddEnergy(5);
-            enemyUnit.EnemyAI.InitDanger();
             _activeEnemyUnit.Enqueue(enemyUnit);
         }
     }

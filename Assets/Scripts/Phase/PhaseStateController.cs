@@ -33,6 +33,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     public int Turn => _turn;
     public int TotalPlayerUnits => _playerUnitList.Count;
     public int TotalEnemyUnits => _enemyUnitList.Count;
+    public List<UnitBase> EnemyUnitList => _enemyUnitList;
 
     public StateBase PlayerPhaseState => _playerPhaseState;
     public StateBase EnemyPhaseState => _enemyPhaseState;
@@ -124,7 +125,6 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         await UniTask.Delay(3000, DelayType.Realtime);
 
         _gameUIController.PhaseUI.Hide();
-        _unitCommandStateController.ShowAllDanger();
         SetState(_playerPhaseState);
         OnPlayerPhaseStarted?.Invoke();
     }
@@ -133,7 +133,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     {
         _gameUIController.PhaseUI.SetEnemyPhaseText();
         _gameUIController.PhaseUI.Show();
-        _unitCommandStateController.HideAllDanger();
+        _unitCommandStateController.InitAllDanger();
         SetPlayerUnitActive();
 
         await UniTask.Delay(3000, DelayType.Realtime);
