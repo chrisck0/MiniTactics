@@ -11,6 +11,8 @@ public sealed class PlayerPhaseState : StateBase
     private List<PlayerUnit> _activePlayerUnit = new();
     private PlayerUnit _currentPlayerUnit;
 
+    public int TotalActivePlayerUnit => _activePlayerUnit.Count;
+
     public PlayerPhaseState(PhaseStateController controller,
         UnitCommandStateController unitCommandStateController,
         MapManager mapManager,
@@ -59,7 +61,7 @@ public sealed class PlayerPhaseState : StateBase
     private void UnitCommandEnd(PlayerUnit actionedPlayerUnit)
     {
         _activePlayerUnit.Remove(actionedPlayerUnit);
-        if (_activePlayerUnit.Count == 0)
+        if (_activePlayerUnit.Count == 0 || actionedPlayerUnit == null)
         {
             PlayerPhaseEnd();
         }

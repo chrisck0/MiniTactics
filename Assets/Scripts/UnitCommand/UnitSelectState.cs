@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 
 public sealed class UnitSelectState : StateBase
 {
@@ -14,7 +13,8 @@ public sealed class UnitSelectState : StateBase
     private TileBase _currentTile;
     private UnitBase _prevUnit;
     private bool _isInfoOpen;
-    private List<EnemyUnit> _showingDangerEnemyList = new();
+    private bool _isSystemOpen;
+    private bool _isPopupOpen => _controller.IsSystemCommandPopupOpen;
 
     public UnitSelectState(UnitCommandStateController controller,
         InputActionReference selectAction,
@@ -35,11 +35,14 @@ public sealed class UnitSelectState : StateBase
     {
         BindInputActions();
         _controller.CalculateEnemyScore();
+        _isInfoOpen = false;
+        _isSystemOpen = false;
+        _controller.SetSelectedPlayerUnit(null);
     }
 
     public override void Update()
     {
-        if (_isInfoOpen) return;
+        if (_isInfoOpen || _isSystemOpen) return;
 
         Vector2 screen = _cursorPosition.action.ReadValue<Vector2>();
         Ray ray = Camera.main.ScreenPointToRay(screen);
@@ -67,19 +70,24 @@ public sealed class UnitSelectState : StateBase
     public override void Exit()
     {
         _currentTile = null;
+        HideSystemCommand();
         HideDistanceRange();
         UnbindInputActions();
     }
 
     private void Select(InputAction.CallbackContext context)
     {
-        if (_currentTile == null || _isInfoOpen) return;
+        if (_currentTile == null || _isInfoOpen || _isSystemOpen) return;
 
         Vector2Int coord = _currentTile.transform.position.WorldToCoord();
 
         UnitBase unit = _mapManager.UnitMap[coord.x, coord.y];
 
-        if (unit == null) return;
+        if (unit == null)
+        {
+            ShowSystemCommand();
+            return;
+        }
 
         switch (unit.UnitType)
         {
@@ -105,7 +113,14 @@ public sealed class UnitSelectState : StateBase
 
     private void Cancel(InputAction.CallbackContext context)
     {
-        HideDetailedInfo();
+        if (_isPopupOpen)
+        {
+            _controller.HideSystemCommandPopup();
+            return;
+        }
+
+        if (_isInfoOpen) HideDetailedInfo();
+        if (_isSystemOpen) HideSystemCommand();
     }
 
     private void ShowDistanceRange(TileBase tile)
@@ -164,6 +179,20 @@ public sealed class UnitSelectState : StateBase
         _controller.HideUnitDetailedInfo();
         _controller.ShowTileUI(_currentTile);
         _isInfoOpen = false;
+    }
+
+    private void ShowSystemCommand()
+    {
+        _controller.HideTileUI();
+        _controller.ShowSystemCommandUI();
+        _isSystemOpen = true;
+    }
+
+    private void HideSystemCommand()
+    {
+        _controller.HideSystemCommandUI();
+        _controller.ShowTileUI(_currentTile);
+        _isSystemOpen = false;
     }
 
     private void BindInputActions()

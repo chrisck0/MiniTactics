@@ -45,6 +45,7 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     public int TotalPlayerUnits => _phaseStateController.TotalPlayerUnits;
     public int CurrentTurnCount => _currentTurnCount;
     public List<EnemyUnit> ShowingDangerEnemyList => _showingDangerEnemyList;
+    public bool IsSystemCommandPopupOpen => _commandUIController.IsSystemCommandPopupOpen;
 
     private void Awake() => InitUnitCommandStates();
     private void OnEnable() => BindPhaseEvents();
@@ -95,6 +96,8 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     public void SetSelectedPlayerUnit(PlayerUnit playerUnit)
     {
         _selectedPlayerUnit = playerUnit;
+
+        if (playerUnit == null) return;
         _previousPlayerCoord = playerUnit.transform.position.WorldToCoord();
     }
 
@@ -107,6 +110,11 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     {
         _tileCursor.SetPosition(coord);
         _tileCursor.Show();
+    }
+
+    public void ShowSystemCommandUI()
+    {
+        _commandUIController.SystemCommandUI.Show();
     }
 
     public void ShowTileInfo(TileBase tile)
@@ -182,11 +190,6 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         _stateMachine.enabled = false;
     }
 
-    public void HideCursor()
-    {
-        _tileCursor.Hide();
-    }
-
     public void ShowTileUI(TileBase tile)
     {
         if (tile == null) return;
@@ -195,6 +198,21 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
 
         ShowUnitInfo(tile);
         ShowCursor(coord);
+    }
+
+    public void HideCursor()
+    {
+        _tileCursor.Hide();
+    }
+
+    public void HideSystemCommandUI()
+    {
+        _commandUIController.SystemCommandUI.Hide();
+    }
+
+    public void HideSystemCommandPopup()
+    {
+        _commandUIController.SystemCommandUI.HidePopup();
     }
 
     public void HideTileUI()

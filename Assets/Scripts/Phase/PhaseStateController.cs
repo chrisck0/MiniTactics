@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(StateMachine))]
 public class PhaseStateController : MonoBehaviour, IStateEvent
@@ -14,10 +13,11 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private MapManager _mapManager;
     [SerializeField] private GameUIController _gameUIController;
-    [SerializeField] private Button _endTurnButton;
+    [SerializeField] private SystemCommandUI _systemCommandUI;
 
     private StateBase _playerPhaseState;
     private StateBase _enemyPhaseState;
+    private StateBase _phaseEndState;
     private int _turn;
     private int _initialPlayerNum;
     private int _initialEnemyNum;
@@ -33,21 +33,21 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     public int Turn => _turn;
     public int TotalPlayerUnits => _playerUnitList.Count;
     public int TotalEnemyUnits => _enemyUnitList.Count;
+    public int TotalActivePlayerUnit => (_playerPhaseState as PlayerPhaseState).TotalActivePlayerUnit;
     public List<UnitBase> EnemyUnitList => _enemyUnitList;
 
     public StateBase PlayerPhaseState => _playerPhaseState;
     public StateBase EnemyPhaseState => _enemyPhaseState;
+    public StateBase PhaseEndState => _enemyPhaseState;
 
     private void OnEnable()
     {
-        BindButtonEvents();
         BindSpawnEvents();
         InitUI();
     }
 
     private void OnDisable()
     {
-        UnbindButtonEvents();
         UnbindSpawnEvents();
     }
 
@@ -78,6 +78,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         _playerPhaseState = new PlayerPhaseState(
             this, _unitCommandStateController, _mapManager, spawnedUnitDict);
         _enemyPhaseState = new EnemyPhaseState(this, spawnedUnitDict);
+        _phaseEndState = new PhaseEndState(this);
 
         if (!spawnedUnitDict.TryGetValue(UnitType.Player, out List<UnitBase> playerUnitList)) return;
         _playerUnitList = playerUnitList;
@@ -223,16 +224,6 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     public void SetState(StateBase state)
     {
         OnStateChanged?.Invoke(state);
-    }
-    
-    private void BindButtonEvents()
-    {
-        _endTurnButton.onClick.AddListener(StartEnemyPhase);
-    }
-    
-    private void UnbindButtonEvents()
-    {
-        _endTurnButton.onClick.RemoveListener(StartEnemyPhase);
     }
 
     private void BindSpawnEvents()
