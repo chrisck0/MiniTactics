@@ -5,7 +5,7 @@ public abstract class PopupUI : MonoBehaviour
 {
     protected SystemCommandUI _systemCommandUI;
 
-    public void Show(SystemCommandUI systemCommandUI)
+    public virtual void Show(SystemCommandUI systemCommandUI)
     {
         _systemCommandUI = systemCommandUI;
         gameObject.SetActive(true);

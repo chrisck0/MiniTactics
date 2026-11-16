@@ -14,16 +14,13 @@ public class UnitInfoUI : MonoBehaviour
         _unitHealthText.text = $"{selectedUnit.Stat.Health} / {selectedUnit.Stat.Data.Health}";
         _unitEnergyText.text = $"{selectedUnit.Stat.Energy} / {selectedUnit.Stat.Data.Energy}";
 
-        EnemyUnit enemyUnit = selectedUnit as EnemyUnit;
-
-        if (enemyUnit == null || enemyUnit.EnemyAI.MaxAttackScore.Score == 0)
+        string weaponList = "";
+        for (int i = 0; i < selectedUnit.Weapon.WeaponDataList.Count; i++)
         {
-            _unitWeaponNameText.text = selectedUnit.Weapon.WeaponDataList[0].Name;
+            if (i == 0) weaponList += selectedUnit.Weapon.WeaponDataList[i].Name.ToString();
+            else weaponList += $" / {selectedUnit.Weapon.WeaponDataList[i].Name}";
         }
-        else
-        {
-            _unitWeaponNameText.text = enemyUnit.EnemyAI.MaxAttackScore.AttackWeaponData.Name;
-        }
+        _unitWeaponNameText.text = weaponList;
     }
 
     public void Show()

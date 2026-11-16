@@ -34,6 +34,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     public int TotalPlayerUnits => _playerUnitList.Count;
     public int TotalEnemyUnits => _enemyUnitList.Count;
     public int TotalActivePlayerUnit => (_playerPhaseState as PlayerPhaseState).TotalActivePlayerUnit;
+    public List<UnitBase> PlayerUnitList => _playerUnitList;
     public List<UnitBase> EnemyUnitList => _enemyUnitList;
 
     public StateBase PlayerPhaseState => _playerPhaseState;
