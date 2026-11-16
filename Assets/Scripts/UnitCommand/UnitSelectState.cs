@@ -214,7 +214,7 @@ public sealed class UnitSelectState : StateBase
         _cursorPosition.action.Enable();
     }
 
-    public void UnbindInputActions()
+    private void UnbindInputActions()
     {
         _isBinded = false;
         _selectAction.action.Disable();

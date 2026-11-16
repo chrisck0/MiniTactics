@@ -48,6 +48,10 @@ public sealed class PlayerPhaseState : StateBase
         foreach (EnemyUnit enemyUnit in _enemyUnitList)
         {
             enemyUnit.Stat.AddEnergy(5);
+
+            // Danger 영역 표시를 위해 계산
+            AttackScoreCalculator.CalculateScore(
+                enemyUnit, _mapManager, enemyUnit.transform.position.WorldToCoord());
         }
         _unitCommandStateController.ShowAllDanger();
 
