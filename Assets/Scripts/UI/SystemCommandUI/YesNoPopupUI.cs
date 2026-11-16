@@ -30,7 +30,6 @@ public class YesNoPopupUI : PopupUI
     private void AutoOn()
     {
         GameManager.Instance.LockCursor();
-        Debug.Log("Auto on");
         _systemCommandUI.ToggleAuto(true);
         _systemCommandUI.HideCursor();
         _systemCommandUI.Hide();
@@ -40,7 +39,6 @@ public class YesNoPopupUI : PopupUI
 
     private void AutoOff(InputAction.CallbackContext context)
     {
-        Debug.Log("Auto off");
         _systemCommandUI.ToggleAuto(false);
         GameManager.Instance.UnlockCursor();
         UnbindInputEvents();

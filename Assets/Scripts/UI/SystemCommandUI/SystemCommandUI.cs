@@ -21,6 +21,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
     [SerializeField] private YesNoPopupUI _yesNoPopup;
     [SerializeField] private UnitListPopupUI _unitListPopup;
     [SerializeField] private SettingsPopupUI _settingsPopup;
+    [SerializeField] private GameObject _autoTextObject;
 
     private PopupUI _currentPopup;
     public bool IsPopupOpen => _currentPopup != null;
@@ -120,6 +121,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
     public void ToggleAuto(bool isAuto)
     {
         _phaseStateController.ToggleAuto(isAuto);
+        _autoTextObject.SetActive(isAuto);
     }
 
     public List<UnitBase> GetPlayerList()
@@ -158,5 +160,6 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _yesNoPopup.gameObject.SetActive(false);
         _unitListPopup.gameObject.SetActive(false);
         _settingsPopup.gameObject.SetActive(false);
+        _autoTextObject.SetActive(false);
     }
 }

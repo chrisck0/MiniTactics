@@ -76,7 +76,6 @@ public class Weapon : MonoBehaviour
     {
         _mapManager.TileRange.SelectTargetWeaponRange(
             _owner, coord, minRange, maxRange, _globalTargetCoords, false);
-        Debug.Log(_globalTargetCoords.Count);
     }
 
     // 범위 무기의 공격 범위 설정 (로컬)
