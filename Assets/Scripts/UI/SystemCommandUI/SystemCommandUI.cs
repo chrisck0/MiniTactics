@@ -2,9 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
-public class SystemCommandUI : MonoBehaviour
+public class SystemCommandUI : MonoBehaviour, IPopupController
 {
     [SerializeField] private PhaseStateController _phaseStateController;
     [SerializeField] private UnitCommandStateController _unitCommandStateController;

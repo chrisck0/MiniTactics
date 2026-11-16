@@ -6,14 +6,16 @@ public class UnitListPopupUI : PopupUI
     [SerializeField] private Button _playerUnitButton;
     [SerializeField] private Button _enemyUnitButton;
     [SerializeField] private UnitContainerListUI _containerList;
+    private SystemCommandUI _systemCommandUI;
 
     private void OnEnable() => BindButtonEvents();
     private void OnDisable() => UnbindButtonEvents();
 
     // TODO: 팝업 열리면 기존 턴 수랑 미행동 유닛 수 가리기
-    public override void Show(SystemCommandUI systemCommandUI)
+    public override void Show(IPopupController popupController)
     {
-        base.Show(systemCommandUI);
+        base.Show(popupController);
+        _systemCommandUI = popupController as SystemCommandUI;
         ShowPlayerUnit();
         _systemCommandUI.HideCommandUIInfo();
     }

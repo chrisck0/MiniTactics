@@ -3,11 +3,11 @@ using UnityEngine;
 
 public abstract class PopupUI : MonoBehaviour
 {
-    protected SystemCommandUI _systemCommandUI;
+    protected IPopupController _popupController;
 
-    public virtual void Show(SystemCommandUI systemCommandUI)
+    public virtual void Show(IPopupController popupController)
     {
-        _systemCommandUI = systemCommandUI;
+        _popupController = popupController;
         gameObject.SetActive(true);
     }
 
@@ -18,6 +18,6 @@ public abstract class PopupUI : MonoBehaviour
 
     protected void ClosePopup()
     {
-        _systemCommandUI.HidePopup();
+        _popupController.HidePopup();
     }
 }

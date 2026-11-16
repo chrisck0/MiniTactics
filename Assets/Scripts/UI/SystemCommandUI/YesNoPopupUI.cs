@@ -11,6 +11,13 @@ public class YesNoPopupUI : PopupUI
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private Button _yesButton;
     [SerializeField] private Button _noButton;
+    private SystemCommandUI _systemCommandUI;
+
+    public override void Show(IPopupController popupController)
+    {
+        base.Show(popupController);
+        _systemCommandUI = popupController as SystemCommandUI;
+    }
 
     private void PhaseEnd()
     {
