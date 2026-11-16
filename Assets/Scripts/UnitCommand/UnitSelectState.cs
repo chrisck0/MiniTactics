@@ -40,6 +40,7 @@ public sealed class UnitSelectState : StateBase
         _isInfoOpen = false;
         _isSystemOpen = false;
         _controller.SetSelectedPlayerUnit(null);
+        if (!_controller.IsAuto) ShowKeyInfo();
     }
 
     public override void Update()
@@ -80,6 +81,7 @@ public sealed class UnitSelectState : StateBase
         HideSystemCommand();
         HideDistanceRange();
         UnbindInputActions();
+        _controller.HideKeyInfo();
     }
 
     private void Select(InputAction.CallbackContext context)
@@ -160,6 +162,14 @@ public sealed class UnitSelectState : StateBase
         _prevUnit.DistanceRange.HideTargetable();
         _prevUnit.DistanceRange.HideReachable();
         _prevUnit = null;
+    }
+
+    private void ShowKeyInfo()
+    {
+        _controller.ShowKeyInfo();
+        _controller.ShowSelectKeyInfo(1);
+        _controller.ShowInfoKeyInfo(2);
+        _controller.ShowCancelKeyInfo(3);
     }
 
     private void ShowDetailedInfo(InputAction.CallbackContext context)

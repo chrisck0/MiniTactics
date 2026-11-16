@@ -19,7 +19,7 @@ public class KeyContainerUI : MonoBehaviour, IPoolable
 
     public void Deactivate()
     {
-        gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void ReturnToPool()
