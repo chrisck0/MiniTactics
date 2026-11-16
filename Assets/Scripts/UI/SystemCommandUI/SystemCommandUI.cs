@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 public class SystemCommandUI : MonoBehaviour
 {
@@ -15,10 +16,12 @@ public class SystemCommandUI : MonoBehaviour
     [SerializeField] private Button _phaseEndButton;
     [SerializeField] private Button _unitListButton;
     [SerializeField] private Button _autoButton;
-    [SerializeField] private Button _optionsButton;
+    [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _retreatButton;
+    [SerializeField] private Button _popupBackgroundButton;
     [SerializeField] private YesNoPopupUI _yesNoPopup;
     [SerializeField] private UnitListPopupUI _unitListPopup;
+    [SerializeField] private SettingsPopupUI _settingsPopup;
 
     private PopupUI _currentPopup;
     public bool IsPopupOpen => _currentPopup != null;
@@ -53,12 +56,16 @@ public class SystemCommandUI : MonoBehaviour
 
     public void HidePopup()
     {
+        if (_currentPopup == null) return;
+
+        _popupBackgroundButton.gameObject.SetActive(false);
         _currentPopup.Hide();
         _currentPopup = null;
     }
 
     private void ShowPhaseEndPopup()
     {
+        _popupBackgroundButton.gameObject.SetActive(true);
         _yesNoPopup.Show(this);
         _yesNoPopup.BindPhaseEndEvents();
         _currentPopup = _yesNoPopup;
@@ -66,19 +73,29 @@ public class SystemCommandUI : MonoBehaviour
 
     private void ShowUnitListPopup()
     {
+        _popupBackgroundButton.gameObject.SetActive(true);
         _unitListPopup.Show(this);
         _currentPopup = _unitListPopup;
     }
 
     private void ShowAutoPopup()
     {
+        _popupBackgroundButton.gameObject.SetActive(true);
         _yesNoPopup.Show(this);
         _yesNoPopup.BindAutoEvents();
         _currentPopup = _yesNoPopup;
     }
 
+    private void ShowSettingsPopup()
+    {
+        _popupBackgroundButton.gameObject.SetActive(true);
+        _settingsPopup.Show(this);
+        _currentPopup = _settingsPopup;
+    }
+
     private void ShowRetreatPopup()
     {
+        _popupBackgroundButton.gameObject.SetActive(true);
         _yesNoPopup.Show(this);
         _yesNoPopup.BindRetreatEvents();
         _currentPopup = _yesNoPopup;
@@ -118,23 +135,29 @@ public class SystemCommandUI : MonoBehaviour
 
     private void BindButtonEvents()
     {
+        _popupBackgroundButton.onClick.AddListener(HidePopup);
         _phaseEndButton.onClick.AddListener(ShowPhaseEndPopup);
         _unitListButton.onClick.AddListener(ShowUnitListPopup);
         _autoButton.onClick.AddListener(ShowAutoPopup);
+        _settingsButton.onClick.AddListener(ShowSettingsPopup);
         _retreatButton.onClick.AddListener(ShowRetreatPopup);
     }
 
     private void UnbindButtonEvents()
     {
+        _popupBackgroundButton.onClick.RemoveListener(HidePopup);
         _phaseEndButton.onClick.RemoveListener(ShowPhaseEndPopup);
         _unitListButton.onClick.RemoveListener(ShowUnitListPopup);
         _autoButton.onClick.RemoveListener(ShowAutoPopup);
+        _settingsButton.onClick.RemoveListener(ShowSettingsPopup);
         _retreatButton.onClick.RemoveListener(ShowRetreatPopup);
     }
 
     private void Init()
     {
+        _popupBackgroundButton.gameObject.SetActive(false);
         _yesNoPopup.gameObject.SetActive(false);
         _unitListPopup.gameObject.SetActive(false);
+        _settingsPopup.gameObject.SetActive(false);
     }
 }
