@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 131796892742605370}
   - component: {fileID: 7675845103827567986}
   - component: {fileID: 3226035149217672612}
-  - component: {fileID: 4784945867654183154}
+  - component: {fileID: 8047452440966621766}
   m_Layer: 0
   m_Name: BowAndArrowEnemyUnit
   m_TagString: Untagged
@@ -95,10 +95,10 @@ MonoBehaviour:
   _stat: {fileID: 1099915533610543554}
   _distanceRange: {fileID: 7675845103827567986}
   _weapon: {fileID: 131796892742605370}
+  _unitAI: {fileID: 8047452440966621766}
   _animationController: {fileID: 2637411370604514657}
   _moveSpeed: 8
-  _enemyAI: {fileID: 4784945867654183154}
---- !u!114 &4784945867654183154
+--- !u!114 &8047452440966621766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,9 +107,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4351846834819390981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a342d3186616f54b915f6f2ebdcb16a, type: 3}
+  m_Script: {fileID: 11500000, guid: 439028bde6b730a46abdbffd7ffb7fc0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAI
   _owner: {fileID: 3226035149217672612}
 --- !u!1 &8701532818768059213
 GameObject:
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDangerRangeUI
   _dangerRangeImage: {fileID: 6360164946477701399}
-  _enemyAI: {fileID: 4784945867654183154}
+  _unitAI: {fileID: 8047452440966621766}
 --- !u!224 &7765805587875278473 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4799539379794509816, guid: a95c175f124b4124ca8a81443891f2bf, type: 3}

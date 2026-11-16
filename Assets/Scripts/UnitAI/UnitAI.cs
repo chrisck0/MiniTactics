@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class UnitAI : MonoBehaviour
 {
-    [SerializeField] private EnemyUnit _owner;
+    [SerializeField] private UnitBase _owner;
     private MapManager _mapManager;
     private TileCost[,] _tileCostMap;
     private HashSet<Vector2Int> _reachableCoords;
@@ -15,9 +15,10 @@ public class EnemyAI : MonoBehaviour
     private bool _canAttack;
     private Vector2Int _moveTargetCoord;
     private int _turn;
-    private int _totalEnemyUnits;
+    private int _totalUnitTypeUnits;
     private int _currentTurnCount;
     private bool _isShowingDanger;
+    private UnitType _targetType;
 
     public event Action<bool> OnDangerRangeVisibilityChanged;
     public AttackScore MaxAttackScore => _maxAttackScore;
@@ -29,9 +30,10 @@ public class EnemyAI : MonoBehaviour
         else if (_canAttack) Attack().Forget();
     }
 
-    public void SetData(MapManager mapManager)
+    public void SetData(MapManager mapManager, UnitType targetType)
     {
         _mapManager = mapManager;
+        _targetType = targetType;
     }
 
     public void InitDanger()
@@ -73,11 +75,11 @@ public class EnemyAI : MonoBehaviour
             $"{_maxAttackScore.WeaponDirection} {_maxAttackScore.TargetCoord} {_maxAttackScore.Score}");
     }
 
-    public void Behave(int turn, int totalEnemyUnits, int currentTurnCount)
+    public void Behave(int turn, int totalUnitTypeUnits, int currentTurnCount)
     {
         CalculateScore();
         _turn = turn;
-        _totalEnemyUnits = totalEnemyUnits;
+        _totalUnitTypeUnits = totalUnitTypeUnits;
         _currentTurnCount = currentTurnCount;
 
         Vector2Int currentCoord = transform.position.WorldToCoord();
@@ -133,7 +135,7 @@ public class EnemyAI : MonoBehaviour
             for (int j = 0; j < _tileCostMap.GetLength(0); j++)
             {
                 UnitBase unit = _mapManager.UnitMap[j, i];
-                if (unit == null || unit.UnitType != UnitType.Player) continue;
+                if (unit == null || unit.UnitType != _targetType) continue;
 
                 Vector2Int newCoord = new Vector2Int(j, i);
                 int newDistance = _mapManager.TileRange.GetUnreachableDistance(newCoord);
@@ -156,7 +158,7 @@ public class EnemyAI : MonoBehaviour
 
         foreach (Vector2Int coord in _reachableCoords)
         {
-            TileCost tileCost = _mapManager.TileRange.CalculateTileCost(coord, targetCoord, UnitType.Player);
+            TileCost tileCost = _mapManager.TileRange.CalculateTileCost(coord, targetCoord, _targetType);
             if (destinationToTargetMinDistance > tileCost.Distance)
             {
                 destinationToTargetMinDistance = tileCost.Distance;
@@ -164,7 +166,7 @@ public class EnemyAI : MonoBehaviour
             }
         }
         Vector2Int currentCoord = transform.position.WorldToCoord();
-        _mapManager.TileRange.CalculateTileCost(currentCoord, destinationCoord, UnitType.Player);
+        _mapManager.TileRange.CalculateTileCost(currentCoord, destinationCoord, _targetType);
         MoveToDestination(transform.position.WorldToCoord(), destinationCoord);
     }
 
@@ -219,7 +221,7 @@ public class EnemyAI : MonoBehaviour
         Weapon weapon = _owner.Weapon;
 
         weapon.SetRange(coord, weaponData, _mapManager);
-        weapon.SelectWeaponRange(coord, _maxAttackScore.TargetCoord, UnitType.Player, _mapManager,
+        weapon.SelectWeaponRange(coord, _maxAttackScore.TargetCoord, _targetType, _mapManager,
             _maxAttackScore.WeaponDirection, weaponData);
     }
 
@@ -237,16 +239,16 @@ public class EnemyAI : MonoBehaviour
 
         await weapon.AttackTargets(
             weaponData,
-            UnitType.Player,
+            _targetType,
             _turn,
-            _totalEnemyUnits,
+            _totalUnitTypeUnits,
             _currentTurnCount
             );
 
         await weapon.GetAttackReturn(
-            UnitType.Player,
+            _targetType,
             _turn,
-            _totalEnemyUnits,
+            _totalUnitTypeUnits,
             _currentTurnCount
             );
 

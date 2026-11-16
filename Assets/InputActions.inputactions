@@ -7,24 +7,6 @@
             "id": "d25a7d51-60eb-4d11-ba3b-b8550dda8657",
             "actions": [
                 {
-                    "name": "PressNum1",
-                    "type": "Button",
-                    "id": "67d23711-e4a2-4905-91a4-925fa8fc4ea3",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "PressNum2",
-                    "type": "Button",
-                    "id": "8aa85f23-62ef-4b02-b025-01ac7b045429",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "CursorPosition",
                     "type": "Value",
                     "id": "8f60140b-6027-4313-b33f-57c45970109d",
@@ -62,28 +44,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "5e6aae57-99c8-455a-ae67-0cbc3360c015",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PressNum1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d1e8f21b-9dc1-415a-8d71-81c44d6363b1",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PressNum2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "b75184df-9b89-4c9b-b501-3ea757e5af62",
@@ -125,6 +85,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Info",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Auto",
+            "id": "2251cdf3-0b34-420d-8acf-56fed6c801b0",
+            "actions": [
+                {
+                    "name": "AnyInput",
+                    "type": "Button",
+                    "id": "b7c3e1dd-e484-4014-87b6-bf3030d78a79",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "593ead5e-7b2d-4e04-bdc4-5632f78d2d95",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AnyInput",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

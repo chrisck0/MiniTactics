@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class ResultUI : MonoBehaviour
 {
-    [SerializeField] private SceneController _nextStageSceneController;
-    [SerializeField] private SceneController _mainMenuSceneController;
+    [SerializeField] private GameSceneController _gameSceneController;
     [SerializeField] private GameObject _gameClearText;
     [SerializeField] private GameObject _gameOverText;
     [SerializeField] private TextMeshProUGUI _turnText;
@@ -39,12 +38,12 @@ public class ResultUI : MonoBehaviour
 
     private void LoadNextStage()
     {
-        _nextStageSceneController.LoadNextScene();
+        _gameSceneController.LoadNextStage();
     }
 
     private void LoadMainMenu()
     {
-        _mainMenuSceneController.LoadNextScene();
+        _gameSceneController.LoadMainMenu();
     }
 
     private void BindButtonEvents()

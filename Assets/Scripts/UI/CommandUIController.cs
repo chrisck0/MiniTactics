@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CommandUIController : MonoBehaviour
 {
+    [SerializeField] private SystemCommandUI _systemCommandUI;
     [SerializeField] private UnitCommandUI _unitCommandUI;
     [SerializeField] private AttackCommandUI _attackCommandUI;
     [SerializeField] private TileInfoUI _tileInfoUI;
@@ -10,6 +11,7 @@ public class CommandUIController : MonoBehaviour
     [SerializeField] private UnitDetailedInfoUI _unitDetailedInfoUI;
     [SerializeField] private BattleInfoUI _battleInfoUI;
 
+    public SystemCommandUI SystemCommandUI => _systemCommandUI;
     public UnitCommandUI UnitCommandUI => _unitCommandUI;
     public AttackCommandUI AttackCommandUI => _attackCommandUI;
     public TileInfoUI TileInfoUI => _tileInfoUI;
@@ -17,9 +19,11 @@ public class CommandUIController : MonoBehaviour
     public AttackInfoUI AttackInfoUI => _attackInfoUI;
     public UnitDetailedInfoUI UnitDetailedInfoUI => _unitDetailedInfoUI;
     public BattleInfoUI BattleInfoUI => _battleInfoUI;
+    public bool IsSystemCommandPopupOpen => _systemCommandUI.IsPopupOpen;
 
     public void DeactivateAll()
     {
+        _systemCommandUI.gameObject.SetActive(false);
         _unitCommandUI.gameObject.SetActive(false);
         _attackCommandUI.gameObject.SetActive(false);
         _tileInfoUI.gameObject.SetActive(false);

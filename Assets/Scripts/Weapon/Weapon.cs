@@ -260,12 +260,21 @@ public class Weapon : MonoBehaviour
     /// </summary>
     public bool CanAttackTargets(WeaponData weaponData)
     {
-        if (_globalTargetCoords.Count == 0) return false;
+        if (_globalTargetCoords.Count == 0)
+        {
+            Debug.Log("cannot attack");
+            return false;
+        }
 
         if (weaponData.WeaponType == WeaponType.SelectDirection
-            && !GetCanAttackArea()) return false;
+            && !GetCanAttackArea())
+        {
+            Debug.Log("cannot attack");
 
-        return true;
+            return false;
+        }
+
+            return true;
     }
 
     /// <summary>

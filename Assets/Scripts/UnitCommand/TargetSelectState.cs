@@ -8,7 +8,6 @@ public class TargetSelectState : StateBase
     private UnitCommandStateController _controller;
     private MapManager _mapManager => _controller.MapManager;
     private InputActionReference _selectAction;
-    private InputActionReference _infoAction;
     private InputActionReference _cancelAction;
     private InputActionReference _cursorPosition;
     private LayerMask _ground;
@@ -40,7 +39,7 @@ public class TargetSelectState : StateBase
 
     public override void Update()
     {
-        if (_hasSelected) return;
+        if (_hasSelected || _controller.IsAuto) return;
 
         Vector2 screen = _cursorPosition.action.ReadValue<Vector2>();
         Ray ray = Camera.main.ScreenPointToRay(screen);
@@ -172,6 +171,7 @@ public class TargetSelectState : StateBase
         Weapon playerWeapon = _controller.SelectedPlayerUnit.Weapon;
 
         _hasSelected = true;
+        UnbindInputActions();
         HideUI();
 
         _controller.SelectedPlayerUnit.DistanceRange.HideDistance();

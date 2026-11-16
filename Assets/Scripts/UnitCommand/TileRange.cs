@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TileRange
@@ -214,8 +215,9 @@ public class TileRange
                 if (!isRange) unit.DistanceRange.DistanceCoords.Add(currentCoord);
                 else unit.DistanceRange.RangeCoords.Add(currentCoord);
 
-                _tileMap[currentCoord.x, currentCoord.y].SetCanSelect();
+                UnitBase tileUnit = _unitMap[currentCoord.x, currentCoord.y];
 
+                _tileMap[currentCoord.x, currentCoord.y].SetCanSelect();
                 coordList.Add(currentCoord);
             }
                 

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,10 @@ public sealed class PlayerPhaseState : StateBase
     private List<UnitBase> _enemyUnitList;
     private List<PlayerUnit> _activePlayerUnit = new();
     private PlayerUnit _currentPlayerUnit;
+    private bool _isAuto;
+    private bool _isStateEnd;
+
+    public int TotalActivePlayerUnit => _activePlayerUnit.Count;
 
     public PlayerPhaseState(PhaseStateController controller,
         UnitCommandStateController unitCommandStateController,
@@ -29,6 +34,8 @@ public sealed class PlayerPhaseState : StateBase
 
     public override void Enter()
     {
+        _isAuto = _controller.IsAuto;
+        _isStateEnd = false;
         _activePlayerUnit.Clear();
         foreach (PlayerUnit playerUnit in _playerUnitList)
         {
@@ -41,6 +48,10 @@ public sealed class PlayerPhaseState : StateBase
         foreach (EnemyUnit enemyUnit in _enemyUnitList)
         {
             enemyUnit.Stat.AddEnergy(5);
+
+            // Danger 영역 표시를 위해 계산
+            AttackScoreCalculator.CalculateScore(
+                enemyUnit, _mapManager, enemyUnit.transform.position.WorldToCoord());
         }
         _unitCommandStateController.ShowAllDanger();
 
@@ -49,6 +60,40 @@ public sealed class PlayerPhaseState : StateBase
 
     public override void Update()
     {
+        if (_controller.IsAuto) _isAuto = true;
+
+        if (!_isAuto || _isStateEnd) return;
+
+        if (_currentPlayerUnit == null)
+        {
+            if (_activePlayerUnit.Count != 0)
+            {
+                if (!_controller.IsAuto)
+                {
+                    _isAuto = false;
+                    _controller.TurnOffAutoDuringPlayerPhase();
+                    return;
+                }
+
+                _controller.SetPlayerCurrentTurnCount(_controller.GetPlayerCurrentTurnCount() + 1);
+                _currentPlayerUnit = _activePlayerUnit[_activePlayerUnit.Count - 1];
+                _activePlayerUnit.RemoveAt(_activePlayerUnit.Count - 1);
+
+                BindPlayerUnitEvents();
+
+                _currentPlayerUnit.UnitAI.Behave(
+                    _controller.Turn,
+                    _controller.TotalPlayerUnits,
+                    _controller.GetPlayerCurrentTurnCount()
+                    );
+            }
+            else
+            {
+                PlayerPhaseEnd();
+                _isStateEnd = true;
+                _controller.SetPlayerCurrentTurnCount(0);
+            }
+        }
     }
 
     public override void Exit()
@@ -58,7 +103,9 @@ public sealed class PlayerPhaseState : StateBase
 
     private void UnitCommandEnd(PlayerUnit actionedPlayerUnit)
     {
-        _activePlayerUnit.Remove(actionedPlayerUnit);
+        if (_isAuto) return;
+        if (actionedPlayerUnit != null) _activePlayerUnit.Remove(actionedPlayerUnit);
+
         if (_activePlayerUnit.Count == 0)
         {
             PlayerPhaseEnd();
@@ -74,6 +121,19 @@ public sealed class PlayerPhaseState : StateBase
         }
     }
 
+    private void PlayerAutoActioned()
+    {
+        UnbindPlayerUnitEvents();
+        if (_activePlayerUnit.Count != 0) WaitForSeconds().Forget();
+        else _currentPlayerUnit = null;
+    }
+
+    private async UniTask WaitForSeconds()
+    {
+        await UniTask.Delay(1000, DelayType.DeltaTime);
+        _currentPlayerUnit = null;
+    }
+
     private void PlayerPhaseEnd()
     {
         _controller.StartEnemyPhase();
@@ -87,5 +147,15 @@ public sealed class PlayerPhaseState : StateBase
     private void UnbindCommandEvents()
     {
         _unitCommandStateController.OnUnitCommandEnd -= UnitCommandEnd;
+    }
+
+    private void BindPlayerUnitEvents()
+    {
+        _currentPlayerUnit.OnUnitActioned += PlayerAutoActioned;
+    }
+
+    private void UnbindPlayerUnitEvents()
+    {
+        _currentPlayerUnit.OnUnitActioned -= PlayerAutoActioned;
     }
 }

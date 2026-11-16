@@ -45,6 +45,8 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     public int TotalPlayerUnits => _phaseStateController.TotalPlayerUnits;
     public int CurrentTurnCount => _currentTurnCount;
     public List<EnemyUnit> ShowingDangerEnemyList => _showingDangerEnemyList;
+    public bool IsSystemCommandPopupOpen => _commandUIController.IsSystemCommandPopupOpen;
+    public bool IsAuto => _phaseStateController.IsAuto;
 
     private void Awake() => InitUnitCommandStates();
     private void OnEnable() => BindPhaseEvents();
@@ -76,6 +78,11 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         StartUnitCommand();
     }
 
+    public void SetCurrentTurnCount(int num)
+    {
+        _currentTurnCount = num;
+    }
+
     public void StartUnitCommand()
     {
         _currentTurnCount++;
@@ -95,6 +102,8 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     public void SetSelectedPlayerUnit(PlayerUnit playerUnit)
     {
         _selectedPlayerUnit = playerUnit;
+
+        if (playerUnit == null) return;
         _previousPlayerCoord = playerUnit.transform.position.WorldToCoord();
     }
 
@@ -107,6 +116,11 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     {
         _tileCursor.SetPosition(coord);
         _tileCursor.Show();
+    }
+
+    public void ShowSystemCommandUI()
+    {
+        _commandUIController.SystemCommandUI.Show();
     }
 
     public void ShowTileInfo(TileBase tile)
@@ -143,14 +157,14 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         _commandUIController.UnitInfoUI.SetData(unit);
 
         EnemyUnit enemy = unit as EnemyUnit;
-        if (enemy == null || enemy.EnemyAI.MaxAttackScore.Score == 0)
+        if (enemy == null || enemy.UnitAI.MaxAttackScore.Score == 0)
         {
             _commandUIController.AttackInfoUI.Hide();
             return;
         }
 
         _commandUIController.AttackInfoUI.Show();
-        _commandUIController.AttackInfoUI.SetData(enemy.EnemyAI.MaxAttackScore.AttackWeaponData);
+        _commandUIController.AttackInfoUI.SetData(enemy.UnitAI.MaxAttackScore.AttackWeaponData);
     }
 
     public void ShowUnitDetailedInfo(TileBase tile)
@@ -182,11 +196,6 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         _stateMachine.enabled = false;
     }
 
-    public void HideCursor()
-    {
-        _tileCursor.Hide();
-    }
-
     public void ShowTileUI(TileBase tile)
     {
         if (tile == null) return;
@@ -195,6 +204,21 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
 
         ShowUnitInfo(tile);
         ShowCursor(coord);
+    }
+
+    public void HideCursor()
+    {
+        _tileCursor.Hide();
+    }
+
+    public void HideSystemCommandUI()
+    {
+        _commandUIController.SystemCommandUI.Hide();
+    }
+
+    public void HideSystemCommandPopup()
+    {
+        _commandUIController.SystemCommandUI.HidePopup();
     }
 
     public void HideTileUI()
@@ -227,7 +251,7 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     {
         foreach (EnemyUnit enemyUnit in _showingDangerEnemyList)
         {
-            enemyUnit.EnemyAI.ShowDanger();
+            enemyUnit.UnitAI.ShowDanger();
         }
     }
 
@@ -235,21 +259,21 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     {
         foreach (EnemyUnit enemyUnit in _showingDangerEnemyList)
         {
-            enemyUnit.EnemyAI.InitDanger();
+            enemyUnit.UnitAI.InitDanger();
         }
     }
 
     public void ToggleDanger(EnemyUnit enemyUnit)
     {
-        if (enemyUnit.EnemyAI.IsShowingDanger)
+        if (enemyUnit.UnitAI.IsShowingDanger)
         {
-            enemyUnit.EnemyAI.HideDanger();
+            enemyUnit.UnitAI.HideDanger();
             ShowingDangerEnemyList.Remove(enemyUnit);
         }
 
         else
         {
-            enemyUnit.EnemyAI.ShowDanger();
+            enemyUnit.UnitAI.ShowDanger();
             ShowingDangerEnemyList.Add(enemyUnit);
         }
     }
@@ -258,10 +282,10 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     {
         foreach (EnemyUnit enemyUnit in _phaseStateController.EnemyUnitList)
         {
-            enemyUnit.EnemyAI.CalculateScore();
+            enemyUnit.UnitAI.CalculateScore();
 
-            if (enemyUnit.EnemyAI.MaxAttackScore.Score == 0) continue;
-            enemyUnit.EnemyAI.SetTargets(enemyUnit.EnemyAI.MaxAttackScore.CurrentCoord);
+            if (enemyUnit.UnitAI.MaxAttackScore.Score == 0) continue;
+            enemyUnit.UnitAI.SetTargets(enemyUnit.UnitAI.MaxAttackScore.CurrentCoord);
         }
     }
 
