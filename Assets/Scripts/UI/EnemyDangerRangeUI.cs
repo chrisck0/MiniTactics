@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class EnemyDangerRangeUI : MonoBehaviour
 {
     [SerializeField] private Image _dangerRangeImage;
-    [SerializeField] private EnemyAI _enemyAI;
+    [SerializeField] private UnitAI _unitAI;
 
     private void Awake() => ToggleDangerRangeImage(false);
     private void OnEnable() => BindEnemyAIEvents();
@@ -17,11 +17,11 @@ public class EnemyDangerRangeUI : MonoBehaviour
 
     private void BindEnemyAIEvents()
     {
-        _enemyAI.OnDangerRangeVisibilityChanged += ToggleDangerRangeImage;
+        _unitAI.OnDangerRangeVisibilityChanged += ToggleDangerRangeImage;
     }
 
     private void UnbindEnemyAIEvents()
     {
-        _enemyAI.OnDangerRangeVisibilityChanged -= ToggleDangerRangeImage;
+        _unitAI.OnDangerRangeVisibilityChanged -= ToggleDangerRangeImage;
     }
 }

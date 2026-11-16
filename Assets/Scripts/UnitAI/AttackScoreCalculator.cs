@@ -78,7 +78,12 @@ public static class AttackScoreCalculator
             unit, targetableCoord, 0, weaponData.ExplosionRange, unit.Weapon.GlobalTargetCoords, true);
 
         int score = 0;
+        bool needCalculation = false;
+
         EnemyUnit enemy = unit as EnemyUnit;
+
+        UnitBase selectTarget = mapManager.UnitMap[targetableCoord.x, targetableCoord.y];
+        if (selectTarget != null && selectTarget.UnitType != unit.UnitType) needCalculation = true;
 
         foreach (Vector2Int targetCoord in unit.Weapon.GlobalTargetCoords)
         {
@@ -86,9 +91,11 @@ public static class AttackScoreCalculator
 
             if (targetUnit == null || targetUnit.UnitType != unit.UnitType)
                 unit.DistanceRange.TargetableCoords.Add(targetCoord);
-            score += AttackScore(mapManager, currentCoord, targetCoord, weaponData.Attack);
+
+            if (needCalculation) score += AttackScore(unit, mapManager, currentCoord, targetCoord, weaponData.Attack);
         }
 
+        
         return new AttackScore(currentCoord, weaponData, DirectionType.None, targetableCoord, score);
     }
 
@@ -171,7 +178,7 @@ public static class AttackScoreCalculator
 
             if (targetUnit != null && targetUnit.UnitType != unit.UnitType) _canAttackArea = true;
 
-            score += AttackScore(mapManager, coord, globalCoord, weaponData.Attack);
+            score += AttackScore(unit, mapManager, coord, globalCoord, weaponData.Attack);
         }
 
         if (_canAttackArea)
@@ -181,12 +188,12 @@ public static class AttackScoreCalculator
         return attackScore;
     }
 
-    private static int AttackScore(MapManager mapManager, Vector2Int currentCoord, Vector2Int targetCoord, int attack)
+    private static int AttackScore(UnitBase unit, MapManager mapManager, Vector2Int currentCoord, Vector2Int targetCoord, int attack)
     {
         UnitBase targetUnit = mapManager.UnitMap[targetCoord.x, targetCoord.y];
         int distance = VectorExtensions.CoordDistance(currentCoord, targetCoord);
 
-        if (targetUnit == null || targetUnit.UnitType != UnitType.Player) return 0;
+        if (targetUnit == null || targetUnit.UnitType == unit.UnitType) return 0;
 
         if (targetUnit.Stat.Health < attack) return 100 + attack;
 

@@ -23,6 +23,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     private int _initialEnemyNum;
     private List<UnitBase> _playerUnitList;
     private List<UnitBase> _enemyUnitList;
+    private bool _isAuto;
 
     public event Action OnGameEnd;
 
@@ -34,9 +35,9 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     public int TotalPlayerUnits => _playerUnitList.Count;
     public int TotalEnemyUnits => _enemyUnitList.Count;
     public int TotalActivePlayerUnit => (_playerPhaseState as PlayerPhaseState).TotalActivePlayerUnit;
+    public bool IsAuto => _isAuto;
     public List<UnitBase> PlayerUnitList => _playerUnitList;
     public List<UnitBase> EnemyUnitList => _enemyUnitList;
-
     public StateBase PlayerPhaseState => _playerPhaseState;
     public StateBase EnemyPhaseState => _enemyPhaseState;
     public StateBase PhaseEndState => _enemyPhaseState;
@@ -91,6 +92,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
 
             if (playerUnit == null) continue;
             BindUnitEvents(playerUnit);
+            playerUnit.UnitAI.SetData(_mapManager, UnitType.Enemy);
         }
 
         if (!spawnedUnitDict.TryGetValue(UnitType.Enemy, out List<UnitBase> enemyUnitList)) return;
@@ -103,7 +105,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
 
             if (enemyUnit == null) continue;
             BindUnitEvents(enemyUnit);
-            enemyUnit.EnemyAI.SetData(_mapManager);
+            enemyUnit.UnitAI.SetData(_mapManager, UnitType.Player);
         }
     }
 
@@ -176,7 +178,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
                 EnemyUnit enemyUnit = unit as EnemyUnit;
                 if (enemyUnit == null) return;
                 _unitCommandStateController.ShowingDangerEnemyList.Remove(enemyUnit);
-                enemyUnit.EnemyAI.HideDanger();
+                enemyUnit.UnitAI.HideDanger();
                 break;
         }
 
@@ -220,6 +222,26 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         _stateMachine.enabled = false;
         // _mapManager.TileRange.InitTiles();
         OnGameEnd?.Invoke();
+    }
+
+    public void ToggleAuto(bool isAuto)
+    {
+        _isAuto = isAuto;
+    }
+
+    public void TurnOffAutoDuringPlayerPhase()
+    {
+        _unitCommandStateController.SetState(_unitCommandStateController.CommandEndState);
+    }
+
+    public int GetPlayerCurrentTurnCount()
+    {
+        return _unitCommandStateController.CurrentTurnCount;
+    }
+
+    public void SetPlayerCurrentTurnCount(int num)
+    {
+        _unitCommandStateController.SetCurrentTurnCount(num);
     }
 
     public void SetState(StateBase state)

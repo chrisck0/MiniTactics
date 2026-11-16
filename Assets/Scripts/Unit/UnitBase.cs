@@ -8,6 +8,7 @@ public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
     [SerializeField] protected UnitStat _stat;
     [SerializeField] protected UnitDistanceRange _distanceRange;
     [SerializeField] protected Weapon _weapon;
+    [SerializeField] protected UnitAI _unitAI;
     [SerializeField] protected UnitAnimationController _animationController;
     [SerializeField] protected float _moveSpeed = 8f;
     protected int _health;
@@ -28,6 +29,7 @@ public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
     public UnitStat Stat => _stat;
     public UnitDistanceRange DistanceRange => _distanceRange;
     public Weapon Weapon => _weapon;
+    public UnitAI UnitAI => _unitAI;
     public float MoveSpeed => _moveSpeed;
     public int Health => _health;
     public int Energy => _energy;

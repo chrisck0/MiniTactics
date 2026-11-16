@@ -45,7 +45,7 @@ public sealed class EnemyPhaseState : StateBase
 
                 BindEnemyUnitEvents();
 
-                _currentEnemyUnit.EnemyAI.Behave(
+                _currentEnemyUnit.UnitAI.Behave(
                     _controller.Turn,
                     _controller.TotalEnemyUnits,
                     _currentTurnCount

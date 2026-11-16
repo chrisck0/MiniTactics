@@ -101,6 +101,11 @@ public class SystemCommandUI : MonoBehaviour
         _gameSceneController.LoadMainMenu();
     }
 
+    public void ToggleAuto(bool isAuto)
+    {
+        _phaseStateController.ToggleAuto(isAuto);
+    }
+
     public List<UnitBase> GetPlayerList()
     {
         return _phaseStateController.PlayerUnitList;

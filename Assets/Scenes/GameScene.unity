@@ -4147,6 +4147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bba7539ea703c45a9d39c4feb42f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhaseEndPopupUI
+  _selectAction: {fileID: 6248903269001061691, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
+  _anyAction: {fileID: 8033882123096692533, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
   _descriptionText: {fileID: 2140964484}
   _yesButton: {fileID: 202424325}
   _noButton: {fileID: 126637226}

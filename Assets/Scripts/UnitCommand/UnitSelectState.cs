@@ -35,6 +35,7 @@ public sealed class UnitSelectState : StateBase
     {
         BindInputActions();
         _controller.CalculateEnemyScore();
+        _currentTile = null;
         _isInfoOpen = false;
         _isSystemOpen = false;
         _controller.SetSelectedPlayerUnit(null);
