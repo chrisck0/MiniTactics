@@ -15,6 +15,7 @@ public sealed class UnitSelectState : StateBase
     private bool _isInfoOpen;
     private bool _isSystemOpen;
     private bool _isPopupOpen => _controller.IsSystemCommandPopupOpen;
+    private bool _isBinded;
 
     public UnitSelectState(UnitCommandStateController controller,
         InputActionReference selectAction,
@@ -43,6 +44,11 @@ public sealed class UnitSelectState : StateBase
 
     public override void Update()
     {
+        if (_controller.IsAuto && _isBinded)
+        {
+            UnbindInputActions();
+        }
+
         if (_isInfoOpen || _isSystemOpen) return;
 
         Vector2 screen = _cursorPosition.action.ReadValue<Vector2>();
@@ -198,6 +204,7 @@ public sealed class UnitSelectState : StateBase
 
     private void BindInputActions()
     {
+        _isBinded = true;
         _selectAction.action.Enable();
         _selectAction.action.performed += Select;
         _infoAction.action.Enable();
@@ -207,8 +214,9 @@ public sealed class UnitSelectState : StateBase
         _cursorPosition.action.Enable();
     }
 
-    private void UnbindInputActions()
+    public void UnbindInputActions()
     {
+        _isBinded = false;
         _selectAction.action.Disable();
         _selectAction.action.performed -= Select;
         _infoAction.action.Disable();

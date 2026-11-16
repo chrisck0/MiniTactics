@@ -171,6 +171,7 @@ public class TargetSelectState : StateBase
         Weapon playerWeapon = _controller.SelectedPlayerUnit.Weapon;
 
         _hasSelected = true;
+        UnbindInputActions();
         HideUI();
 
         _controller.SelectedPlayerUnit.DistanceRange.HideDistance();
