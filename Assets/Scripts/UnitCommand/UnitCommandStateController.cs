@@ -119,9 +119,9 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         _tileCursor.Show();
     }
 
-    public void CameraTrackTarget(TileBase tile)
+    public void CameraTrackTarget(Vector2Int coord)
     {
-        _cameraMove.SetCameraTrackTarget(tile);
+        _cameraMove.SetCameraTrackTarget(coord);
     }
 
     public void CanMoveCamera(bool canMove)

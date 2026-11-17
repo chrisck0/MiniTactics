@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.SceneView;
 
 public class UnitAI : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class UnitAI : MonoBehaviour
     private int _currentTurnCount;
     private bool _isShowingDanger;
     private UnitType _targetType;
+    private CameraMove _cameraMove;
 
     public event Action<bool> OnDangerRangeVisibilityChanged;
     public AttackScore MaxAttackScore => _maxAttackScore;
@@ -75,12 +77,13 @@ public class UnitAI : MonoBehaviour
             $"{_maxAttackScore.WeaponDirection} {_maxAttackScore.TargetCoord} {_maxAttackScore.Score}");
     }
 
-    public void Behave(int turn, int totalUnitTypeUnits, int currentTurnCount)
+    public void Behave(int turn, int totalUnitTypeUnits, int currentTurnCount, CameraMove cameraMove)
     {
         CalculateScore();
         _turn = turn;
         _totalUnitTypeUnits = totalUnitTypeUnits;
         _currentTurnCount = currentTurnCount;
+        _cameraMove = cameraMove;
 
         Vector2Int currentCoord = transform.position.WorldToCoord();
 
@@ -116,6 +119,7 @@ public class UnitAI : MonoBehaviour
     {
         Vector2Int currentCoord = transform.position.WorldToCoord();
 
+        _cameraMove.SetCameraTrackTarget(_maxAttackScore.CurrentCoord);
         MoveToDestination(currentCoord, _maxAttackScore.CurrentCoord);
         _canAttack = true;
     }
@@ -165,6 +169,9 @@ public class UnitAI : MonoBehaviour
                 destinationCoord = coord;
             }
         }
+
+        _cameraMove.SetCameraTrackTarget(destinationCoord);
+
         Vector2Int currentCoord = transform.position.WorldToCoord();
         _mapManager.TileRange.CalculateTileCost(currentCoord, destinationCoord, _targetType);
         MoveToDestination(transform.position.WorldToCoord(), destinationCoord);
@@ -205,7 +212,7 @@ public class UnitAI : MonoBehaviour
         {
             _mapManager.UnitMap[_moveTargetCoord.x, _moveTargetCoord.y] = _owner;
             _isMoving = false;
-            if (!_canAttack) _owner.OnUnitActioned?.Invoke();
+            if (!_canAttack) WaitCamera().Forget();
             return;
         }
 
@@ -213,6 +220,12 @@ public class UnitAI : MonoBehaviour
         transform.LookAt(_moveTargetCoord.CoordToWorld());
         transform.Translate(Vector3.forward
             * Time.deltaTime * _owner.MoveSpeed);
+    }
+
+    private async UniTask WaitCamera()
+    {
+        await UniTask.WaitUntil(() => _cameraMove.IsTrackingTarget == false);
+        _owner.OnUnitActioned?.Invoke();
     }
 
     public void SetTargets(Vector2Int coord)

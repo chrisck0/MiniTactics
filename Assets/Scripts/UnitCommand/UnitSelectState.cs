@@ -35,13 +35,15 @@ public sealed class UnitSelectState : StateBase
     public override void Enter()
     {
         BindInputActions();
-        _controller.CanMoveCamera(true);
         _controller.CalculateEnemyScore();
         _currentTile = null;
         _isInfoOpen = false;
         _isSystemOpen = false;
         _controller.SetSelectedPlayerUnit(null);
         if (!_controller.IsAuto) ShowKeyInfo();
+
+        if (_controller.IsAuto) _controller.CanMoveCamera(false);
+        else _controller.CanMoveCamera(true);
     }
 
     public override void Update()
@@ -52,7 +54,7 @@ public sealed class UnitSelectState : StateBase
             UnbindInputActions();
         }
 
-        if (_isInfoOpen || _isSystemOpen) return;
+        if (_isInfoOpen || _isSystemOpen || _controller.IsAuto) return;
 
         Vector2 screen = _cursorPosition.action.ReadValue<Vector2>();
         Ray ray = Camera.main.ScreenPointToRay(screen);

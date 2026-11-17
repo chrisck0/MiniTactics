@@ -22,14 +22,12 @@ public class CameraMove : MonoBehaviour
     private int _horizontalDirection;
     private bool _isTrackingTarget;
 
+    public bool IsTrackingTarget => _isTrackingTarget;
 
     private void Update()
     {
         if (_canMove) FollowCursor();
-        if (_isTrackingTarget)
-        {
-            FollowTarget();
-        }
+        if (_isTrackingTarget) FollowTarget();
     }
 
     private void FollowCursor()
@@ -50,7 +48,6 @@ public class CameraMove : MonoBehaviour
 
     private void FollowTarget()
     {
-        _targetPosition = _trackingTargetPosition;
         SetCurrentPosition();
         CheckCurrentCoord();
 
@@ -77,7 +74,7 @@ public class CameraMove : MonoBehaviour
         _canMove = canMove;
     }
 
-    public void SetTileCursorTarget(Vector2Int coord)
+    public void SetTileTarget(Vector2Int coord)
     {
         _targetPosition = coord.CoordToWorld();
     }
@@ -179,18 +176,10 @@ public class CameraMove : MonoBehaviour
         if (_rightBottomPosition.x < _targetPosition.x) _horizontalDirection = 1;
     }
 
-    public void SetCameraTrackTarget(TileBase tile)
+    public void SetCameraTrackTarget(Vector2Int coord)
     {
-        if (tile == null)
-        {
-            _isTrackingTarget = false;
-            return;
-        }
-        else
-        {
-            _isTrackingTarget = true;
-            _trackingTargetPosition = tile.transform.position;
-        }
+        _isTrackingTarget = true;
+        SetTileTarget(coord);
     }
 
     public void SetCurrentPosition()
@@ -202,8 +191,9 @@ public class CameraMove : MonoBehaviour
         {
             _currentPosition = new Vector3(
                 hit.point.x,
-                hit.transform.position.y,
+                0f,
                 hit.point.z
                 );
         }
     }
+}

@@ -179,11 +179,15 @@ public class TargetSelectState : StateBase
         _controller.HideKeyInfo();
         HideUI();
 
+        Vector2Int coord = _controller.SelectedPlayerUnit.transform.position.WorldToCoord();
+        _controller.CanMoveCamera(false);
+        _controller.CameraTrackTarget(coord);
+
         _controller.SelectedPlayerUnit.DistanceRange.HideDistance();
 
         Vector2Int selectedPlayerCoord = _controller.SelectedPlayerUnit.transform.position.WorldToCoord();
 
-        _controller.CameraTrackTarget(_mapManager.TileMap[selectedPlayerCoord.x, selectedPlayerCoord.y]);
+        _controller.CameraTrackTarget(selectedPlayerCoord);
 
         await playerWeapon.AttackTargets(
             weaponData,

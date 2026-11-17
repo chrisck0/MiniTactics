@@ -12,6 +12,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     [SerializeField] private UnitCommandStateController _unitCommandStateController;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private MapManager _mapManager;
+    [SerializeField] private CameraMove _cameraMove;
     [SerializeField] private GameUIController _gameUIController;
     [SerializeField] private SystemCommandUI _systemCommandUI;
 
@@ -40,7 +41,8 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     public List<UnitBase> EnemyUnitList => _enemyUnitList;
     public StateBase PlayerPhaseState => _playerPhaseState;
     public StateBase EnemyPhaseState => _enemyPhaseState;
-    public StateBase PhaseEndState => _enemyPhaseState;
+    public StateBase PhaseEndState => _phaseEndState;
+    public CameraMove CameraMove => _cameraMove;
 
     private void OnEnable()
     {
@@ -237,6 +239,12 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     public void TurnOffAutoDuringPlayerPhase()
     {
         _unitCommandStateController.SetState(_unitCommandStateController.CommandEndState);
+    }
+
+    public void CameraTrackTarget(Vector2Int coord)
+    {
+        Debug.Log($"TrackTarget {coord}");
+        _cameraMove.SetCameraTrackTarget(coord);
     }
 
     public int GetPlayerCurrentTurnCount()

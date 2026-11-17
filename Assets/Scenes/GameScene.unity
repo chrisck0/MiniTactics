@@ -16465,7 +16465,7 @@ Camera:
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 1
-  orthographic size: 2.5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -17298,7 +17298,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60.000004
-    OrthographicSize: 2.5
+    OrthographicSize: 3
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -19675,6 +19675,7 @@ MonoBehaviour:
   _unitCommandStateController: {fileID: 2104199459}
   _spawnManager: {fileID: 496036547}
   _mapManager: {fileID: 1410229973}
+  _cameraMove: {fileID: 1940885650}
   _gameUIController: {fileID: 1008109717}
   _systemCommandUI: {fileID: 709007579}
 --- !u!114 &1887944872
@@ -20837,7 +20838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMove
   _camera: {fileID: 1589420421}
-  _moveSpeed: 5
+  _moveSpeed: 10
   _canMove: 0
   _ground:
     serializedVersion: 2
