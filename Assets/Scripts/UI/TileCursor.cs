@@ -10,12 +10,7 @@ public class TileCursor : MonoBehaviour
     public void SetPosition(Vector2Int coord)
     {
         transform.position = coord.CoordToWorld();
-        _cameraMove.SetTarget(coord);
-    }
-
-    public void CanMoveCamera(bool canMove)
-    {
-        _cameraMove.CanMoveCamera(canMove);
+        _cameraMove.SetTileCursorTarget(coord);
     }
 
     public void Show()

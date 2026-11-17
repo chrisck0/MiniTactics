@@ -181,6 +181,10 @@ public class TargetSelectState : StateBase
 
         _controller.SelectedPlayerUnit.DistanceRange.HideDistance();
 
+        Vector2Int selectedPlayerCoord = _controller.SelectedPlayerUnit.transform.position.WorldToCoord();
+
+        _controller.CameraTrackTarget(_mapManager.TileMap[selectedPlayerCoord.x, selectedPlayerCoord.y]);
+
         await playerWeapon.AttackTargets(
             weaponData,
             UnitType.Enemy,

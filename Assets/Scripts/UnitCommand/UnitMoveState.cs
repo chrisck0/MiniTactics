@@ -158,6 +158,8 @@ public sealed class UnitMoveState : StateBase
     private void MoveToDestination(Vector2Int currentCoord, Vector2Int destinationCoord)
     {
         _controller.CanMoveCamera(false);
+        _controller.CameraTrackTarget(_mapManager.TileMap[destinationCoord.x, destinationCoord.y]);
+
         TileCost[,] tileCostMap = _mapManager.TileRange.UnitMoveRange(
             _controller.SelectedPlayerUnit, currentCoord);
 

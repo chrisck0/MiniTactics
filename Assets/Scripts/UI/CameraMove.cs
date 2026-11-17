@@ -1,4 +1,6 @@
 using Unity.Cinemachine;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -9,22 +11,63 @@ public class CameraMove : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private bool _canMove = true;
     [SerializeField] private LayerMask _ground;
-    private Vector3 _tileCursorPosition;
+    private Vector3 _targetPosition;
+    private bool _leftTopExist;
+    private bool _leftBottomExist;
+    private bool _rightTopExist;
+    private bool _rightBottomExist;
     private Vector3 _leftTopPosition;
+    private Vector3 _leftBottomPosition;
+    private Vector3 _rightTopPosition;
     private Vector3 _rightBottomPosition;
-    private Ray _leftTopRay;
-    private Ray _rightBottomRay;
+    private Vector3 _currentPosition;
+    private Vector3 _trackingTargetPosition;
     private int _verticalDirection;
     private int _horizontalDirection;
+    private bool _isTrackingTarget;
 
 
     private void Update()
     {
+        if (_canMove) FollowCursor();
+        if (_isTrackingTarget)
+        {
+            FollowTarget();
+        }
+    }
+
+    private void FollowCursor()
+    {
+        CheckCurrentCoord();
+        SetDirection();
+
+        bool canMoveVertical = CanMoveVertical();
+        bool canMoveHorizontal = CanMoveHorizontal();
+        if (!canMoveVertical && !canMoveHorizontal) return;
+
+        _camera.transform.position += new Vector3(
+            _horizontalDirection,
+            0f,
+            _verticalDirection
+            ).normalized * _moveSpeed * Time.deltaTime;
+    }
+
+    private void FollowTarget()
+    {
+        _targetPosition = _trackingTargetPosition;
+        SetCurrentPosition();
         CheckCurrentCoord();
 
-        bool canMoveVertical = CanMoveVerticalScreen();
-        bool canMoveHorizontal = CanMoveHorizontalScreen();
-        if (!_canMove || !canMoveVertical && !canMoveHorizontal) return;
+        SetTargetDirection();
+        bool canMoveVertical = CanMoveVertical();
+        bool canMoveHorizontal = CanMoveHorizontal();
+
+        Debug.Log($"{_horizontalDirection} {_verticalDirection}");
+
+        if ((!canMoveVertical && !canMoveHorizontal))
+        {
+            _isTrackingTarget = false;
+        }
 
         _camera.transform.position += new Vector3(
             _horizontalDirection,
@@ -38,9 +81,9 @@ public class CameraMove : MonoBehaviour
         _canMove = canMove;
     }
 
-    public void SetTarget(Vector2Int coord)
+    public void SetTileCursorTarget(Vector2Int coord)
     {
-        _tileCursorPosition = coord.CoordToWorld();
+        _targetPosition = coord.CoordToWorld();
     }
 
     public void CheckCurrentCoord()
@@ -48,39 +91,124 @@ public class CameraMove : MonoBehaviour
         int threshold = Screen.height / 4;
 
         Ray leftTopRay = Camera.main.ScreenPointToRay(new Vector2(threshold, Screen.height - threshold));
-        Ray rightBottomRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width - threshold * 2, threshold));
+        Ray leftBottomRay = Camera.main.ScreenPointToRay(new Vector2(threshold, threshold));
+        Ray rightTopRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width - threshold, Screen.height - threshold));
+        Ray rightBottomRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width - threshold, threshold));
         RaycastHit hit;
 
-        _leftTopPosition = _tileCursorPosition;
-        _rightBottomPosition = _tileCursorPosition;
-            
+        _leftTopPosition = _targetPosition;
+        _rightBottomPosition = _targetPosition;
+        _leftTopExist = false;
+        _leftBottomExist = false;
+        _rightTopExist = false;
+        _rightBottomExist = false;
+
         if (Physics.Raycast(leftTopRay, out hit, Mathf.Infinity, _ground))
         {
             _leftTopPosition = hit.point;
+            _leftTopExist = true;
         }
+
+        if (Physics.Raycast(leftBottomRay, out hit, Mathf.Infinity, _ground))
+        {
+            _leftBottomExist = true;
+        }
+
+        if (Physics.Raycast(rightTopRay, out hit, Mathf.Infinity, _ground))
+        {
+            _rightTopExist = true;
+        }
+
         if (Physics.Raycast(rightBottomRay, out hit, Mathf.Infinity, _ground))
         {
             _rightBottomPosition = hit.point;
+            _rightBottomExist = true;
         }
     }
 
-    public bool CanMoveVerticalScreen()
+    private void SetTargetDirection()
     {
+        _horizontalDirection = 0;
         _verticalDirection = 0;
 
-        if (_leftTopPosition.z < _tileCursorPosition.z) _verticalDirection = 1;
-        if (_rightBottomPosition.z > _tileCursorPosition.z) _verticalDirection = -1;
+        if (Mathf.Abs(_currentPosition.x - _targetPosition.x) >= 0.1f)
+        {
+            if (_currentPosition.x < _targetPosition.x) _horizontalDirection = 1;
+            if (_currentPosition.x > _targetPosition.x) _horizontalDirection = -1;
+        }
+
+        if (Mathf.Abs(_currentPosition.z - _targetPosition.z) >= 0.1f)
+        {
+            if (_currentPosition.z < _targetPosition.z) _verticalDirection = 1;
+            if (_currentPosition.z > _targetPosition.z) _verticalDirection = -1;
+        }
+    }
+
+    private bool CanMoveVertical()
+    {
+        if (_verticalDirection == 1 && !_leftTopExist && !_rightTopExist)
+        {
+            _verticalDirection = 0;
+        }
+        if (_verticalDirection == -1 && !_leftBottomExist && !_rightBottomExist)
+        {
+            _verticalDirection = 0;
+        }
 
         return _verticalDirection != 0;
     }
 
-    public bool CanMoveHorizontalScreen()
+    private bool CanMoveHorizontal()
     {
-        _horizontalDirection = 0;
-
-        if (_leftTopPosition.x > _tileCursorPosition.x) _horizontalDirection = -1;
-        if (_rightBottomPosition.x < _tileCursorPosition.x - 1) _horizontalDirection = 1;
+        if (_horizontalDirection == -1 && !_leftTopExist && !_leftBottomExist)
+        {
+            _horizontalDirection = 0;
+        }
+        if (_horizontalDirection == 1 && !_rightTopExist && !_rightBottomExist)
+        {
+            _horizontalDirection = 0;
+        }
 
         return _horizontalDirection != 0;
+    }
+
+    public void SetDirection()
+    {
+        _horizontalDirection = 0;
+        _verticalDirection = 0;
+
+        if (_leftTopPosition.z < _targetPosition.z) _verticalDirection = 1;
+        if (_rightBottomPosition.z > _targetPosition.z) _verticalDirection = -1;
+        if (_leftTopPosition.x > _targetPosition.x) _horizontalDirection = -1;
+        if (_rightBottomPosition.x < _targetPosition.x - 1) _horizontalDirection = 1;
+    }
+
+    public void SetCameraTrackTarget(TileBase tile)
+    {
+        if (tile == null)
+        {
+            _isTrackingTarget = false;
+            return;
+        }
+        else
+        {
+            _isTrackingTarget = true;
+            _trackingTargetPosition = tile.transform.position;
+        }
+    }
+
+    public void SetCurrentPosition()
+    {
+        Ray middleRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+        RaycastHit hit;
+
+        if (Physics.Raycast(middleRay, out hit, Mathf.Infinity, _ground))
+        {
+            _currentPosition = new Vector3(
+                hit.point.x,
+                hit.transform.position.y,
+                hit.point.z
+                );
+        }
     }
 }

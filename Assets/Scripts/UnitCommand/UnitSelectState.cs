@@ -79,7 +79,6 @@ public sealed class UnitSelectState : StateBase
 
     public override void Exit()
     {
-        Debug.Log("Unit Select State Exit");
         _currentTile = null;
         HideSystemCommand();
         HideDistanceRange();

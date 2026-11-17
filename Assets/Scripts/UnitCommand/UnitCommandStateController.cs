@@ -10,6 +10,7 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     [SerializeField] private PhaseStateController _phaseStateController;
     [SerializeField] private MapManager _mapManager;
     [SerializeField] private TileCursor _tileCursor;
+    [SerializeField] private CameraMove _cameraMove;
     [SerializeField] private TrajectoryController _trajectoryController;
     [SerializeField] private CommandUIController _commandUIController;
     [SerializeField] private InputActionReference _selectAction;
@@ -96,7 +97,6 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
 
     public void SetState(StateBase state)
     {
-        Debug.Log($"SetState {state}");
         OnStateChanged?.Invoke(state);
     }
 
@@ -119,9 +119,14 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         _tileCursor.Show();
     }
 
+    public void CameraTrackTarget(TileBase tile)
+    {
+        _cameraMove.SetCameraTrackTarget(tile);
+    }
+
     public void CanMoveCamera(bool canMove)
     {
-        _tileCursor.CanMoveCamera(canMove);
+        _cameraMove.CanMoveCamera(canMove);
     }
 
     public void ShowSystemCommandUI()
