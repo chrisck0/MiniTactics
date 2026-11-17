@@ -26,6 +26,7 @@ public sealed class UnitCommandState : StateBase
     {
         BindInputActions();
         BindCommandEvents();
+        ShowKeyInfo();
         _unitCommandUI.Show();
         _controller.CalculateEnemyScore();
         _controller.ShowAllTrajectories();
@@ -39,6 +40,7 @@ public sealed class UnitCommandState : StateBase
     {
         UnbindInputActions();
         UnbindCommandEvents();
+        _controller.HideKeyInfo();
         _unitCommandUI.Hide();
         _attackCommandUI.Hide();
         _controller.HideCursor();
@@ -91,6 +93,13 @@ public sealed class UnitCommandState : StateBase
         if (_controller.SelectedPlayerUnit.Stat.Energy < weaponData.EnergyCost) return;
         _controller.SetSelectedWeaponData(weaponData);
         _controller.SetState(_controller.TargetSelectState);
+    }
+
+    private void ShowKeyInfo()
+    {
+        _controller.ShowKeyInfo();
+        _controller.ShowSelectKeyInfo(1);
+        _controller.ShowCancelKeyInfo(2);
     }
 
     private void BindInputActions()

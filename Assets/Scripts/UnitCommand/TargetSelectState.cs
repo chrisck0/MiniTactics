@@ -31,6 +31,7 @@ public class TargetSelectState : StateBase
     public override void Enter()
     {
         BindInputActions();
+        ShowKeyInfo();
         _controller.SelectedPlayerUnit.Weapon.SetRange(
             _controller.SelectedPlayerUnit.transform.position.WorldToCoord(), _controller.SelectedWeaponData, _mapManager);
         if (_controller.SelectedWeaponData.WeaponType == WeaponType.SelectTarget)
@@ -81,7 +82,8 @@ public class TargetSelectState : StateBase
     {
         _hasSelected = false;
         UnbindInputActions();
-        
+
+        _controller.HideKeyInfo();
         _controller.SelectedPlayerUnit.DistanceRange.HideDistance();
         _controller.SelectedPlayerUnit.DistanceRange.HideRange();
         _controller.SelectedPlayerUnit.Weapon.ClearCoords();
@@ -172,6 +174,7 @@ public class TargetSelectState : StateBase
 
         _hasSelected = true;
         UnbindInputActions();
+        _controller.HideKeyInfo();
         HideUI();
 
         _controller.SelectedPlayerUnit.DistanceRange.HideDistance();
@@ -199,6 +202,13 @@ public class TargetSelectState : StateBase
     private void Cancel(InputAction.CallbackContext context)
     {
         _controller.SetState(_controller.UnitCommandState);
+    }
+
+    private void ShowKeyInfo()
+    {
+        _controller.ShowKeyInfo();
+        _controller.ShowSelectKeyInfo(1);
+        _controller.ShowCancelKeyInfo(2);
     }
 
     private void HideUI()

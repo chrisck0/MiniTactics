@@ -10,6 +10,7 @@ public class CommandUIController : MonoBehaviour
     [SerializeField] private AttackInfoUI _attackInfoUI;
     [SerializeField] private UnitDetailedInfoUI _unitDetailedInfoUI;
     [SerializeField] private BattleInfoUI _battleInfoUI;
+    [SerializeField] private KeyInfoUI _keyInfoUI;
 
     public SystemCommandUI SystemCommandUI => _systemCommandUI;
     public UnitCommandUI UnitCommandUI => _unitCommandUI;
@@ -19,6 +20,7 @@ public class CommandUIController : MonoBehaviour
     public AttackInfoUI AttackInfoUI => _attackInfoUI;
     public UnitDetailedInfoUI UnitDetailedInfoUI => _unitDetailedInfoUI;
     public BattleInfoUI BattleInfoUI => _battleInfoUI;
+    public KeyInfoUI KeyInfoUI => _keyInfoUI;
     public bool IsSystemCommandPopupOpen => _systemCommandUI.IsPopupOpen;
 
     public void DeactivateAll()
@@ -31,5 +33,6 @@ public class CommandUIController : MonoBehaviour
         _attackInfoUI.gameObject.SetActive(false);
         _unitDetailedInfoUI.gameObject.SetActive(false);
         _battleInfoUI.gameObject.SetActive(false);
+        _keyInfoUI.gameObject.SetActive(false);
     }
 }

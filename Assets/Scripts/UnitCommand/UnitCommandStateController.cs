@@ -191,6 +191,26 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         _commandUIController.BattleInfoUI.Show();
     }
 
+    public void ShowKeyInfo()
+    {
+        _commandUIController.KeyInfoUI.Show();
+    }
+
+    public void ShowSelectKeyInfo(int siblingIndex)
+    {
+        _commandUIController.KeyInfoUI.SetSelectKey(siblingIndex);
+    }
+    
+    public void ShowInfoKeyInfo(int siblingIndex)
+    {
+        _commandUIController.KeyInfoUI.SetInfoKey(siblingIndex);
+    }
+    
+    public void ShowCancelKeyInfo(int siblingIndex)
+    {
+        _commandUIController.KeyInfoUI.SetCancelKey(siblingIndex);
+    }
+
     private void GameEnd()
     {
         _stateMachine.enabled = false;
@@ -245,6 +265,11 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     public void HideBattleInfo()
     {
         _commandUIController.BattleInfoUI.Hide();
+    }
+
+    public void HideKeyInfo()
+    {
+        _commandUIController.KeyInfoUI.Hide();
     }
 
     public void ShowAllDanger()

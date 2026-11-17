@@ -36,6 +36,7 @@ public sealed class UnitMoveState : StateBase
     {
         BindInputActions();
         ShowDistanceRange();
+        ShowKeyInfo();
     }
 
     public override void Update()
@@ -51,6 +52,7 @@ public sealed class UnitMoveState : StateBase
         UnbindInputActions();
         HideDistanceRange();
         HideUI();
+        _controller.HideKeyInfo();
     }
 
     private void ShowDistanceRange()
@@ -214,6 +216,14 @@ public sealed class UnitMoveState : StateBase
             _controller.SelectedPlayerUnit.UnSelect();
             _controller.SetState(_controller.UnitSelectState);
         }
+    }
+
+    private void ShowKeyInfo()
+    {
+        _controller.ShowKeyInfo();
+        _controller.ShowSelectKeyInfo(1);
+        _controller.ShowInfoKeyInfo(2);
+        _controller.ShowCancelKeyInfo(3);
     }
 
     private void HideUI()
