@@ -2,8 +2,6 @@ using Unity.Cinemachine;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class CameraMove : MonoBehaviour
 {
@@ -17,8 +15,6 @@ public class CameraMove : MonoBehaviour
     private bool _rightTopExist;
     private bool _rightBottomExist;
     private Vector3 _leftTopPosition;
-    private Vector3 _leftBottomPosition;
-    private Vector3 _rightTopPosition;
     private Vector3 _rightBottomPosition;
     private Vector3 _currentPosition;
     private Vector3 _trackingTargetPosition;
@@ -96,8 +92,8 @@ public class CameraMove : MonoBehaviour
         Ray rightBottomRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width - threshold, threshold));
         RaycastHit hit;
 
-        _leftTopPosition = _targetPosition;
-        _rightBottomPosition = _targetPosition;
+        _leftTopPosition = _currentPosition;
+        _rightBottomPosition = _currentPosition;
         _leftTopExist = false;
         _leftBottomExist = false;
         _rightTopExist = false;
@@ -180,7 +176,7 @@ public class CameraMove : MonoBehaviour
         if (_leftTopPosition.z < _targetPosition.z) _verticalDirection = 1;
         if (_rightBottomPosition.z > _targetPosition.z) _verticalDirection = -1;
         if (_leftTopPosition.x > _targetPosition.x) _horizontalDirection = -1;
-        if (_rightBottomPosition.x < _targetPosition.x - 1) _horizontalDirection = 1;
+        if (_rightBottomPosition.x < _targetPosition.x) _horizontalDirection = 1;
     }
 
     public void SetCameraTrackTarget(TileBase tile)
@@ -211,4 +207,3 @@ public class CameraMove : MonoBehaviour
                 );
         }
     }
-}
