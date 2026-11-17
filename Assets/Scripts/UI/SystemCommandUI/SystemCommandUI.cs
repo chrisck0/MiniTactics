@@ -108,6 +108,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
 
     public void PhaseEnd()
     {
+        _phaseStateController.ClearActivePlayerUnit();
         _unitCommandStateController.SetState(_unitCommandStateController.CommandEndState);
     }
 

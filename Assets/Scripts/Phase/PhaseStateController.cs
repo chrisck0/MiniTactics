@@ -224,6 +224,11 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         OnGameEnd?.Invoke();
     }
 
+    public void ClearActivePlayerUnit()
+    {
+        (_playerPhaseState as PlayerPhaseState).ClearActivePlayerUnit();
+    }
+
     public void ToggleAuto(bool isAuto)
     {
         _isAuto = isAuto;

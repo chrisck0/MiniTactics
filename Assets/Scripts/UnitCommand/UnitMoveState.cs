@@ -34,6 +34,7 @@ public sealed class UnitMoveState : StateBase
 
     public override void Enter()
     {
+        _controller.CanMoveCamera(true);
         BindInputActions();
         ShowDistanceRange();
         ShowKeyInfo();
@@ -49,6 +50,7 @@ public sealed class UnitMoveState : StateBase
 
     public override void Exit()
     {
+        _controller.CanMoveCamera(false);
         UnbindInputActions();
         HideDistanceRange();
         HideUI();
@@ -75,8 +77,8 @@ public sealed class UnitMoveState : StateBase
 
         if (!Physics.Raycast(ray, out hit, Mathf.Infinity, _ground))
         {
-            _currentTile = null;
-            HideUI();
+            // _currentTile = null;
+            // HideUI();
             return;
         }
 
@@ -155,6 +157,7 @@ public sealed class UnitMoveState : StateBase
 
     private void MoveToDestination(Vector2Int currentCoord, Vector2Int destinationCoord)
     {
+        _controller.CanMoveCamera(false);
         TileCost[,] tileCostMap = _mapManager.TileRange.UnitMoveRange(
             _controller.SelectedPlayerUnit, currentCoord);
 

@@ -134,6 +134,11 @@ public sealed class PlayerPhaseState : StateBase
         _currentPlayerUnit = null;
     }
 
+    public void ClearActivePlayerUnit()
+    {
+        _activePlayerUnit.Clear();
+    }
+
     private void PlayerPhaseEnd()
     {
         _controller.StartEnemyPhase();

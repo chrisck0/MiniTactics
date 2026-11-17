@@ -96,6 +96,7 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
 
     public void SetState(StateBase state)
     {
+        Debug.Log($"SetState {state}");
         OnStateChanged?.Invoke(state);
     }
 
@@ -116,6 +117,11 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     {
         _tileCursor.SetPosition(coord);
         _tileCursor.Show();
+    }
+
+    public void CanMoveCamera(bool canMove)
+    {
+        _tileCursor.CanMoveCamera(canMove);
     }
 
     public void ShowSystemCommandUI()

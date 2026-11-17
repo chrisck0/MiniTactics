@@ -30,6 +30,7 @@ public class TargetSelectState : StateBase
 
     public override void Enter()
     {
+        _controller.CanMoveCamera(true);
         BindInputActions();
         ShowKeyInfo();
         _controller.SelectedPlayerUnit.Weapon.SetRange(
@@ -48,8 +49,8 @@ public class TargetSelectState : StateBase
 
         if (!Physics.Raycast(ray, out hit, Mathf.Infinity, _ground))
         {
-            _currentTile = null;
-            HideUI();
+            // _currentTile = null;
+            // HideUI();
             return;
         }
 
@@ -80,6 +81,7 @@ public class TargetSelectState : StateBase
 
     public override void Exit()
     {
+        _controller.CanMoveCamera(false);
         _hasSelected = false;
         UnbindInputActions();
 

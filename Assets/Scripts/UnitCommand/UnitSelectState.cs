@@ -35,6 +35,7 @@ public sealed class UnitSelectState : StateBase
     public override void Enter()
     {
         BindInputActions();
+        _controller.CanMoveCamera(true);
         _controller.CalculateEnemyScore();
         _currentTile = null;
         _isInfoOpen = false;
@@ -47,6 +48,7 @@ public sealed class UnitSelectState : StateBase
     {
         if (_controller.IsAuto && _isBinded)
         {
+            _controller.CanMoveCamera(false);
             UnbindInputActions();
         }
 
@@ -58,11 +60,11 @@ public sealed class UnitSelectState : StateBase
 
         if (!Physics.Raycast(ray, out hit, Mathf.Infinity, _ground))
         {
-            _currentTile = null;
-            _controller.HideCursor();
-            _controller.HideTileUI();
-            HideDistanceRange();
-            _controller.HideAllTrajectories();
+            // _currentTile = null;
+            // _controller.HideCursor();
+            // _controller.HideTileUI();
+            // HideDistanceRange();
+            // _controller.HideAllTrajectories();
             return;
         }
 
@@ -77,11 +79,13 @@ public sealed class UnitSelectState : StateBase
 
     public override void Exit()
     {
+        Debug.Log("Unit Select State Exit");
         _currentTile = null;
         HideSystemCommand();
         HideDistanceRange();
         UnbindInputActions();
         _controller.HideKeyInfo();
+        _controller.CanMoveCamera(false);
     }
 
     private void Select(InputAction.CallbackContext context)
@@ -179,6 +183,7 @@ public sealed class UnitSelectState : StateBase
         if (_isInfoOpen) HideDetailedInfo();
         else
         {
+            _controller.CanMoveCamera(false);
             Vector2Int coord = _currentTile.transform.position.WorldToCoord();
 
             UnitBase unit = _mapManager.UnitMap[coord.x, coord.y];
@@ -193,6 +198,7 @@ public sealed class UnitSelectState : StateBase
 
     private void HideDetailedInfo()
     {
+        _controller.CanMoveCamera(true);
         _controller.HideUnitDetailedInfo();
         _controller.ShowTileUI(_currentTile);
         _isInfoOpen = false;
@@ -200,6 +206,7 @@ public sealed class UnitSelectState : StateBase
 
     private void ShowSystemCommand()
     {
+        _controller.CanMoveCamera(false);
         _controller.HideTileUI();
         _controller.ShowSystemCommandUI();
         _isSystemOpen = true;
@@ -207,6 +214,7 @@ public sealed class UnitSelectState : StateBase
 
     private void HideSystemCommand()
     {
+        _controller.CanMoveCamera(true);
         _controller.HideSystemCommandUI();
         _controller.ShowTileUI(_currentTile);
         _isSystemOpen = false;
