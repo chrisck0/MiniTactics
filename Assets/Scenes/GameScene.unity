@@ -5238,6 +5238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnManager
   _dataManager: {fileID: 1781648645}
+  _cameraMove: {fileID: 1940885650}
   _unitPrefabs:
   - {fileID: 5098266066512719581, guid: eb0c4a4f8b3b1e64caf62e57377d9414, type: 3}
   - {fileID: 3226035149217672612, guid: b5eba18f600705447b4741e3802ce815, type: 3}

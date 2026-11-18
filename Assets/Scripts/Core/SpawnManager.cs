@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.SceneView;
 
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private DataManager _dataManager;
+    [SerializeField] private CameraMove _cameraMove;
     [SerializeField] private List<UnitBase> _unitPrefabs;
     [SerializeField] private List<TileBase> _tilePrefabs;
 
@@ -59,6 +61,7 @@ public class SpawnManager : MonoBehaviour
 
         CreateMapAndSpawnMap(_stageData.Map);
         CreateMapAndSpawnUnits(_stageData.UnitPositionList);
+        _cameraMove.InitPosition(_stageData.CameraInitialPosition);
         OnStageLoaded?.Invoke();
     }
 
