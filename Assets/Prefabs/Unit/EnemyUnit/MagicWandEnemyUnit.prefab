@@ -270,6 +270,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 16a788b10a4b8744baa72639bb619959, type: 2}
+    - target: {fileID: 2436971512463497434, guid: 28dafb815f5049268b8efcac86c0e3e5, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2763855251503368451, guid: 28dafb815f5049268b8efcac86c0e3e5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -542,6 +546,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitAnimationController
   _owner: {fileID: 8532842111232346743}
   _animator: {fileID: 7727544232367387036}
+  _lmbAction: {fileID: 0}
+  _rmbAction: {fileID: 0}
 --- !u!114 &4381346392598021320
 MonoBehaviour:
   m_ObjectHideFlags: 0
