@@ -7,6 +7,8 @@ public class UnitEffectController : MonoBehaviour
     [SerializeField] private UnitBase _owner;
     [SerializeField] private GameObject _firstWeaponEffect;
     [SerializeField] private GameObject _secondWeaponEffect;
+    [SerializeField] private int _firstWeaponDelayTime;
+    [SerializeField] private int _secondWeaponDelayTime;
     [SerializeField] private InputActionReference _lmbAction;
     [SerializeField] private InputActionReference _rmbAction;
 
@@ -20,16 +22,18 @@ public class UnitEffectController : MonoBehaviour
 
     private async UniTask ShowAttack(int weaponId)
     {
-        if (weaponId == _owner.Stat.Data.WeaponIdList[0])
+        if (weaponId == 1)
         {
+            await UniTask.Delay(_firstWeaponDelayTime, DelayType.DeltaTime);
             _firstWeaponEffect.SetActive(true);
-            await UniTask.Delay(2000, DelayType.DeltaTime);
+            await UniTask.Delay(500, DelayType.DeltaTime);
             _firstWeaponEffect.SetActive(false);
         }
         else
         {
+            await UniTask.Delay(_secondWeaponDelayTime, DelayType.DeltaTime);
             _secondWeaponEffect.SetActive(true);
-            await UniTask.Delay(2000, DelayType.DeltaTime);
+            await UniTask.Delay(500, DelayType.DeltaTime);
             _secondWeaponEffect.SetActive(false);
         }
 
@@ -37,12 +41,12 @@ public class UnitEffectController : MonoBehaviour
 
     private void AttackWeapon1(InputAction.CallbackContext context)
     {
-        ShowAttack(_owner.Stat.Data.WeaponIdList[0]).Forget();
+        ShowAttack(1).Forget();
     }
 
     private void AttackWeapon2(InputAction.CallbackContext context)
     {
-        ShowAttack(_owner.Stat.Data.WeaponIdList[1]).Forget();
+        ShowAttack(2).Forget();
     }
 
     private void BindUnitEvents()

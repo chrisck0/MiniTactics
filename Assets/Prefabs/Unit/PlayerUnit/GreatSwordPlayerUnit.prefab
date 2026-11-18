@@ -501,6 +501,8 @@ MonoBehaviour:
   _owner: {fileID: 5098266066512719581}
   _firstWeaponEffect: {fileID: 7525867589014172007}
   _secondWeaponEffect: {fileID: 3901989049425420975}
+  _firstWeaponDelayTime: 100
+  _secondWeaponDelayTime: 100
   _lmbAction: {fileID: 6248903269001061691, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
   _rmbAction: {fileID: -535424538923240396, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
 --- !u!23 &8033964498219928844 stripped

@@ -708,6 +708,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitAnimationController
   _owner: {fileID: 1602626168100255042}
   _animator: {fileID: 1234804931387829318}
+  _lmbAction: {fileID: 6248903269001061691, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
+  _rmbAction: {fileID: -535424538923240396, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
 --- !u!114 &1447085797529153250
 MonoBehaviour:
   m_ObjectHideFlags: 0
