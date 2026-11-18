@@ -85,10 +85,17 @@ public class Weapon : MonoBehaviour
 
         switch (weaponRangeShape)
         {
-            case WeaponRangeShape.Line:
+            case WeaponRangeShape.VerticalLine:
                 for (int i = 0; i < explosionRange; i++)
                 {
                     _localTargetCoords.Add(new Vector2Int(0, i + 1));
+                }
+                break;
+
+            case WeaponRangeShape.HorizontalLine:
+                for (int i = -explosionRange; i <= explosionRange; i++)
+                {
+                    _localTargetCoords.Add(new Vector2Int(i, 1));
                 }
                 break;
 

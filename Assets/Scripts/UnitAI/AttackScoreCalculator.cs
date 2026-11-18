@@ -119,7 +119,7 @@ public static class AttackScoreCalculator
 
         switch (weaponRangeShape)
         {
-            case WeaponRangeShape.Line:
+            case WeaponRangeShape.VerticalLine:
                 for (int i = 0; i < explosionRange; i++)
                 {
                     localCoords.Add(new Vector2Int(0, i + 1));
