@@ -1,12 +1,11 @@
 using Unity.Cinemachine;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
     [SerializeField] private CinemachineCamera _camera;
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _cursorMoveSpeed;
+    [SerializeField] private float _targetMoveSpeed;
     [SerializeField] private bool _canMove = true;
     [SerializeField] private LayerMask _ground;
     private Vector3 _targetPosition;
@@ -17,7 +16,6 @@ public class CameraMove : MonoBehaviour
     private Vector3 _leftTopPosition;
     private Vector3 _rightBottomPosition;
     private Vector3 _currentPosition;
-    private Vector3 _trackingTargetPosition;
     private int _verticalDirection;
     private int _horizontalDirection;
     private bool _isTrackingTarget;
@@ -43,7 +41,7 @@ public class CameraMove : MonoBehaviour
             _horizontalDirection,
             0f,
             _verticalDirection
-            ).normalized * _moveSpeed * Time.deltaTime;
+            ).normalized * _cursorMoveSpeed * Time.deltaTime;
     }
 
     private void FollowTarget()
@@ -66,7 +64,7 @@ public class CameraMove : MonoBehaviour
             _horizontalDirection,
             0f,
             _verticalDirection
-            ).normalized * _moveSpeed * Time.deltaTime;
+            ).normalized * _targetMoveSpeed * Time.deltaTime;
     }
 
     public void CanMoveCamera(bool canMove)

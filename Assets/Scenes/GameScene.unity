@@ -20838,7 +20838,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMove
   _camera: {fileID: 1589420421}
-  _moveSpeed: 10
+  _cursorMoveSpeed: 5
+  _targetMoveSpeed: 10
   _canMove: 0
   _ground:
     serializedVersion: 2
