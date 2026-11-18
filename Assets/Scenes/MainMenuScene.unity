@@ -300,10 +300,18 @@ MonoBehaviour:
   _weaponDataFile: {fileID: 4900000, guid: ffa1309b81dc4854db6de6bd71b9c93e, type: 3}
   _weaponDataList:
   - {fileID: 11400000, guid: 4bb8fa1f6eff69f418a16c9f1d8a5e85, type: 2}
+  - {fileID: 11400000, guid: d601eaaed1d1d5e4784f81645ac4fd06, type: 2}
+  - {fileID: 11400000, guid: c0c74b7e0415a5549a17dec01ad6f721, type: 2}
+  - {fileID: 11400000, guid: dd8f1e329abd5454da7881ba2cdca927, type: 2}
   - {fileID: 11400000, guid: d2eb1e5da50c24f44b3072bde55f715e, type: 2}
+  - {fileID: 11400000, guid: 2cd8d8371bd9de1449c94347ee597de3, type: 2}
   - {fileID: 11400000, guid: 8b6c6ec33b798fd4599df73ec42032c1, type: 2}
+  - {fileID: 11400000, guid: 4b8e4ab84200b3f4ab66667c8c41bce7, type: 2}
   - {fileID: 11400000, guid: 4f05e7bf046a1c145a50e87cab3647b0, type: 2}
+  - {fileID: 11400000, guid: 659e73b87cbe42c46a736ee8d97938b7, type: 2}
   - {fileID: 11400000, guid: 8237ed3e5c85b8f409c528dca8bfd10e, type: 2}
+  - {fileID: 11400000, guid: 255622ce30d66a0489e968ae5d5d42ee, type: 2}
+  - {fileID: 11400000, guid: 88254518b8950244985e0143c789abc1, type: 2}
 --- !u!114 &146425059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +331,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1571ac2411c6f1c4aaa065427969b2f8, type: 2}
   - {fileID: 11400000, guid: 034dc1604b9e9c6449cb13ba5294a930, type: 2}
   - {fileID: 11400000, guid: 2a58bbd38346ea44d972a1bf6e36f3f4, type: 2}
+  - {fileID: 11400000, guid: 5cec8136277a7b64ab647ea959eec7cd, type: 2}
+  - {fileID: 11400000, guid: b0dbbc8b0d0f73e4db58b3845620021f, type: 2}
   - {fileID: 11400000, guid: 37ef9c688cb01d846961b2bfe1b1564b, type: 2}
   - {fileID: 11400000, guid: ec45e0e3324b230409bcb1f61d3ade50, type: 2}
   - {fileID: 11400000, guid: 5d73cafc6dd24c74cb10e91c9a8a797e, type: 2}

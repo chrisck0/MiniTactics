@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 862b583d189a52e45997ba81f5599c0b, type: 3}
-  m_Name: Line
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  m_Script: {fileID: 11500000, guid: f93f942019365b249b9c059f44c2a389, type: 3}
+  m_Name: PlayerDoubleSword
+  m_EditorClassIdentifier: Assembly-CSharp::UnitData
   _id: 0
   _name: 
-  _attack: 0
-  _energyCost: 0
-  _weaponType: 0
-  _minRange: 0
-  _maxRange: 0
-  _weaponRangeShape: 0
+  _health: 0
+  _energy: 0
+  _move: 0
+  _accuracy: 0
+  _avoid: 0
+  _weaponIdList: 
