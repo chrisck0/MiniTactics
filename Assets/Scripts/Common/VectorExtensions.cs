@@ -32,6 +32,23 @@ public static class VectorExtensions
             coord.x + .5f,
             positionY,
             coord.y + .5f
-        );
+            );
+    }
+
+    public static Vector3 CoordToCamera(this Vector2Int coord)
+    {
+        return new Vector3(
+            coord.x,
+            5f,
+            coord.y - 7f
+            );
+    }
+
+    public static Vector2Int CameraToCoord(this Vector3 cameraPosition)
+    {
+        return new Vector2Int(
+            Mathf.FloorToInt(cameraPosition.x),
+            Mathf.FloorToInt(cameraPosition.z) + 7
+            );
     }
 }

@@ -75,17 +75,7 @@ public sealed class PlayerPhaseState : StateBase
                     return;
                 }
 
-                _controller.SetPlayerCurrentTurnCount(_controller.GetPlayerCurrentTurnCount() + 1);
-                _currentPlayerUnit = _activePlayerUnit[_activePlayerUnit.Count - 1];
-                _activePlayerUnit.RemoveAt(_activePlayerUnit.Count - 1);
-
-                BindPlayerUnitEvents();
-
-                _currentPlayerUnit.UnitAI.Behave(
-                    _controller.Turn,
-                    _controller.TotalPlayerUnits,
-                    _controller.GetPlayerCurrentTurnCount()
-                    );
+                Behave().Forget();
             }
             else
             {
@@ -99,6 +89,28 @@ public sealed class PlayerPhaseState : StateBase
     public override void Exit()
     {
         UnbindCommandEvents();
+    }
+
+    private async UniTask Behave()
+    {
+        _controller.SetPlayerCurrentTurnCount(_controller.GetPlayerCurrentTurnCount() + 1);
+        _currentPlayerUnit = _activePlayerUnit[_activePlayerUnit.Count - 1];
+        _activePlayerUnit.RemoveAt(_activePlayerUnit.Count - 1);
+
+        BindPlayerUnitEvents();
+
+        Vector2Int coord = _currentPlayerUnit.transform.position.WorldToCoord();
+        _controller.CameraTrackTarget(coord);
+
+        await UniTask.WaitUntil(() => _controller.CameraMove.IsTrackingTarget == false);
+        await UniTask.Delay(1000, DelayType.DeltaTime);
+
+        _currentPlayerUnit.UnitAI.Behave(
+            _controller.Turn,
+            _controller.TotalPlayerUnits,
+            _controller.GetPlayerCurrentTurnCount(),
+            _controller.CameraMove
+            );
     }
 
     private void UnitCommandEnd(PlayerUnit actionedPlayerUnit)
@@ -132,6 +144,11 @@ public sealed class PlayerPhaseState : StateBase
     {
         await UniTask.Delay(1000, DelayType.DeltaTime);
         _currentPlayerUnit = null;
+    }
+
+    public void ClearActivePlayerUnit()
+    {
+        _activePlayerUnit.Clear();
     }
 
     private void PlayerPhaseEnd()

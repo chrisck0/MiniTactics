@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class TileCursor : MonoBehaviour
 {
+    [SerializeField] private CameraMove _cameraMove;
+
     /// <summary>
     /// 커서 위치 설정
     /// </summary>
     public void SetPosition(Vector2Int coord)
     {
         transform.position = coord.CoordToWorld();
+        _cameraMove.SetTileTarget(coord);
     }
 
     public void Show()

@@ -11,7 +11,8 @@ public sealed class EnemyPhaseState : StateBase
     private int _currentTurnCount;
     private bool _isStateEnd;
 
-    public EnemyPhaseState(PhaseStateController controller, Dictionary<UnitType, List<UnitBase>> spawnedUnitDict)
+    public EnemyPhaseState(PhaseStateController controller,
+        Dictionary<UnitType, List<UnitBase>> spawnedUnitDict)
     {
         _controller = controller;
 
@@ -38,18 +39,7 @@ public sealed class EnemyPhaseState : StateBase
         {
             if (_activeEnemyUnit.Count != 0)
             {
-                _currentTurnCount++;
-                _currentEnemyUnit = _activeEnemyUnit.Dequeue();
-
-                Debug.Log($"Current turn : {_currentEnemyUnit.Stat.Data.Name}");
-
-                BindEnemyUnitEvents();
-
-                _currentEnemyUnit.UnitAI.Behave(
-                    _controller.Turn,
-                    _controller.TotalEnemyUnits,
-                    _currentTurnCount
-                    );
+                Behave().Forget();
             }
             else
             {
@@ -64,6 +54,29 @@ public sealed class EnemyPhaseState : StateBase
     {
         _activeEnemyUnit.Clear();
         _currentEnemyUnit = null;
+    }
+
+    private async UniTask Behave()
+    {
+        _currentTurnCount++;
+        _currentEnemyUnit = _activeEnemyUnit.Dequeue();
+
+        Debug.Log($"Current turn : {_currentEnemyUnit.Stat.Data.Name}");
+
+        BindEnemyUnitEvents();
+
+        Vector2Int coord = _currentEnemyUnit.transform.position.WorldToCoord();
+        _controller.CameraTrackTarget(coord);
+
+        await UniTask.WaitUntil(() => _controller.CameraMove.IsTrackingTarget == false);
+        await UniTask.Delay(500, DelayType.DeltaTime);
+
+        _currentEnemyUnit.UnitAI.Behave(
+            _controller.Turn,
+            _controller.TotalEnemyUnits,
+            _currentTurnCount,
+            _controller.CameraMove
+            );
     }
 
     private void EnemyPhaseEnd()
