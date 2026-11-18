@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitStat
   _unit: {fileID: 3226035149217672612}
-  _data: {fileID: 0}
+  _data: {fileID: 11400000, guid: 320c85df318f71a498d495a40417d4c5, type: 2}
   _health: 0
   _energy: 0
 --- !u!114 &131796892742605370
@@ -361,6 +361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MC21
       objectReference: {fileID: 0}
+    - target: {fileID: 6616087274304697511, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6616087274412431640, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
       propertyPath: m_Controller
       value: 
@@ -373,7 +377,31 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6616087274851414748, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6616087274859198457, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616087274954765430, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616087275106181741, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616087275230910559, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616087275237939875, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616087275568924329, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -389,7 +417,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6616087276130895466, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6616087276134154623, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616087276166386224, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

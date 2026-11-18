@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f93f942019365b249b9c059f44c2a389, type: 3}
-  m_Name: Enemy3
+  m_Name: EnemyArrow
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   _id: 0
   _name: 

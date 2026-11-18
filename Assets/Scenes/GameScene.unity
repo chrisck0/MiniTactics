@@ -5240,8 +5240,18 @@ MonoBehaviour:
   _dataManager: {fileID: 1781648645}
   _cameraMove: {fileID: 1940885650}
   _unitPrefabs:
+  - {fileID: 5980962426623233296, guid: 18aa4d3b6bacc2b428dc6f9ed9106d47, type: 3}
+  - {fileID: 5098266066512719581, guid: 89419352583f5fe47854cd4a9c3dfd66, type: 3}
+  - {fileID: 5098266066512719581, guid: f17d2ad66f7894c4194ad5fcb5668739, type: 3}
+  - {fileID: 5098266066512719581, guid: 4fef4ad2fa201c046b161264fb7d19f6, type: 3}
   - {fileID: 5098266066512719581, guid: eb0c4a4f8b3b1e64caf62e57377d9414, type: 3}
+  - {fileID: 5098266066512719581, guid: c61d6dddbd2f053408b93636bedecf9b, type: 3}
   - {fileID: 3226035149217672612, guid: b5eba18f600705447b4741e3802ce815, type: 3}
+  - {fileID: 657801919055516018, guid: bf0c20312b9ba7c43af70ed593183521, type: 3}
+  - {fileID: 8286435674375751417, guid: edb6182adc7bb8141b695bb0c744d80b, type: 3}
+  - {fileID: 8532842111232346743, guid: 360e53380ff52824a8ff11f317dcf87a, type: 3}
+  - {fileID: 1417890376088917722, guid: 0578e8ef2e1f2eb4ea3d3f5f45284356, type: 3}
+  - {fileID: 1602626168100255042, guid: fa57f2f3a9e3d254e8dcbfa0cfbc54ac, type: 3}
   _tilePrefabs:
   - {fileID: 7869654604286590724, guid: 8bf290dd935923945ad87c0bc1372962, type: 3}
   - {fileID: 9119132241421055511, guid: 4e1abf08cf8ab0b458053b0b83f5d3ca, type: 3}
