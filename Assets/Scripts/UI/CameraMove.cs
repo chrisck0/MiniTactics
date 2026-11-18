@@ -54,8 +54,6 @@ public class CameraMove : MonoBehaviour
         bool canMoveVertical = CanMoveVertical();
         bool canMoveHorizontal = CanMoveHorizontal();
 
-        Debug.Log($"{_horizontalDirection} {_verticalDirection}");
-
         if ((!canMoveVertical && !canMoveHorizontal))
         {
             _isTrackingTarget = false;

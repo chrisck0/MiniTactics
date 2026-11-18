@@ -65,6 +65,7 @@ public class UnitAnimationController : MonoBehaviour
 
     private void Damage()
     {
+        Debug.Log($"{_owner.Stat.Data.Name} Got Damage");
         _animator.SetTrigger(_isDamageId);
     }
 

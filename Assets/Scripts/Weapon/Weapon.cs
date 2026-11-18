@@ -126,6 +126,11 @@ public class Weapon : MonoBehaviour
                     SelectDirectionRange(coord, targetUnitType, weaponDirection);
                 }
                 break;
+
+            case WeaponType.AllRange:
+                _mapManager.TileRange.SelectTargetWeaponRange(
+                    _owner, coord, 0, weaponData.ExplosionRange, _globalTargetCoords, true);
+                break;
         }
     }
 

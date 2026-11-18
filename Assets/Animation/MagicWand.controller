@@ -157,7 +157,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsFirstWeapon
+    m_ConditionEvent: IsFirstWeaponAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7560683590520440984}
@@ -209,7 +209,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsSecondWeapon
+    m_ConditionEvent: IsSecondWeaponAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 163577516973770253}
@@ -310,13 +310,13 @@ AnimatorController:
   m_Name: MagicWand
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsFirstWeapon
+  - m_Name: IsFirstWeaponAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: IsSecondWeapon
+  - m_Name: IsSecondWeaponAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -535,9 +535,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.46428573
+  m_ExitTime: 0.0000000031569118
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -713,7 +713,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.012510985
   m_TransitionOffset: 0
   m_ExitTime: 0.625
   m_HasExitTime: 0

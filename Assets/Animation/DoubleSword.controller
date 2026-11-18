@@ -88,9 +88,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.46428573
+  m_TransitionDuration: 0.0019400857
+  m_TransitionOffset: 0.00330703
+  m_ExitTime: 0.00000000477235
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -226,7 +226,7 @@ AnimatorStateMachine:
     m_Position: {x: 520, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3327717962360707026}
-    m_Position: {x: 260, y: 160, z: 0}
+    m_Position: {x: 300, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -682526387976747156}
     m_Position: {x: 260, y: 220, z: 0}
@@ -274,7 +274,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsSecondWeapon
+    m_ConditionEvent: IsSecondWeaponAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4993678998494762089}
@@ -352,13 +352,13 @@ AnimatorController:
   m_Name: DoubleSword
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsFirstWeapon
+  - m_Name: IsFirstWeaponAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: IsSecondWeapon
+  - m_Name: IsSecondWeaponAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -447,7 +447,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsFirstWeapon
+    m_ConditionEvent: IsFirstWeaponAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3864758330211134746}
@@ -640,9 +640,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.01613751
   m_TransitionOffset: 0
-  m_ExitTime: 0.625
+  m_ExitTime: 0.62500006
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

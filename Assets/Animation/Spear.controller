@@ -31,7 +31,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsFirstWeapon
+    m_ConditionEvent: IsFirstWeaponAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1581126364344058350}
@@ -140,7 +140,7 @@ AnimatorStateMachine:
     m_Position: {x: 400, y: -50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6046361078340010857}
-    m_Position: {x: 190, y: 130, z: 0}
+    m_Position: {x: 270, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4298425297612240485}
     m_Position: {x: 190, y: 180, z: 0}
@@ -283,7 +283,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsSecondWeapon
+    m_ConditionEvent: IsSecondWeaponAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1318948124549107934}
@@ -464,13 +464,13 @@ AnimatorController:
   m_Name: Spear
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: IsFirstWeapon
+  - m_Name: IsFirstWeaponAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: IsSecondWeapon
+  - m_Name: IsSecondWeaponAttack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -561,9 +561,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.46428573
+  m_ExitTime: 0.000000022280663
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -640,9 +640,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.00548172
   m_TransitionOffset: 0
-  m_ExitTime: 0.625
+  m_ExitTime: 0.62281185
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

@@ -41,7 +41,7 @@ public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
     public void TakeDamage(int num)
     {
         _stat.AddHealth(-num);
-        if (Stat.Health > num) OnDamage?.Invoke();
+        if (Stat.Health > 0) OnDamage?.Invoke();
     }
 
     public void Select()
