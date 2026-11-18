@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7675845103827567986}
   - component: {fileID: 3226035149217672612}
   - component: {fileID: 8047452440966621766}
+  - component: {fileID: 4798803889314398010}
   m_Layer: 0
   m_Name: BowAndArrowEnemyUnit
   m_TagString: Untagged
@@ -96,6 +97,7 @@ MonoBehaviour:
   _distanceRange: {fileID: 7675845103827567986}
   _weapon: {fileID: 131796892742605370}
   _unitAI: {fileID: 8047452440966621766}
+  _rotation: {fileID: 4798803889314398010}
   _animationController: {fileID: 2637411370604514657}
   _moveSpeed: 8
 --- !u!114 &8047452440966621766
@@ -111,6 +113,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitAI
   _owner: {fileID: 3226035149217672612}
+--- !u!114 &4798803889314398010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4351846834819390981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff39361bfcb9a94a95b390f925a1537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitRotation
+  _owner: {fileID: 3226035149217672612}
+  _rotationSpeed: 10
 --- !u!1 &8701532818768059213
 GameObject:
   m_ObjectHideFlags: 0

@@ -359,6 +359,14 @@ public class Weapon : MonoBehaviour
     private async UniTask GetReturnAttack(UnitBase targetUnit, int distance,
         int turn, int totalPlayerUnits, int currentTurnCount)
     {
+        targetUnit.Rotation.SetDirection(
+            _owner.transform.position.WorldToCoord(),
+            DirectionType.None
+            );
+
+        Debug.Log($"{targetUnit.transform.forward} {_owner.transform.position.WorldToCoord()}");
+        await UniTask.WaitUntil(() => targetUnit.Rotation.IsRotating == false);
+
         WeaponData targetWeapon = targetUnit.Weapon.WeaponDataList[0];
         targetUnit.OnAttackWeapon?.Invoke(targetWeapon.Id);
 

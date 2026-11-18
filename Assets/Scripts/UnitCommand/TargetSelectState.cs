@@ -14,6 +14,7 @@ public class TargetSelectState : StateBase
     private TileBase _currentTile;
     private List<Vector2Int> _globalTargetCoords;
     private bool _hasSelected;
+    private DirectionType _weaponDirection;
 
     public TargetSelectState(UnitCommandStateController controller,
         InputActionReference selectAction,
@@ -61,14 +62,14 @@ public class TargetSelectState : StateBase
         _currentTile = tile;
         Vector2Int coord = hit.transform.position.WorldToCoord();
 
-        DirectionType weaponDirection = GetWeaponDirection(_controller.SelectedPlayerUnit.transform.position.WorldToCoord(), coord);
+        _weaponDirection = GetWeaponDirection(_controller.SelectedPlayerUnit.transform.position.WorldToCoord(), coord);
 
         _controller.SelectedPlayerUnit.DistanceRange.HideRange();
 
         _controller.SelectedPlayerUnit.Weapon.SelectWeaponRange(
             _controller.SelectedPlayerUnit.transform.position.WorldToCoord(),
             coord, UnitType.Enemy,
-            _mapManager, weaponDirection,
+            _mapManager, _weaponDirection,
             _controller.SelectedWeaponData
             );
 
@@ -188,6 +189,12 @@ public class TargetSelectState : StateBase
         Vector2Int selectedPlayerCoord = _controller.SelectedPlayerUnit.transform.position.WorldToCoord();
 
         _controller.CameraTrackTarget(selectedPlayerCoord);
+        _controller.SelectedPlayerUnit.Rotation.SetDirection(
+            _currentTile.transform.position.WorldToCoord(),
+            _weaponDirection
+            );
+
+        await UniTask.WaitUntil(() => _controller.SelectedPlayerUnit.Rotation.IsRotating == false);
 
         await playerWeapon.AttackTargets(
             weaponData,
