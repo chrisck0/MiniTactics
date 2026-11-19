@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class UnitEffectController : MonoBehaviour
 {
+    [SerializeField] private ProjectileObjectPool _projectileObjectPool;
     [SerializeField] private UnitBase _owner;
     [SerializeField] private GameObject _firstWeaponEffect;
     [SerializeField] private GameObject _secondWeaponEffect;
@@ -22,31 +23,69 @@ public class UnitEffectController : MonoBehaviour
 
     private async UniTask ShowAttack(int weaponId)
     {
-        if (weaponId == 1)
+        if (weaponId == //_owner.Stat.Data.WeaponIdList[0])
+            1)
         {
-            await UniTask.Delay(_firstWeaponDelayTime, DelayType.DeltaTime);
-            _firstWeaponEffect.SetActive(true);
-            await UniTask.Delay(500, DelayType.DeltaTime);
-            _firstWeaponEffect.SetActive(false);
+            await ShowAttackWeapon1();
         }
         else
         {
-            await UniTask.Delay(_secondWeaponDelayTime, DelayType.DeltaTime);
-            _secondWeaponEffect.SetActive(true);
-            await UniTask.Delay(500, DelayType.DeltaTime);
-            _secondWeaponEffect.SetActive(false);
+            await ShowAttackWeapon2();
         }
 
+    }
+
+    private async UniTask ShowAttackWeapon1()
+    {
+        ProjectileMover projectile = _firstWeaponEffect.GetComponent<ProjectileMover>();
+
+        if (projectile == null)
+        {
+            await NormalEffect(_firstWeaponDelayTime, _firstWeaponEffect);
+        }
+        else
+        {
+            await ProjectileEffect(_firstWeaponDelayTime, projectile);
+        }
+    }
+
+    private async UniTask ShowAttackWeapon2()
+    {
+        ProjectileMover projectile = _secondWeaponEffect.GetComponent<ProjectileMover>();
+
+        if (projectile == null)
+        {
+            await NormalEffect(_secondWeaponDelayTime, _secondWeaponEffect);
+        }
+        else
+        {
+            await ProjectileEffect(_secondWeaponDelayTime, projectile);
+        }
+    }
+
+
+    private async UniTask NormalEffect(int delayTime, GameObject effect)
+    {
+        await UniTask.Delay(delayTime, DelayType.DeltaTime);
+        effect.SetActive(true);
+        await UniTask.Delay(500, DelayType.DeltaTime);
+        effect.SetActive(false);
+    }
+
+    private async UniTask ProjectileEffect(int delayTime, ProjectileMover projectile)
+    {
+        await UniTask.Delay(delayTime, DelayType.DeltaTime);
+        _projectileObjectPool.Shoot(projectile, transform);
     }
 
     private void AttackWeapon1(InputAction.CallbackContext context)
     {
-        ShowAttack(1).Forget();
+        ShowAttackWeapon1().Forget();
     }
 
     private void AttackWeapon2(InputAction.CallbackContext context)
     {
-        ShowAttack(2).Forget();
+        ShowAttackWeapon2().Forget();
     }
 
     private void BindUnitEvents()
