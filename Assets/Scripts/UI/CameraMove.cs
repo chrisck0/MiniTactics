@@ -14,7 +14,13 @@ public class CameraMove : MonoBehaviour
     private bool _leftBottomExist;
     private bool _rightTopExist;
     private bool _rightBottomExist;
+    private Vector3 _mapLeftTopPosition;
+    private Vector3 _mapLeftBottomPosition;
+    private Vector3 _mapRightTopPosition;
+    private Vector3 _mapRightBottomPosition;
     private Vector3 _leftTopPosition;
+    private Vector3 _leftBottomPosition;
+    private Vector3 _rightTopPosition;
     private Vector3 _rightBottomPosition;
     private Vector3 _currentPosition;
     private int _verticalDirection;
@@ -86,8 +92,11 @@ public class CameraMove : MonoBehaviour
         Ray rightBottomRay = Camera.main.ScreenPointToRay(new Vector2(Screen.width - threshold, threshold));
         RaycastHit hit;
 
-        _leftTopPosition = _currentPosition;
-        _rightBottomPosition = _currentPosition;
+        _leftTopPosition = _mapLeftTopPosition;
+        _leftBottomPosition = _mapLeftBottomPosition;
+        _rightTopPosition = _mapRightTopPosition;
+        _rightBottomPosition = _mapRightBottomPosition;
+
         _leftTopExist = false;
         _leftBottomExist = false;
         _rightTopExist = false;
@@ -101,11 +110,13 @@ public class CameraMove : MonoBehaviour
 
         if (Physics.Raycast(leftBottomRay, out hit, Mathf.Infinity, _ground))
         {
+            _leftBottomPosition = hit.point;
             _leftBottomExist = true;
         }
 
         if (Physics.Raycast(rightTopRay, out hit, Mathf.Infinity, _ground))
         {
+            _rightTopPosition = hit.point;
             _rightTopExist = true;
         }
 
@@ -166,11 +177,15 @@ public class CameraMove : MonoBehaviour
     {
         _horizontalDirection = 0;
         _verticalDirection = 0;
+        float leftX = Mathf.Max(_leftTopPosition.x, _leftBottomPosition.x);
+        float rightX = Mathf.Min(_rightTopPosition.x, _rightBottomPosition.x);
+        float topZ = Mathf.Min(_leftTopPosition.z, _rightTopPosition.z);
+        float bottomZ = Mathf.Max(_leftBottomPosition.z, _rightBottomPosition.z);
 
-        if (_leftTopPosition.z < _targetPosition.z) _verticalDirection = 1;
-        if (_rightBottomPosition.z > _targetPosition.z) _verticalDirection = -1;
-        if (_leftTopPosition.x > _targetPosition.x) _horizontalDirection = -1;
-        if (_rightBottomPosition.x < _targetPosition.x) _horizontalDirection = 1;
+        if (topZ < _targetPosition.z) _verticalDirection = 1;
+        if (bottomZ > _targetPosition.z) _verticalDirection = -1;
+        if (leftX > _targetPosition.x) _horizontalDirection = -1;
+        if (rightX < _targetPosition.x) _horizontalDirection = 1;
     }
 
     public void SetCameraTrackTarget(Vector2Int coord)
@@ -194,8 +209,14 @@ public class CameraMove : MonoBehaviour
         }
     }
 
-    public void InitPosition(Vector3 position)
+    public void InitPosition(Vector3 position,
+        Vector3 leftTopPosition, Vector3 leftBottomPosition,
+        Vector3 rightTopPosition, Vector3 rightBottomPosition)
     {
         _camera.transform.position = position;
+        _mapLeftTopPosition = leftTopPosition;
+        _mapLeftBottomPosition = leftBottomPosition;
+        _mapRightTopPosition = rightTopPosition;
+        _mapRightBottomPosition = rightBottomPosition;
     }
 }

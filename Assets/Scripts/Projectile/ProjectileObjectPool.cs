@@ -10,7 +10,7 @@ public class ProjectileObjectPool : MonoBehaviour
 
     private void CreatePool()
     {
-        _projectileObjectPool = new ObjectPool<ProjectileMover>(_projectileMoverPrefabs, transform, false, 5);
+        _projectileObjectPool = new ObjectPool<ProjectileMover>(_projectileMoverPrefabs, transform, false, 6);
     }
 
     public void Shoot(ProjectileMover projectilePrefab, Vector3 firePosition, Vector3 direction, int lifeTime,

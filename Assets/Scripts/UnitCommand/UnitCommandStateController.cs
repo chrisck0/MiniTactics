@@ -234,6 +234,7 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         Vector2Int coord = tile.transform.position.WorldToCoord();
 
         ShowUnitInfo(tile);
+        ShowTileInfo(tile);
         ShowCursor(coord);
     }
 

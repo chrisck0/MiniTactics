@@ -61,7 +61,13 @@ public class SpawnManager : MonoBehaviour
 
         CreateMapAndSpawnMap(_stageData.Map);
         CreateMapAndSpawnUnits(_stageData.UnitPositionList);
-        _cameraMove.InitPosition(_stageData.CameraInitialPosition);
+        _cameraMove.InitPosition(
+            _stageData.CameraInitialPosition,
+            new Vector3(0.5f, 0f, _stageData.Map.GetLength(0) - .5f),
+            new Vector3(0.5f, 0f, .5f),
+            new Vector3(_stageData.Map.GetLength(1) - .5f, 0f, _stageData.Map.GetLength(0) - .5f),
+            new Vector3(_stageData.Map.GetLength(1) - .5f, 0f, 0.5f)
+            );
         OnStageLoaded?.Invoke();
     }
 
