@@ -292,12 +292,20 @@ public class Weapon : MonoBehaviour
     /// <summary>
     /// 타겟 좌표 전체에 공격 
     /// </summary>
-    public async UniTask AttackTargets(WeaponData weaponData, UnitType targetType,
+    public async UniTask AttackTargets(WeaponData weaponData, UnitType targetType, 
+        Vector2Int targetCoord, DirectionType weaponDirection,
         int turn, int totalPlayerUnits, int currentTurnCount)
     {
         _owner.ConsumeEnergy(weaponData.EnergyCost);
 
-        _owner.OnAttackWeapon?.Invoke(weaponData.Id);
+        _owner.OnAttackWeapon?.Invoke(
+            new AttackScore(
+                transform.position.WorldToCoord(),
+                weaponData,
+                weaponDirection,
+                targetCoord,
+                0
+                ));
 
         await UniTask.Delay(1000, DelayType.DeltaTime);
 
@@ -380,7 +388,13 @@ public class Weapon : MonoBehaviour
         await UniTask.WaitUntil(() => targetUnit.Rotation.IsRotating == false);
 
         WeaponData targetWeapon = targetUnit.Weapon.WeaponDataList[0];
-        targetUnit.OnAttackWeapon?.Invoke(targetWeapon.Id);
+        targetUnit.OnAttackWeapon?.Invoke(new AttackScore(
+            targetUnit.transform.position.WorldToCoord(),
+            targetWeapon,
+            DirectionType.None,
+            _owner.transform.position.WorldToCoord(),
+            0
+            ));
 
         _owner.DistanceRange.RangeCoords.Clear();
 

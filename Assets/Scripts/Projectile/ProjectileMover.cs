@@ -1,11 +1,11 @@
 using Cysharp.Threading.Tasks;
-using System.Collections;
 using System.Threading;
 using UnityEngine;
 
 public class ProjectileMover : MonoBehaviour, IPoolable
 {
     [SerializeField] protected float _speed = 15f;
+    [SerializeField] protected float _projectileSpeed = 3f;
     [SerializeField] protected float _hitOffset = 0f;
     [SerializeField] protected bool _useFirePointRotation;
     [SerializeField] protected Vector3 _rotationOffset = Vector3.zero;
@@ -19,19 +19,18 @@ public class ProjectileMover : MonoBehaviour, IPoolable
 
     [Header("Components")]
     [SerializeField] protected Rigidbody _rb;
-    [SerializeField] protected Collider _col;
     [SerializeField] protected Light _lightSourse;
 
     [Header("Lifetime")]
     [SerializeField] protected int _lifeTime = 2000;
-
-    protected bool _collided;
 
     private CancellationTokenSource _lifeTokenSource;
     private CancellationTokenSource _disableAfterHitTokenSource;
 
     private ObjectPool<ProjectileMover> _objectPool;
     private Transform _parent;
+    private bool _isProjectileMove;
+    private Vector3 _projectileVelocity;
 
 
     [System.Serializable]
@@ -51,16 +50,11 @@ public class ProjectileMover : MonoBehaviour, IPoolable
         if (_rb == null)
             _rb = GetComponent<Rigidbody>();
 
-        if (_col == null)
-            _col = GetComponent<Collider>();
-
         SetupDetachedCache();
     }
 
     protected virtual void OnEnable()
     {
-        _collided = false;
-
         StopRunningLifeRoutine();
         StopRunningDisableAfterHitRoutine();
 
@@ -70,15 +64,14 @@ public class ProjectileMover : MonoBehaviour, IPoolable
         if (_lightSourse != null)
             _lightSourse.enabled = true;
 
-        if (_col != null)
-            _col.enabled = true;
-
         if (_rb != null)
         {
             _rb.constraints = RigidbodyConstraints.None;
-            _rb.linearVelocity = Vector3.zero;
+            _rb.linearVelocity = _projectileVelocity;
             _rb.angularVelocity = Vector3.zero;
         }
+
+        Debug.Log($"Linear Velocity {_rb.linearVelocity}");
 
         if (_projectilePS != null)
         {
@@ -196,18 +189,37 @@ public class ProjectileMover : MonoBehaviour, IPoolable
 
     protected virtual void FixedUpdate()
     {
-        if (_collided || _rb == null || _speed == 0f)
+        if (_rb == null || _speed == 0f)
             return;
 
-        _rb.linearVelocity = transform.forward * _speed;
+        if (_isProjectileMove)
+        {
+            if (_rb.linearVelocity == Vector3.zero)
+            {
+                _rb.linearVelocity = _projectileVelocity;
+            }
+            else
+            {
+                _rb.linearVelocity = new Vector3(
+                _projectileVelocity.x * _projectileSpeed,
+                _rb.linearVelocity.y + Physics.gravity.y * Time.deltaTime * _projectileSpeed,
+                _projectileVelocity.z * _projectileSpeed
+                );
+            }
+
+            if (_rb.linearVelocity.y < - _projectileVelocity.y)
+            {
+                Explode();
+            }
+        }
+        else
+        {
+            _rb.linearVelocity = transform.forward * _speed;
+        }
     }
 
-    protected virtual void OnCollisionEnter(Collision collision)
+    private void Explode()
     {
-        if (_collided)
-            return;
-
-        _collided = true;
         StopRunningLifeRoutine();
         StopRunningDisableAfterHitRoutine();
 
@@ -221,16 +233,12 @@ public class ProjectileMover : MonoBehaviour, IPoolable
         if (_lightSourse != null)
             _lightSourse.enabled = false;
 
-        if (_col != null)
-            _col.enabled = false;
-
         ReleaseDetachedObjects();
 
         if (_projectilePS != null)
             _projectilePS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
-        if (collision.contactCount > 0)
-            SpawnHit(collision.contacts[0]);
+        SpawnHit(transform.position, Vector3.up);
 
         float endDelay = 1f;
         if (_hitPS != null)
@@ -248,13 +256,13 @@ public class ProjectileMover : MonoBehaviour, IPoolable
             ReturnToPool();
     }
 
-    protected virtual void SpawnHit(ContactPoint contact)
+    protected virtual void SpawnHit(Vector3 point, Vector3 normal)
     {
         if (_hit == null)
             return;
 
-        Vector3 pos = contact.point + contact.normal * _hitOffset;
-        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        Vector3 pos = point + normal * _hitOffset;
+        Quaternion rot = Quaternion.FromToRotation(Vector3.up, normal);
 
         _hit.transform.position = pos;
         _hit.transform.rotation = rot;
@@ -264,7 +272,7 @@ public class ProjectileMover : MonoBehaviour, IPoolable
         else if (_rotationOffset != Vector3.zero)
             _hit.transform.rotation = Quaternion.Euler(_rotationOffset);
         else
-            _hit.transform.LookAt(contact.point + contact.normal);
+            _hit.transform.LookAt(point + normal);
 
         if (_hitPS != null)
         {
@@ -319,5 +327,16 @@ public class ProjectileMover : MonoBehaviour, IPoolable
     {
         _objectPool = objectPool;
         _parent = parent;
+    }
+
+    public void SetLifeTime(int lifeTime)
+    {
+        _lifeTime = lifeTime;
+    }
+
+    public void SetIsProjectileMove(bool isProjectileMove, Vector3 projectileVelocity)
+    {
+        _isProjectileMove = isProjectileMove;
+        _projectileVelocity = projectileVelocity;
     }
 }

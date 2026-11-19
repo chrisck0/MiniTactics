@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class UnitEffectController : MonoBehaviour
 {
-    [SerializeField] private ProjectileObjectPool _projectileObjectPool;
     [SerializeField] private UnitBase _owner;
     [SerializeField] private GameObject _firstWeaponEffect;
     [SerializeField] private GameObject _secondWeaponEffect;
@@ -16,28 +15,28 @@ public class UnitEffectController : MonoBehaviour
     private void OnEnable() => BindUnitEvents();
     private void OnDisable() => UnbindUnitEvents();
 
-    private void Attack(int weaponId)
+    private void Attack(AttackScore attackScore)
     {
-        ShowAttack(weaponId).Forget();
+        ShowAttack(attackScore).Forget();
     }
 
-    private async UniTask ShowAttack(int weaponId)
+    private async UniTask ShowAttack(AttackScore attackScore)
     {
-        if (weaponId == //_owner.Stat.Data.WeaponIdList[0])
+        if (attackScore.AttackWeaponData.Id == //_owner.Stat.Data.WeaponIdList[0])
             1)
         {
-            await ShowAttackWeapon1();
+            await ShowAttackWeapon1(attackScore);
         }
         else
         {
-            await ShowAttackWeapon2();
+            await ShowAttackWeapon2(attackScore);
         }
 
     }
 
-    private async UniTask ShowAttackWeapon1()
+    private async UniTask ShowAttackWeapon1(AttackScore attackScore)
     {
-        ProjectileMover projectile = _firstWeaponEffect.GetComponent<ProjectileMover>();
+        Projectile projectile = _firstWeaponEffect.GetComponent<Projectile>();
 
         if (projectile == null)
         {
@@ -45,13 +44,13 @@ public class UnitEffectController : MonoBehaviour
         }
         else
         {
-            await ProjectileEffect(_firstWeaponDelayTime, projectile);
+            await ProjectileEffect(_firstWeaponDelayTime, projectile, attackScore);
         }
     }
 
-    private async UniTask ShowAttackWeapon2()
+    private async UniTask ShowAttackWeapon2(AttackScore attackScore)
     {
-        ProjectileMover projectile = _secondWeaponEffect.GetComponent<ProjectileMover>();
+        Projectile projectile = _secondWeaponEffect.GetComponent<Projectile>();
 
         if (projectile == null)
         {
@@ -59,7 +58,7 @@ public class UnitEffectController : MonoBehaviour
         }
         else
         {
-            await ProjectileEffect(_secondWeaponDelayTime, projectile);
+            await ProjectileEffect(_secondWeaponDelayTime, projectile, attackScore);
         }
     }
 
@@ -72,20 +71,32 @@ public class UnitEffectController : MonoBehaviour
         effect.SetActive(false);
     }
 
-    private async UniTask ProjectileEffect(int delayTime, ProjectileMover projectile)
+    private async UniTask ProjectileEffect(int delayTime, Projectile projectile, AttackScore attackScore)
     {
         await UniTask.Delay(delayTime, DelayType.DeltaTime);
-        _projectileObjectPool.Shoot(projectile, transform);
+        projectile.Shoot(transform.position, transform.forward, attackScore);
     }
 
     private void AttackWeapon1(InputAction.CallbackContext context)
     {
-        ShowAttackWeapon1().Forget();
+        ShowAttackWeapon1(new AttackScore(
+            transform.position.WorldToCoord(),
+            null,
+            DirectionType.None,
+            transform.position.WorldToCoord() + new Vector2Int(0, 4),
+            0
+            )).Forget();
     }
 
     private void AttackWeapon2(InputAction.CallbackContext context)
     {
-        ShowAttackWeapon2().Forget();
+        ShowAttackWeapon2(new AttackScore(
+            transform.position.WorldToCoord(),
+            null,
+            DirectionType.Up,
+            transform.position.WorldToCoord(),
+            0
+            )).Forget();
     }
 
     private void BindUnitEvents()

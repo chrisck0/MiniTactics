@@ -189,8 +189,10 @@ public class TargetSelectState : StateBase
         Vector2Int selectedPlayerCoord = _controller.SelectedPlayerUnit.transform.position.WorldToCoord();
 
         _controller.CameraTrackTarget(selectedPlayerCoord);
+        Vector2Int targetCoord = _currentTile.transform.position.WorldToCoord();
+
         _controller.SelectedPlayerUnit.Rotation.SetDirection(
-            _currentTile.transform.position.WorldToCoord(),
+            targetCoord,
             _weaponDirection
             );
 
@@ -199,6 +201,8 @@ public class TargetSelectState : StateBase
         await playerWeapon.AttackTargets(
             weaponData,
             UnitType.Enemy,
+            targetCoord,
+            _weaponDirection,
             _controller.Turn,
             _controller.TotalPlayerUnits,
             _controller.CurrentTurnCount

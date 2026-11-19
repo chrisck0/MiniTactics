@@ -17,7 +17,7 @@ public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
 
     public Action OnUnitCanAction;
     public Action OnUnitActioned;
-    public Action<int> OnAttackWeapon;
+    public Action<AttackScore> OnAttackWeapon;
     public Action OnSelect;
     public Action<bool> OnMove;
     public Action OnVictory;

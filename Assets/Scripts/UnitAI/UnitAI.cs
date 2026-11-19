@@ -259,6 +259,8 @@ public class UnitAI : MonoBehaviour
         await weapon.AttackTargets(
             weaponData,
             _targetType,
+            _maxAttackScore.TargetCoord,
+            _maxAttackScore.WeaponDirection,
             _turn,
             _totalUnitTypeUnits,
             _currentTurnCount

@@ -10,17 +10,21 @@ public class ProjectileObjectPool : MonoBehaviour
 
     private void CreatePool()
     {
-        _projectileObjectPool = new ObjectPool<ProjectileMover>(_projectileMoverPrefabs, transform, false);
+        _projectileObjectPool = new ObjectPool<ProjectileMover>(_projectileMoverPrefabs, transform, false, 5);
     }
 
-    public void Shoot(ProjectileMover projectilePrefab, Transform firePoint)
+    public void Shoot(ProjectileMover projectilePrefab, Vector3 firePosition, Vector3 direction, int lifeTime,
+        bool isProjectileMove, Vector3 projectileVelocity)
     {
         ProjectileMover projectile = _projectileObjectPool.Take(projectilePrefab);
         projectile.SetObjectPool(_projectileObjectPool, transform);
+        projectile.SetLifeTime(lifeTime);
+        projectile.SetIsProjectileMove(isProjectileMove, projectileVelocity);
 
         Transform projectileTransform = projectile.transform;
         projectileTransform.SetParent(null, false);
-        projectileTransform.SetPositionAndRotation(firePoint.position, firePoint.rotation);
+        projectileTransform.position = firePosition;
+        projectileTransform.forward = direction;
         projectile.gameObject.SetActive(true);
 
         Rigidbody rb = projectile.GetComponent<Rigidbody>();

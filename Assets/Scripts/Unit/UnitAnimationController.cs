@@ -31,9 +31,9 @@ public class UnitAnimationController : MonoBehaviour
     private void OnEnable() => BindUnitEvents();
     private void OnDisable() => UnbindUnitEvents();
 
-    private void Attack(int weaponId)
+    private void Attack(AttackScore attackScore)
     {
-        if (weaponId == _owner.Stat.Data.WeaponIdList[0])
+        if (attackScore.AttackWeaponData.Id == _owner.Stat.Data.WeaponIdList[0])
         {
             _animator.SetTrigger(_isFirstWeaponAttackId);
         }
