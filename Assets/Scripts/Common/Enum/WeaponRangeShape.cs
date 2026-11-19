@@ -1,7 +1,8 @@
 public enum WeaponRangeShape
 {
     Single,
-    Line,
+    VerticalLine,
+    HorizontalLine,
     CircularSector,
     Explosion
 }

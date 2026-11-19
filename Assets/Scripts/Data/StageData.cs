@@ -12,6 +12,7 @@ public class StageData : ScriptableObject
     [SerializeField] private List<int> _mainUnitIds;
     [SerializeField] private TileType[,] _map;
     [SerializeField] private List<UnitPosition> _unitPositionList;
+    [SerializeField] private Vector3 _cameraInitialPosition;
 
     public int StageId => _stageId;
     public string StageName => _stageName;
@@ -20,10 +21,12 @@ public class StageData : ScriptableObject
     public List<int> MainUnitIds => _mainUnitIds;
     public TileType[,] Map => _map;
     public List<UnitPosition> UnitPositionList => _unitPositionList;
+    public Vector3 CameraInitialPosition => _cameraInitialPosition;
 
     public void SetData(int stageId, string stageName, StageWinCondition stageWinCondition,
         List<int> targetIds, List<int> mainUnitIds,
-        TileType[,] map, List<UnitPosition> unitPositionList)
+        TileType[,] map, List<UnitPosition> unitPositionList,
+        Vector3 cameraInitialPosition)
     {
         _stageId = stageId;
         _stageName = stageName;
@@ -32,6 +35,7 @@ public class StageData : ScriptableObject
         _mainUnitIds = mainUnitIds;
         _map = map;
         _unitPositionList = unitPositionList;
+        _cameraInitialPosition = cameraInitialPosition;
     }
 
     // 디버그용

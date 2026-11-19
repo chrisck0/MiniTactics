@@ -1,5 +1,6 @@
 public enum WeaponType
 {
     SelectTarget,
-    SelectDirection
+    SelectDirection,
+    AllRange
 }

@@ -5,20 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(UnitStat), typeof(Weapon), typeof(UnitDistanceRange))]
 public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
 {
-    [SerializeField] protected UnitStat _stat;
-    [SerializeField] protected UnitDistanceRange _distanceRange;
-    [SerializeField] protected Weapon _weapon;
-    [SerializeField] protected UnitAI _unitAI;
-    [SerializeField] protected UnitAnimationController _animationController;
-    [SerializeField] protected float _moveSpeed = 8f;
-    protected int _health;
-    protected int _energy;
+    [SerializeField] private UnitStat _stat;
+    [SerializeField] private UnitDistanceRange _distanceRange;
+    [SerializeField] private Weapon _weapon;
+    [SerializeField] private UnitAI _unitAI;
+    [SerializeField] private UnitRotation _rotation;
+    [SerializeField] private UnitAnimationController _animationController;
+    [SerializeField] private UnitEffectController _effectController;
+    [SerializeField] private float _moveSpeed = 8f;
     private bool _isMoving;
     private ObjectPool<UnitBase> _objectPool;
 
     public Action OnUnitCanAction;
     public Action OnUnitActioned;
-    public Action<int> OnAttackWeapon;
+    public Action<AttackScore> OnAttackWeapon;
     public Action OnSelect;
     public Action<bool> OnMove;
     public Action OnVictory;
@@ -30,9 +30,9 @@ public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
     public UnitDistanceRange DistanceRange => _distanceRange;
     public Weapon Weapon => _weapon;
     public UnitAI UnitAI => _unitAI;
+    public UnitRotation Rotation => _rotation;
+    public UnitEffectController EffectController => _effectController;
     public float MoveSpeed => _moveSpeed;
-    public int Health => _health;
-    public int Energy => _energy;
     public abstract UnitType UnitType { get; }
 
     public void ConsumeEnergy(int num)
@@ -43,7 +43,7 @@ public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
     public void TakeDamage(int num)
     {
         _stat.AddHealth(-num);
-        if (Stat.Health > num) OnDamage?.Invoke();
+        if (Stat.Health > 0) OnDamage?.Invoke();
     }
 
     public void Select()

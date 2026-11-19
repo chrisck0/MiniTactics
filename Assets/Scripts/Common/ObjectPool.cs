@@ -11,14 +11,15 @@ public class ObjectPool<T> where T : Component, IPoolable
     private Dictionary<T, Transform> _poolParentDict = new();
     private Dictionary<T, int> _poolCount = new();
 
-    private const int INITIAL_POOL_SIZE = 1;
+    private int _initialPoolSize = 1;
     private bool _hasPoolParent;
 
-    public ObjectPool(List<T> prefabList, Transform parent, bool hasPoolParent = true)
+    public ObjectPool(List<T> prefabList, Transform parent, bool hasPoolParent = true, int initialPoolSize = 1)
     {
         _prefabList = prefabList;
         _parent = parent;
         _hasPoolParent = hasPoolParent;
+        _initialPoolSize = initialPoolSize;
         CreatePool();
     }
 
@@ -71,7 +72,7 @@ public class ObjectPool<T> where T : Component, IPoolable
     {
         foreach (T prefab in _prefabList)
         {
-            Queue<T> objectPoolQueue = new(INITIAL_POOL_SIZE);
+            Queue<T> objectPoolQueue = new(_initialPoolSize);
 
             _objectPoolDict[prefab] = objectPoolQueue;
 
@@ -96,7 +97,7 @@ public class ObjectPool<T> where T : Component, IPoolable
 
             _poolParentDict[prefab] = newPoolParentTransform;
 
-            for (int i = 0; i < INITIAL_POOL_SIZE; i++)
+            for (int i = 0; i < _initialPoolSize; i++)
             {
                 T newObj = Object.Instantiate(prefab, newPoolParentTransform);
                 newObj.Deactivate();
@@ -104,7 +105,7 @@ public class ObjectPool<T> where T : Component, IPoolable
                 objectPoolQueue.Enqueue(newObj);
                 _objectPrefabDict[newObj] = prefab;
             }
-            _poolCount[prefab] = INITIAL_POOL_SIZE;
+            _poolCount[prefab] = _initialPoolSize;
         }
     }
 }

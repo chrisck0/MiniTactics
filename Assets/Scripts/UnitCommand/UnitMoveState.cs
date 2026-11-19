@@ -123,6 +123,7 @@ public sealed class UnitMoveState : StateBase
 
                 _controller.ToggleDanger(enemyUnit);
                 _controller.SetState(_controller.UnitSelectState);
+                return;
             }
         }
 

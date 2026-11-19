@@ -2,7 +2,6 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.SceneView;
 
 public class UnitAI : MonoBehaviour
 {
@@ -250,9 +249,18 @@ public class UnitAI : MonoBehaviour
 
         if (!weapon.CanAttackTargets(weaponData)) return;
 
+        _owner.Rotation.SetDirection(
+            _maxAttackScore.TargetCoord,
+            _maxAttackScore.WeaponDirection
+            );
+
+        await UniTask.WaitUntil(() => _owner.Rotation.IsRotating == false);
+
         await weapon.AttackTargets(
             weaponData,
             _targetType,
+            _maxAttackScore.TargetCoord,
+            _maxAttackScore.WeaponDirection,
             _turn,
             _totalUnitTypeUnits,
             _currentTurnCount

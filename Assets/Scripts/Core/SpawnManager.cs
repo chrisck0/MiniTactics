@@ -5,13 +5,15 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private DataManager _dataManager;
+    [SerializeField] private CameraMove _cameraMove;
     [SerializeField] private List<UnitBase> _unitPrefabs;
     [SerializeField] private List<TileBase> _tilePrefabs;
+    [SerializeField] private ProjectileObjectPool _projectileObjectPool;
 
     private StageData _stageData;
     private ObjectPool<UnitBase> _unitObjectPool;
     private ObjectPool<TileBase> _tileObjectPool;
-    private Dictionary<UnitType, UnitBase> _unitPrefabDict = new();
+    private Dictionary<int, UnitBase> _unitPrefabDict = new();
     private Dictionary<TileData, TileBase> _tilePrefabDict = new();
     private Dictionary<UnitType, List<UnitBase>> _spawnedUnitDict = new();
     private TileBase[,] _tileMap;
@@ -43,7 +45,7 @@ public class SpawnManager : MonoBehaviour
     {
         foreach (UnitBase unitPrefab in _unitPrefabs)
         {
-            _unitPrefabDict[unitPrefab.UnitType] = unitPrefab;
+            _unitPrefabDict[unitPrefab.Stat.Data.Id] = unitPrefab;
         }
 
         foreach (TileBase tilePrefab in _tilePrefabs)
@@ -59,6 +61,7 @@ public class SpawnManager : MonoBehaviour
 
         CreateMapAndSpawnMap(_stageData.Map);
         CreateMapAndSpawnUnits(_stageData.UnitPositionList);
+        _cameraMove.InitPosition(_stageData.CameraInitialPosition);
         OnStageLoaded?.Invoke();
     }
 
@@ -92,10 +95,11 @@ public class SpawnManager : MonoBehaviour
         {
             if (!unitDataDict.TryGetValue(unitPosition.Id, out UnitData unitData)) continue;
 
-            if (!_unitPrefabDict.TryGetValue(unitData.UnitType, out UnitBase unitPrefab)) continue;
+            if (!_unitPrefabDict.TryGetValue(unitData.Id, out UnitBase unitPrefab)) continue;
 
             UnitBase unit = _unitObjectPool.Take(unitPrefab);
             unit.SetObjectPool(_unitObjectPool);
+            unit.EffectController.SetProjectileObjectPool(_projectileObjectPool);
 
             Vector2Int coord = unitPosition.Position;
             unit.transform.position = coord.CoordToWorld();

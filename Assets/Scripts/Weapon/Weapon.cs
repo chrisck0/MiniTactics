@@ -85,10 +85,17 @@ public class Weapon : MonoBehaviour
 
         switch (weaponRangeShape)
         {
-            case WeaponRangeShape.Line:
+            case WeaponRangeShape.VerticalLine:
                 for (int i = 0; i < explosionRange; i++)
                 {
                     _localTargetCoords.Add(new Vector2Int(0, i + 1));
+                }
+                break;
+
+            case WeaponRangeShape.HorizontalLine:
+                for (int i = -explosionRange; i <= explosionRange; i++)
+                {
+                    _localTargetCoords.Add(new Vector2Int(i, 1));
                 }
                 break;
 
@@ -125,6 +132,11 @@ public class Weapon : MonoBehaviour
                 {
                     SelectDirectionRange(coord, targetUnitType, weaponDirection);
                 }
+                break;
+
+            case WeaponType.AllRange:
+                _mapManager.TileRange.SelectTargetWeaponRange(
+                    _owner, coord, 0, weaponData.ExplosionRange, _globalTargetCoords, true);
                 break;
         }
     }
@@ -280,12 +292,22 @@ public class Weapon : MonoBehaviour
     /// <summary>
     /// 타겟 좌표 전체에 공격 
     /// </summary>
-    public async UniTask AttackTargets(WeaponData weaponData, UnitType targetType,
+    public async UniTask AttackTargets(WeaponData weaponData, UnitType targetType, 
+        Vector2Int targetCoord, DirectionType weaponDirection,
         int turn, int totalPlayerUnits, int currentTurnCount)
     {
         _owner.ConsumeEnergy(weaponData.EnergyCost);
 
-        _owner.OnAttackWeapon?.Invoke(weaponData.Id);
+        if (weaponData.WeaponType != WeaponType.SelectDirection) weaponDirection = DirectionType.None;
+
+        _owner.OnAttackWeapon?.Invoke(
+            new AttackScore(
+                transform.position.WorldToCoord(),
+                weaponData,
+                weaponDirection,
+                targetCoord,
+                0
+                ));
 
         await UniTask.Delay(1000, DelayType.DeltaTime);
 
@@ -359,8 +381,22 @@ public class Weapon : MonoBehaviour
     private async UniTask GetReturnAttack(UnitBase targetUnit, int distance,
         int turn, int totalPlayerUnits, int currentTurnCount)
     {
+        targetUnit.Rotation.SetDirection(
+            _owner.transform.position.WorldToCoord(),
+            DirectionType.None
+            );
+
+        Debug.Log($"{targetUnit.transform.forward} {_owner.transform.position.WorldToCoord()}");
+        await UniTask.WaitUntil(() => targetUnit.Rotation.IsRotating == false);
+
         WeaponData targetWeapon = targetUnit.Weapon.WeaponDataList[0];
-        targetUnit.OnAttackWeapon?.Invoke(targetWeapon.Id);
+        targetUnit.OnAttackWeapon?.Invoke(new AttackScore(
+            targetUnit.transform.position.WorldToCoord(),
+            targetWeapon,
+            DirectionType.None,
+            _owner.transform.position.WorldToCoord(),
+            0
+            ));
 
         _owner.DistanceRange.RangeCoords.Clear();
 

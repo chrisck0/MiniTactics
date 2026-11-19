@@ -8,6 +8,7 @@ public class CameraMove : MonoBehaviour
     [SerializeField] private float _targetMoveSpeed;
     [SerializeField] private bool _canMove = true;
     [SerializeField] private LayerMask _ground;
+
     private Vector3 _targetPosition;
     private bool _leftTopExist;
     private bool _leftBottomExist;
@@ -52,8 +53,6 @@ public class CameraMove : MonoBehaviour
         SetTargetDirection();
         bool canMoveVertical = CanMoveVertical();
         bool canMoveHorizontal = CanMoveHorizontal();
-
-        Debug.Log($"{_horizontalDirection} {_verticalDirection}");
 
         if ((!canMoveVertical && !canMoveHorizontal))
         {
@@ -193,5 +192,10 @@ public class CameraMove : MonoBehaviour
                 hit.point.z
                 );
         }
+    }
+
+    public void InitPosition(Vector3 position)
+    {
+        _camera.transform.position = position;
     }
 }
