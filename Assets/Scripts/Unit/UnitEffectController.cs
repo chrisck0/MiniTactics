@@ -74,7 +74,7 @@ public class UnitEffectController : MonoBehaviour
     private async UniTask ProjectileEffect(int delayTime, Projectile projectile, AttackScore attackScore)
     {
         await UniTask.Delay(delayTime, DelayType.DeltaTime);
-        projectile.Shoot(transform.position, transform.forward, attackScore);
+        projectile.Shoot(transform.forward, attackScore);
     }
 
     private void AttackWeapon1(InputAction.CallbackContext context)
@@ -83,7 +83,7 @@ public class UnitEffectController : MonoBehaviour
             transform.position.WorldToCoord(),
             null,
             DirectionType.None,
-            transform.position.WorldToCoord() + new Vector2Int(0, 4),
+            transform.position.WorldToCoord() + new Vector2Int(4, 4),
             0
             )).Forget();
     }
@@ -93,8 +93,8 @@ public class UnitEffectController : MonoBehaviour
         ShowAttackWeapon2(new AttackScore(
             transform.position.WorldToCoord(),
             null,
-            DirectionType.Up,
-            transform.position.WorldToCoord(),
+            DirectionType.None,
+            transform.position.WorldToCoord() + new Vector2Int(4, 4),
             0
             )).Forget();
     }

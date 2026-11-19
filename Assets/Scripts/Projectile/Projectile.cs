@@ -1,4 +1,3 @@
-using System.IO.Pipes;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -9,15 +8,15 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float _angle;
     [SerializeField] private int _lifeTime;
 
-    public void Shoot(Vector3 firePosition, Vector3 fireDirection, AttackScore attackScore)
+    public void Shoot(Vector3 fireDirection, AttackScore attackScore)
     {
         if (attackScore.WeaponDirection == DirectionType.None)
         {
-            ShootTrajectory(firePosition, fireDirection, attackScore);
+            ShootTrajectory(transform.position, fireDirection, attackScore);
         }
         else
         {
-            ShootAll(firePosition, fireDirection);
+            ShootAll(transform.position, fireDirection);
         }
     }
 
