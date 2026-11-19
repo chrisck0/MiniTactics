@@ -100,6 +100,7 @@ MonoBehaviour:
   _unitAI: {fileID: 8047452440966621766}
   _rotation: {fileID: 4798803889314398010}
   _animationController: {fileID: 2637411370604514657}
+  _effectController: {fileID: 450939198402852783}
   _moveSpeed: 8
 --- !u!114 &8047452440966621766
 MonoBehaviour:
@@ -214,6 +215,10 @@ PrefabInstance:
     - target: {fileID: 3182289974145818484, guid: a23ae3aa113a87a429130be131f37656, type: 3}
       propertyPath: m_Name
       value: CircularSector2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182289974145818484, guid: a23ae3aa113a87a429130be131f37656, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8123926734254416134, guid: a23ae3aa113a87a429130be131f37656, type: 3}
       propertyPath: m_LocalPosition.x
@@ -660,8 +665,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitAnimationController
   _owner: {fileID: 3226035149217672612}
   _animator: {fileID: 202099322549003218}
-  _lmbAction: {fileID: 6248903269001061691, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
-  _rmbAction: {fileID: -535424538923240396, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
 --- !u!114 &1608484771983660270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,8 +722,6 @@ MonoBehaviour:
   _secondWeaponEffect: {fileID: 3020410687910203284}
   _firstWeaponDelayTime: 100
   _secondWeaponDelayTime: 100
-  _lmbAction: {fileID: 6248903269001061691, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
-  _rmbAction: {fileID: -535424538923240396, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
 --- !u!137 &9085541402626134412 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2812854026364111918, guid: 4b03e97acd7646168b7c456c376708e5, type: 3}

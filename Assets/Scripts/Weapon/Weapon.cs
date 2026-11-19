@@ -298,6 +298,8 @@ public class Weapon : MonoBehaviour
     {
         _owner.ConsumeEnergy(weaponData.EnergyCost);
 
+        if (weaponData.WeaponType != WeaponType.SelectDirection) weaponDirection = DirectionType.None;
+
         _owner.OnAttackWeapon?.Invoke(
             new AttackScore(
                 transform.position.WorldToCoord(),

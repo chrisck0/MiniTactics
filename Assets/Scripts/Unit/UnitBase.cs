@@ -11,6 +11,7 @@ public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
     [SerializeField] private UnitAI _unitAI;
     [SerializeField] private UnitRotation _rotation;
     [SerializeField] private UnitAnimationController _animationController;
+    [SerializeField] private UnitEffectController _effectController;
     [SerializeField] private float _moveSpeed = 8f;
     private bool _isMoving;
     private ObjectPool<UnitBase> _objectPool;
@@ -30,6 +31,7 @@ public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
     public Weapon Weapon => _weapon;
     public UnitAI UnitAI => _unitAI;
     public UnitRotation Rotation => _rotation;
+    public UnitEffectController EffectController => _effectController;
     public float MoveSpeed => _moveSpeed;
     public abstract UnitType UnitType { get; }
 

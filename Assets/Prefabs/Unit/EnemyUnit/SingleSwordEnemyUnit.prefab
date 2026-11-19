@@ -176,6 +176,7 @@ MonoBehaviour:
   _unitAI: {fileID: 1764806995617635354}
   _rotation: {fileID: 8563838885215968282}
   _animationController: {fileID: 9162698382826408855}
+  _effectController: {fileID: 8623378988386614008}
   _moveSpeed: 8
 --- !u!114 &1764806995617635354
 MonoBehaviour:
@@ -801,8 +802,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitAnimationController
   _owner: {fileID: 1417890376088917722}
   _animator: {fileID: 3805370133353606040}
-  _lmbAction: {fileID: 6248903269001061691, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
-  _rmbAction: {fileID: -535424538923240396, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
 --- !u!114 &1289782792597587529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,8 +844,6 @@ MonoBehaviour:
   _secondWeaponEffect: {fileID: 2438829724486139704}
   _firstWeaponDelayTime: 100
   _secondWeaponDelayTime: 100
-  _lmbAction: {fileID: 6248903269001061691, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
-  _rmbAction: {fileID: -535424538923240396, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
 --- !u!137 &4084884287323811516 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8049308526728023920, guid: b5b4314ecab5493dbb1a3a21af7dd612, type: 3}

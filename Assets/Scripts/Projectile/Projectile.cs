@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
 
     public void Shoot(Vector3 fireDirection, AttackScore attackScore)
     {
+        Debug.Log($"AttackScore {attackScore.AttackWeaponData} {attackScore.WeaponDirection} {attackScore.TargetCoord}");
         if (attackScore.WeaponDirection == DirectionType.None)
         {
             ShootTrajectory(transform.position, fireDirection, attackScore);
@@ -52,5 +53,10 @@ public class Projectile : MonoBehaviour
 
             _projectileObjectPool.Shoot(_projectilePrefab, firePosition, direction, lifeTime, false, Vector3.zero);
         }
+    }
+
+    public void SetObjectPool(ProjectileObjectPool projectileObjectPool)
+    {
+        _projectileObjectPool = projectileObjectPool;
     }
 }

@@ -176,6 +176,7 @@ MonoBehaviour:
   _unitAI: {fileID: 1764806995617635354}
   _rotation: {fileID: 8563838885215968282}
   _animationController: {fileID: 921325971302196374}
+  _effectController: {fileID: 5135066221942822214}
   _moveSpeed: 8
 --- !u!114 &1764806995617635354
 MonoBehaviour:
@@ -255,6 +256,10 @@ PrefabInstance:
     - target: {fileID: 6478891621915493118, guid: 0de1e1bc016c907498cfb50d313fab63, type: 3}
       propertyPath: m_Name
       value: MagicWand
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478891621915493118, guid: 0de1e1bc016c907498cfb50d313fab63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -618,8 +623,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitAnimationController
   _owner: {fileID: 8532842111232346743}
   _animator: {fileID: 7727544232367387036}
-  _lmbAction: {fileID: 0}
-  _rmbAction: {fileID: 0}
 --- !u!114 &4381346392598021320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,8 +664,6 @@ MonoBehaviour:
   _secondWeaponEffect: {fileID: 2415120907480705813}
   _firstWeaponDelayTime: 100
   _secondWeaponDelayTime: 100
-  _lmbAction: {fileID: 6248903269001061691, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
-  _rmbAction: {fileID: -535424538923240396, guid: 1fb15236ea930174ebfda5b423948a3e, type: 3}
 --- !u!137 &7716716031203683325 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2448643717653283515, guid: 28dafb815f5049268b8efcac86c0e3e5, type: 3}
@@ -745,6 +746,10 @@ PrefabInstance:
     - target: {fileID: 8743529309312883486, guid: f1d12bc6389553645baefd854db714f8, type: 3}
       propertyPath: m_Name
       value: Explosion2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743529309312883486, guid: f1d12bc6389553645baefd854db714f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

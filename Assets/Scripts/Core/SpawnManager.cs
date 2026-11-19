@@ -8,6 +8,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private CameraMove _cameraMove;
     [SerializeField] private List<UnitBase> _unitPrefabs;
     [SerializeField] private List<TileBase> _tilePrefabs;
+    [SerializeField] private ProjectileObjectPool _projectileObjectPool;
 
     private StageData _stageData;
     private ObjectPool<UnitBase> _unitObjectPool;
@@ -98,6 +99,7 @@ public class SpawnManager : MonoBehaviour
 
             UnitBase unit = _unitObjectPool.Take(unitPrefab);
             unit.SetObjectPool(_unitObjectPool);
+            unit.EffectController.SetProjectileObjectPool(_projectileObjectPool);
 
             Vector2Int coord = unitPosition.Position;
             unit.transform.position = coord.CoordToWorld();

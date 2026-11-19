@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class UnitEffectController : MonoBehaviour
 {
@@ -9,8 +8,6 @@ public class UnitEffectController : MonoBehaviour
     [SerializeField] private GameObject _secondWeaponEffect;
     [SerializeField] private int _firstWeaponDelayTime;
     [SerializeField] private int _secondWeaponDelayTime;
-    [SerializeField] private InputActionReference _lmbAction;
-    [SerializeField] private InputActionReference _rmbAction;
 
     private void OnEnable() => BindUnitEvents();
     private void OnDisable() => UnbindUnitEvents();
@@ -22,8 +19,7 @@ public class UnitEffectController : MonoBehaviour
 
     private async UniTask ShowAttack(AttackScore attackScore)
     {
-        if (attackScore.AttackWeaponData.Id == //_owner.Stat.Data.WeaponIdList[0])
-            1)
+        if (attackScore.AttackWeaponData.Id == _owner.Stat.Data.WeaponIdList[0])
         {
             await ShowAttackWeapon1(attackScore);
         }
@@ -77,6 +73,7 @@ public class UnitEffectController : MonoBehaviour
         projectile.Shoot(transform.forward, attackScore);
     }
 
+    /* 테스트용
     private void AttackWeapon1(InputAction.CallbackContext context)
     {
         ShowAttackWeapon1(new AttackScore(
@@ -98,22 +95,30 @@ public class UnitEffectController : MonoBehaviour
             0
             )).Forget();
     }
+    */
+
+    public void SetProjectileObjectPool(ProjectileObjectPool projectileObjectPool)
+    {
+        Projectile projectile;
+
+        if (_firstWeaponEffect.TryGetComponent<Projectile>(out projectile))
+        {
+            projectile.SetObjectPool(projectileObjectPool);    
+        }
+
+        if (_secondWeaponEffect.TryGetComponent<Projectile>(out projectile))
+        {
+            projectile.SetObjectPool(projectileObjectPool);    
+        }
+    }
 
     private void BindUnitEvents()
     {
         _owner.OnAttackWeapon += Attack;
-        _lmbAction.action.Enable();
-        _lmbAction.action.performed += AttackWeapon1;
-        _rmbAction.action.Enable();
-        _rmbAction.action.performed += AttackWeapon2;
     }
 
     private void UnbindUnitEvents()
     {
         _owner.OnAttackWeapon += Attack;
-        _lmbAction.action.Disable();
-        _lmbAction.action.performed -= AttackWeapon1;
-        _rmbAction.action.Disable();
-        _rmbAction.action.performed -= AttackWeapon2;
     }
 }

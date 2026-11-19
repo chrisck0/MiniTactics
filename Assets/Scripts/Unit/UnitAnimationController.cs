@@ -5,8 +5,8 @@ public class UnitAnimationController : MonoBehaviour
 {
     [SerializeField] private UnitBase _owner;
     [SerializeField] private Animator _animator;
-    [SerializeField] private InputActionReference _lmbAction;
-    [SerializeField] private InputActionReference _rmbAction;
+    // [SerializeField] private InputActionReference _lmbAction;
+    // [SerializeField] private InputActionReference _rmbAction;
 
     private const string PARAM_IS_FIRST_WEAPON_ATTACK = "IsFirstWeaponAttack";
     private const string PARAM_IS_SECOND_WEAPON_ATTACK = "IsSecondWeaponAttack";
@@ -94,10 +94,10 @@ public class UnitAnimationController : MonoBehaviour
         _owner.OnAvoid += Avoid;
         _owner.OnDamage += Damage;
         _owner.OnDead += Dead;
-        _lmbAction.action.Enable();
-        _lmbAction.action.performed += AttackWeapon1;
-        _rmbAction.action.Enable();
-        _rmbAction.action.performed += AttackWeapon2;
+        // _lmbAction.action.Enable();
+        // _lmbAction.action.performed += AttackWeapon1;
+        // _rmbAction.action.Enable();
+        // _rmbAction.action.performed += AttackWeapon2;
     }
 
     private void UnbindUnitEvents()
@@ -109,9 +109,9 @@ public class UnitAnimationController : MonoBehaviour
         _owner.OnAvoid -= Avoid;
         _owner.OnDamage -= Damage;
         _owner.OnDead -= Dead;
-        _lmbAction.action.Disable();
-        _lmbAction.action.performed -= AttackWeapon1;
-        _rmbAction.action.Disable();
-        _rmbAction.action.performed -= AttackWeapon2;
+        // _lmbAction.action.Disable();
+        // _lmbAction.action.performed -= AttackWeapon1;
+        // _rmbAction.action.Disable();
+        // _rmbAction.action.performed -= AttackWeapon2;
     }
 }
