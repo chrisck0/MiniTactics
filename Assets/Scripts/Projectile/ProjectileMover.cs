@@ -71,8 +71,6 @@ public class ProjectileMover : MonoBehaviour, IPoolable
             _rb.angularVelocity = Vector3.zero;
         }
 
-        Debug.Log($"Linear Velocity {_rb.linearVelocity}");
-
         if (_projectilePS != null)
         {
             _projectilePS.Clear(true);

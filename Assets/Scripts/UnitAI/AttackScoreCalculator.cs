@@ -42,6 +42,10 @@ public static class AttackScoreCalculator
                 case WeaponType.SelectDirection:
                     currentAttackScore = CalculateSelectDirectionScore(unit, mapManager, currentCoord, weaponData);
                     break;
+
+                case WeaponType.AllRange:
+                    currentAttackScore = CalculateAllRangeScore(unit, mapManager, currentCoord, currentCoord, weaponData);
+                    break;
             }
 
             if (currentAttackScore.Score > maxAttackScore.Score) maxAttackScore = currentAttackScore;
@@ -186,6 +190,31 @@ public static class AttackScoreCalculator
             attackScore = new AttackScore(coord, weaponData, direction, Vector2Int.zero, score);
         }
         return attackScore;
+    }
+
+    private static AttackScore CalculateAllRangeScore(UnitBase unit, MapManager mapManager, Vector2Int currentCoord, Vector2Int targetableCoord, WeaponData weaponData)
+    {
+        mapManager.TileRange.SelectTargetWeaponRange(
+            unit, targetableCoord, 0, weaponData.ExplosionRange, unit.Weapon.GlobalTargetCoords, true);
+
+        int score = 0;
+
+        EnemyUnit enemy = unit as EnemyUnit;
+
+        UnitBase selectTarget = mapManager.UnitMap[targetableCoord.x, targetableCoord.y];
+
+        foreach (Vector2Int targetCoord in unit.Weapon.GlobalTargetCoords)
+        {
+            UnitBase targetUnit = mapManager.UnitMap[targetCoord.x, targetCoord.y];
+
+            if (targetUnit == null || targetUnit.UnitType != unit.UnitType)
+                unit.DistanceRange.TargetableCoords.Add(targetCoord);
+
+            score += AttackScore(unit, mapManager, currentCoord, targetCoord, weaponData.Attack);
+        }
+
+
+        return new AttackScore(currentCoord, weaponData, DirectionType.None, targetableCoord, score);
     }
 
     private static int AttackScore(UnitBase unit, MapManager mapManager, Vector2Int currentCoord, Vector2Int targetCoord, int attack)
