@@ -200,7 +200,7 @@ public class UnitAI : MonoBehaviour
 
     private void MoveUnit()
     {
-        if (Vector3.Distance(transform.position, _moveTargetCoord.CoordToWorld()) >= 0.1f)
+        if (Vector3.Distance(transform.position, _moveTargetCoord.CoordToWorld()) >= 0.05f)
         {
             transform.Translate(Vector3.forward
                 * Time.deltaTime * _owner.MoveSpeed);

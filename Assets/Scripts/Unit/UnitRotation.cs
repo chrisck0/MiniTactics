@@ -26,8 +26,6 @@ public class UnitRotation : MonoBehaviour
             _direction = _directions[(int)weaponDirection - 1];
             _isRotating = true;
         }
-
-        Debug.Log($"Rotation {_direction}");
     }
 
     public void Rotate()

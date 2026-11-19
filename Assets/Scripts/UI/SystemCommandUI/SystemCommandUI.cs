@@ -8,6 +8,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
     [SerializeField] private PhaseStateController _phaseStateController;
     [SerializeField] private UnitCommandStateController _unitCommandStateController;
     [SerializeField] private GameSceneController _gameSceneController;
+    [SerializeField] private SaveLoader _saveLoader;
     [SerializeField] private GameObject _turn;
     [SerializeField] private GameObject _activeUnits;
     [SerializeField] private TextMeshProUGUI _turnText;
@@ -16,6 +17,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
     [SerializeField] private Button _unitListButton;
     [SerializeField] private Button _autoButton;
     [SerializeField] private Button _settingsButton;
+    [SerializeField] private Button _suspendButton;
     [SerializeField] private Button _retreatButton;
     [SerializeField] private Button _popupBackgroundButton;
     [SerializeField] private YesNoPopupUI _yesNoPopup;
@@ -93,6 +95,14 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _currentPopup = _settingsPopup;
     }
 
+    private void ShowSuspendPopup()
+    {
+        _popupBackgroundButton.gameObject.SetActive(true);
+        _yesNoPopup.Show(this);
+        _yesNoPopup.BindSuspendEvents();
+        _currentPopup = _yesNoPopup;
+    }
+
     private void ShowRetreatPopup()
     {
         _popupBackgroundButton.gameObject.SetActive(true);
@@ -110,6 +120,12 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
     {
         _phaseStateController.ClearActivePlayerUnit();
         _unitCommandStateController.SetState(_unitCommandStateController.CommandEndState);
+    }
+
+    public void SaveDataAndLoadMainMenu()
+    {
+        _saveLoader.SaveNewData();
+        LoadMainMenu();
     }
 
     public void LoadMainMenu()
@@ -142,6 +158,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _unitListButton.onClick.AddListener(ShowUnitListPopup);
         _autoButton.onClick.AddListener(ShowAutoPopup);
         _settingsButton.onClick.AddListener(ShowSettingsPopup);
+        _suspendButton.onClick.AddListener(ShowSuspendPopup);
         _retreatButton.onClick.AddListener(ShowRetreatPopup);
     }
 
@@ -152,6 +169,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _unitListButton.onClick.RemoveListener(ShowUnitListPopup);
         _autoButton.onClick.RemoveListener(ShowAutoPopup);
         _settingsButton.onClick.RemoveListener(ShowSettingsPopup);
+        _suspendButton.onClick.RemoveListener(ShowSuspendPopup);
         _retreatButton.onClick.RemoveListener(ShowRetreatPopup);
     }
 

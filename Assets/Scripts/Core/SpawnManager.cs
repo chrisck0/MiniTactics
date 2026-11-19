@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private DataManager _dataManager;
+    [SerializeField] private SaveLoader _saveLoader;
     [SerializeField] private CameraMove _cameraMove;
     [SerializeField] private List<UnitBase> _unitPrefabs;
     [SerializeField] private List<TileBase> _tilePrefabs;
@@ -59,10 +60,28 @@ public class SpawnManager : MonoBehaviour
         // if (!_dataManager.StageDataDict.TryGetValue(stageId, out StageData stageData)) return;
         _stageData = GameManager.Instance.GetStageData();
 
+        SaveData saveData = _saveLoader.Load();
+        if (saveData != null && saveData.StageId != _stageData.StageId)
+        {
+            _saveLoader.ClearSaveData();
+            saveData = null;
+        }
+
         CreateMapAndSpawnMap(_stageData.Map);
-        CreateMapAndSpawnUnits(_stageData.UnitPositionList);
+
+        Vector3 cameraPosition = _stageData.CameraInitialPosition;
+        if (saveData == null)
+        {
+            CreateMapAndSpawnUnits(_stageData.UnitPositionList);
+        }
+        else
+        {
+            CreateMapAndSpawnUnitsFromSave(saveData);
+            cameraPosition = saveData.CameraPosition;
+        }
+
         _cameraMove.InitPosition(
-            _stageData.CameraInitialPosition,
+            cameraPosition,
             new Vector3(0.5f, 0f, _stageData.Map.GetLength(0) - .5f),
             new Vector3(0.5f, 0f, .5f),
             new Vector3(_stageData.Map.GetLength(1) - .5f, 0f, _stageData.Map.GetLength(0) - .5f),
@@ -111,6 +130,42 @@ public class SpawnManager : MonoBehaviour
             unit.transform.position = coord.CoordToWorld();
             unit.transform.eulerAngles = _rotations[(int)unitPosition.Direction];
             unit.Stat.InitStat(unitData);
+            unit.DistanceRange.SetMap(_tileMap);
+
+            Dictionary<int, WeaponData> weaponDataDict = _dataManager.WeaponDataDict;
+
+            foreach (int weaponId in unitData.WeaponIdList)
+            {
+                if (weaponDataDict.TryGetValue(weaponId, out WeaponData weaponData))
+                {
+                    unit.Weapon.AddWeapon(weaponData);
+                }
+            }
+
+            _unitMap[coord.x, coord.y] = unit;
+            AddSpawnedUnit(unitData.UnitType, unit);
+        }
+    }
+
+    private void CreateMapAndSpawnUnitsFromSave(SaveData saveData)
+    {
+        Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
+        _unitMap = new UnitBase[_tileMap.GetLength(1), _tileMap.GetLength(0)];
+
+        foreach (UnitSaveData unitSaveData in saveData.UnitSaveDatas)
+        {
+            if (!unitDataDict.TryGetValue(unitSaveData.UnitPosition.Id, out UnitData unitData)) continue;
+
+            if (!_unitPrefabDict.TryGetValue(unitData.Id, out UnitBase unitPrefab)) continue;
+
+            UnitBase unit = _unitObjectPool.Take(unitPrefab);
+            unit.SetObjectPool(_unitObjectPool);
+            unit.EffectController.SetProjectileObjectPool(_projectileObjectPool);
+
+            Vector2Int coord = unitSaveData.UnitPosition.Position;
+            unit.transform.position = coord.CoordToWorld();
+            unit.transform.eulerAngles = _rotations[(int)unitSaveData.UnitPosition.Direction];
+            unit.Stat.InitStat(unitData, unitSaveData.Health, unitSaveData.Energy);
             unit.DistanceRange.SetMap(_tileMap);
 
             Dictionary<int, WeaponData> weaponDataDict = _dataManager.WeaponDataDict;
