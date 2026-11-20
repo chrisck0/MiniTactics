@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 [CreateAssetMenu(fileName = "StageData", menuName = "Data/StageData")]
 public class StageData : ScriptableObject
@@ -10,6 +9,7 @@ public class StageData : ScriptableObject
     [SerializeField] private StageWinCondition _stageWinCondition;
     [SerializeField] private List<int> _targetIds;
     [SerializeField] private List<int> _mainUnitIds;
+    [SerializeField] private int _turnLimit;
     [SerializeField] private TileType[,] _map;
     [SerializeField] private List<UnitPosition> _unitPositionList;
     [SerializeField] private Vector3 _cameraInitialPosition;
@@ -18,13 +18,14 @@ public class StageData : ScriptableObject
     public string StageName => _stageName;
     public StageWinCondition StageWinCondition => _stageWinCondition;
     public List<int> TargetIds => _targetIds;
+    public int TurnLimit => _turnLimit;
     public List<int> MainUnitIds => _mainUnitIds;
     public TileType[,] Map => _map;
     public List<UnitPosition> UnitPositionList => _unitPositionList;
     public Vector3 CameraInitialPosition => _cameraInitialPosition;
 
     public void SetData(int stageId, string stageName, StageWinCondition stageWinCondition,
-        List<int> targetIds, List<int> mainUnitIds,
+        List<int> targetIds, List<int> mainUnitIds, int turnLimit,
         TileType[,] map, List<UnitPosition> unitPositionList,
         Vector3 cameraInitialPosition)
     {
@@ -33,6 +34,7 @@ public class StageData : ScriptableObject
         _stageWinCondition = stageWinCondition;
         _targetIds = targetIds;
         _mainUnitIds = mainUnitIds;
+        _turnLimit = turnLimit;
         _map = map;
         _unitPositionList = unitPositionList;
         _cameraInitialPosition = cameraInitialPosition;
