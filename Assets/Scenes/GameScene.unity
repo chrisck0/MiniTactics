@@ -10498,7 +10498,7 @@ GameObject:
   - component: {fileID: 944451278}
   - component: {fileID: 944451277}
   m_Layer: 5
-  m_Name: NextStageButton
+  m_Name: LoadStageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10622,7 +10622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &955585397
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10660,13 +10660,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f077be2d5aad848a25ac32fcab6aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResultUI
+  _dataManager: {fileID: 1781648645}
   _gameSceneController: {fileID: 1162715267}
   _gameClearText: {fileID: 323579003}
   _gameOverText: {fileID: 1895221110}
   _turnText: {fileID: 222061730}
   _killedEnemyText: {fileID: 936706643}
   _lostPlayerText: {fileID: 2028217714}
-  _nextStageButton: {fileID: 944451277}
+  _loadStageButton: {fileID: 944451277}
+  _loadStageButtonText: {fileID: 634910818}
   _mainMenuButton: {fileID: 1365724696}
 --- !u!1 &966485419
 GameObject:
@@ -12762,14 +12764,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aece4e590516ef8479621c90c7302c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSceneController
+  _dataManager: {fileID: 1781648645}
   _mainMenuScene:
     _sceneAsset: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
     _scenePath: Assets/Scenes/MainMenuScene.unity
     _sceneName: MainMenuScene
-  _gameScene:
-    _sceneAsset: {fileID: 102900000, guid: a4f50291a1eda4846a438bad83ef20b2, type: 3}
-    _scenePath: Assets/Scenes/GameScene.unity
-    _sceneName: GameScene
+  _loadingScene:
+    _sceneAsset: {fileID: 102900000, guid: 3c11c5e9ec1a8ed4b94c3d41150ff396, type: 3}
+    _scenePath: Assets/Scenes/LoadingScene.unity
+    _sceneName: LoadingScene
 --- !u!1 &1163149842
 GameObject:
   m_ObjectHideFlags: 0
@@ -20931,7 +20934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1902110514
 RectTransform:
   m_ObjectHideFlags: 0

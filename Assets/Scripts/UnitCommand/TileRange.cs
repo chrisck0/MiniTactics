@@ -20,8 +20,8 @@ public class TileRange
         _tileMap = tileMap;
         _unitMap = unitMap;
 
-        _visitedMap = new bool[_tileMap.GetLength(1), _tileMap.GetLength(0)];
-        _tileCostMap = new TileCost[_tileMap.GetLength(1), _tileMap.GetLength(0)];
+        _visitedMap = new bool[_tileMap.GetLength(0), _tileMap.GetLength(1)];
+        _tileCostMap = new TileCost[_tileMap.GetLength(0), _tileMap.GetLength(1)];
 
         for (int i = 0; i < _tileMap.GetLength(1); i++)
         {
@@ -36,9 +36,9 @@ public class TileRange
     // 다익스트라 관련 초기화
     private void Init()
     {
-        for (int i = 0; i < _tileMap.GetLength(0); i++)
+        for (int i = 0; i < _tileMap.GetLength(1); i++)
         {
-            for (int j = 0; j < _tileMap.GetLength(1); j++)
+            for (int j = 0; j < _tileMap.GetLength(0); j++)
             {
                 _visitedMap[j, i] = false;
                 _tileCostMap[j, i].InitData();
@@ -86,7 +86,7 @@ public class TileRange
                 Vector2Int nextCoord = currentCoord + direction;
 
                 if (nextCoord.x < 0 || nextCoord.y < 0
-                    || nextCoord.x >= _tileMap.GetLength(1) || nextCoord.y >= _tileMap.GetLength(0)
+                    || nextCoord.x >= _tileMap.GetLength(0) || nextCoord.y >= _tileMap.GetLength(1)
                     || _visitedMap[nextCoord.x, nextCoord.y]) continue;
 
                 TileData nextTileData = _tileMap[nextCoord.x, nextCoord.y].TileData;
@@ -155,7 +155,7 @@ public class TileRange
                 Vector2Int nextCoord = currentCoord + direction;
 
                 if (nextCoord.x < 0 || nextCoord.y < 0
-                    || nextCoord.x >= _tileMap.GetLength(1) || nextCoord.y >= _tileMap.GetLength(0)
+                    || nextCoord.x >= _tileMap.GetLength(0) || nextCoord.y >= _tileMap.GetLength(1)
                     || _visitedMap[nextCoord.x, nextCoord.y]) continue;
 
                 TileData nextTileData = _tileMap[nextCoord.x, nextCoord.y].TileData;
@@ -228,7 +228,7 @@ public class TileRange
                 Vector2Int nextCoord = currentCoord + direction;
 
                 if (nextCoord.x < 0 || nextCoord.y < 0
-                    || nextCoord.x >= _tileMap.GetLength(1) || nextCoord.y >= _tileMap.GetLength(0)
+                    || nextCoord.x >= _tileMap.GetLength(0) || nextCoord.y >= _tileMap.GetLength(1)
                     || _visitedMap[nextCoord.x, nextCoord.y]) continue;
 
                 TileData nextTileData = _tileMap[nextCoord.x, nextCoord.y].TileData;
@@ -283,7 +283,7 @@ public class TileRange
                 Vector2Int nextCoord = currentCoord + direction;
 
                 if (nextCoord.x < 0 || nextCoord.y < 0
-                    || nextCoord.x >= _tileMap.GetLength(1) || nextCoord.y >= _tileMap.GetLength(0)
+                    || nextCoord.x >= _tileMap.GetLength(0) || nextCoord.y >= _tileMap.GetLength(1)
                     || _visitedMap[nextCoord.x, nextCoord.y]) continue;
 
                 TileData nextTileData = _tileMap[nextCoord.x, nextCoord.y].TileData;

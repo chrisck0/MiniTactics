@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(StateMachine))]
 public class PhaseStateController : MonoBehaviour, IStateEvent
@@ -23,8 +24,6 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     private StateBase _phaseEndState;
     private int _turn;
     private int _turnLimit;
-    private int _initialPlayerNum;
-    private int _initialEnemyNum;
     private List<UnitBase> _playerUnitList;
     private List<UnitBase> _enemyUnitList;
     private bool _isAuto;
@@ -113,7 +112,6 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
 
         if (!spawnedUnitDict.TryGetValue(UnitType.Player, out List<UnitBase> playerUnitList)) return;
         _playerUnitList = playerUnitList;
-        _initialPlayerNum = playerUnitList.Count;
 
         foreach (UnitBase playerUnitBase in _playerUnitList)
         {
@@ -126,7 +124,6 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
 
         if (!spawnedUnitDict.TryGetValue(UnitType.Enemy, out List<UnitBase> enemyUnitList)) return;
         _enemyUnitList = enemyUnitList;
-        _initialEnemyNum = enemyUnitList.Count;
 
         foreach (UnitBase enemyUnitBase in _enemyUnitList)
         {
@@ -286,8 +283,21 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     private void ShowGameResult(bool isGameWin)
     {
         _saveLoader.ClearSaveData();
-        _gameUIController.ResultUI.SetData(isGameWin, _turn,
-            _initialEnemyNum - _enemyUnitList.Count, _initialPlayerNum - _playerUnitList.Count);
+
+        int killedEnemy = GameManager.Instance.GetStageData().InitialEnemyNum - _enemyUnitList.Count;
+        int lostPlayer = GameManager.Instance.GetStageData().InitialPlayerNum - _playerUnitList.Count;
+
+        if (isGameWin)
+        {
+            _saveLoader.SaveClearData(new StageClearData(
+                GameManager.Instance.GetStageData().StageId,
+                _turn,
+                killedEnemy,
+                lostPlayer
+                ));
+        }
+
+        _gameUIController.ResultUI.SetData(isGameWin, _turn, killedEnemy, lostPlayer);
         _stateMachine.enabled = false;
         // _mapManager.TileRange.InitTiles();
         OnGameEnd?.Invoke();

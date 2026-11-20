@@ -24,6 +24,7 @@ public class StageSelectUI : MonoBehaviour
         BindControllerEvents();
         DeactivatePopups();
         ShowSaveDataStage();
+        UnlockStages();
     }
 
     private void OnDisable()
@@ -63,7 +64,7 @@ public class StageSelectUI : MonoBehaviour
 
     private void ShowSaveDataStage()
     {
-        _saveData = _saveLoader.Load();
+        _saveData = _saveLoader.LoadSaveData();
         if (_saveData == null)
         {
             _saveDataStage.gameObject.SetActive(false);
@@ -81,6 +82,26 @@ public class StageSelectUI : MonoBehaviour
                     _saveDataStage.gameObject.SetActive(true);
                     break;
                 }
+            }
+        }
+    }
+
+    private void UnlockStages()
+    {
+        ClearData clearData = _saveLoader.LoadClearData();
+
+        if (clearData == null)
+        {
+            _stageSelectControllers[0].Unlock();
+        }
+        else
+        {
+            int clearedStages = clearData.StageClearDataList.Count;
+
+            for (int i = 0; i <= clearedStages; i++)
+            {
+                if (i >= _stageSelectControllers.Count) break;
+                _stageSelectControllers[i].Unlock();
             }
         }
     }

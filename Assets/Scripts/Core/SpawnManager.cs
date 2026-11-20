@@ -64,7 +64,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnStage()
     {
         _stageData = GameManager.Instance.GetStageData();
-        SaveData saveData = _saveLoader.Load();
+        SaveData saveData = _saveLoader.LoadSaveData();
 
         if (saveData != null && saveData.StageId != _stageData.StageId)
         {
@@ -91,11 +91,10 @@ public class SpawnManager : MonoBehaviour
 
     private void CreateMapAndSpawnMap(TileType[,] map)
     {
-        _tileMap = new TileBase[map.GetLength(1), map.GetLength(0)];
-
-        for (int i = 0; i < map.GetLength(0); i++)
+        _tileMap = new TileBase[map.GetLength(0), map.GetLength(1)];
+        for (int i = 0; i < map.GetLength(1); i++)
         {
-            for (int j = 0; j < map.GetLength(1); j++)
+            for (int j = 0; j < map.GetLength(0); j++)
             {
                 if (!_dataManager.TileDataDict.TryGetValue(map[j, i], out TileData tileData)) continue;
 
@@ -115,7 +114,8 @@ public class SpawnManager : MonoBehaviour
         _turnSaveDataList = new();
 
         Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
-        _unitMap = new UnitBase[_tileMap.GetLength(1), _tileMap.GetLength(0)];
+        _unitMap = new UnitBase[_tileMap.GetLength(0), _tileMap.GetLength(1)];
+        
         GameManager.Instance.SetInitialSeed();
 
         foreach (UnitPosition unitPosition in unitPositionList)
@@ -157,7 +157,7 @@ public class SpawnManager : MonoBehaviour
         GameManager.Instance.SetInitialSeed(saveData.InitialSeed);
 
         Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
-        _unitMap = new UnitBase[_tileMap.GetLength(1), _tileMap.GetLength(0)];
+        _unitMap = new UnitBase[_tileMap.GetLength(0), _tileMap.GetLength(1)];
 
         foreach (UnitSaveData unitSaveData in turnSaveData.UnitSaveDatas)
         {

@@ -10,6 +10,8 @@ public class StageData : ScriptableObject
     [SerializeField] private List<int> _targetIds;
     [SerializeField] private List<int> _mainUnitIds;
     [SerializeField] private int _turnLimit;
+    [SerializeField] private int _initialPlayerNum;
+    [SerializeField] private int _initialEnemyNum;
     [SerializeField] private TileType[,] _map;
     [SerializeField] private List<UnitPosition> _unitPositionList;
     [SerializeField] private Vector3 _cameraInitialPosition;
@@ -20,12 +22,15 @@ public class StageData : ScriptableObject
     public List<int> TargetIds => _targetIds;
     public int TurnLimit => _turnLimit;
     public List<int> MainUnitIds => _mainUnitIds;
+    public int InitialPlayerNum => _initialPlayerNum;
+    public int InitialEnemyNum => _initialEnemyNum;
     public TileType[,] Map => _map;
     public List<UnitPosition> UnitPositionList => _unitPositionList;
     public Vector3 CameraInitialPosition => _cameraInitialPosition;
 
     public void SetData(int stageId, string stageName, StageWinCondition stageWinCondition,
         List<int> targetIds, List<int> mainUnitIds, int turnLimit,
+        int initialPlayerNum, int initialEnemyNum,
         TileType[,] map, List<UnitPosition> unitPositionList,
         Vector3 cameraInitialPosition)
     {
@@ -35,6 +40,8 @@ public class StageData : ScriptableObject
         _targetIds = targetIds;
         _mainUnitIds = mainUnitIds;
         _turnLimit = turnLimit;
+        _initialPlayerNum = initialPlayerNum;
+        _initialEnemyNum = initialEnemyNum;
         _map = map;
         _unitPositionList = unitPositionList;
         _cameraInitialPosition = cameraInitialPosition;

@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class StageSelectController : MonoBehaviour
 {
-    [SerializeField] private SceneReference _nextScene;
+    [SerializeField] private SceneReference _loadingScene;
     [SerializeField] private StageData _stageData;
     [SerializeField] private Button _stageButton;
+    [SerializeField] private GameObject _lockedBackground;
 
     public event Action<StageSelectController> OnButtonClicked;
     public StageData StageData => _stageData;
@@ -22,6 +23,11 @@ public class StageSelectController : MonoBehaviour
         UnbindButtonEvents();
     }
 
+    public void Unlock()
+    {
+        _lockedBackground.SetActive(false);
+    }
+
     private void ButtonClick()
     {
         OnButtonClicked?.Invoke(this);
@@ -30,7 +36,7 @@ public class StageSelectController : MonoBehaviour
     public void LoadScene()
     {
         GameManager.Instance.SetStageData(_stageData);
-        SceneManager.LoadScene(_nextScene.SceneName);
+        SceneManager.LoadScene(_loadingScene.SceneName);
     }
 
     private void BindButtonEvents()

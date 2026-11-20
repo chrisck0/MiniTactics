@@ -3,8 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameSceneController : MonoBehaviour
 {
+    [SerializeField] private DataManager _dataManager;
     [SerializeField] private SceneReference _mainMenuScene;
-    [SerializeField] private SceneReference _gameScene;
+    [SerializeField] private SceneReference _loadingScene;
 
     public void LoadMainMenu()
     {
@@ -17,15 +18,23 @@ public class GameSceneController : MonoBehaviour
         SceneManager.LoadScene(_mainMenuScene.SceneName);
     }
 
+    public void LoadCurrentStage()
+    {
+        SceneManager.LoadScene(_loadingScene.SceneName);
+    }
+
     public void LoadNextStage()
     {
-        if (!_gameScene.IsValid)
+        if (!_loadingScene.IsValid)
         {
             Debug.LogWarning("GameSceneController : 씬이 연결되지 않았음");
             return;
         }
 
-        //GameManger.SetStageData();
-        SceneManager.LoadScene(_gameScene.SceneName);
+        int currentStageId = GameManager.Instance.GetStageData().StageId;
+        StageData nextStageData = _dataManager.StageDataDict[currentStageId + 1];
+
+        GameManager.Instance.SetStageData(nextStageData);
+        SceneManager.LoadScene(_loadingScene.SceneName);
     }
 }

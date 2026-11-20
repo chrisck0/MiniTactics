@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -61,7 +60,7 @@ public class StageDataParser : DataParserBase
             );
 
 
-        int stageId, mapSizeX, mapSizeY, turnLimit, cameraX, cameraY, cameraZ;
+        int stageId, mapSizeX, mapSizeY, turnLimit, initialPlayerNum, initialEnemyNum, cameraX, cameraY, cameraZ;
         string stageName;
         StageWinCondition stageWinCondition;
         TileType[,] map;
@@ -76,9 +75,11 @@ public class StageDataParser : DataParserBase
             || !int.TryParse(stageInfos[3], out mapSizeY)
             || !Enum.TryParse<StageWinCondition>(stageInfos[4], out stageWinCondition)
             || !int.TryParse(stageInfos[7], out turnLimit)
-            || !int.TryParse(stageInfos[8], out cameraX)
-            || !int.TryParse(stageInfos[9], out cameraY)
-            || !int.TryParse(stageInfos[10], out cameraZ)
+            || !int.TryParse(stageInfos[8], out initialPlayerNum)
+            || !int.TryParse(stageInfos[9], out initialEnemyNum)
+            || !int.TryParse(stageInfos[10], out cameraX)
+            || !int.TryParse(stageInfos[11], out cameraY)
+            || !int.TryParse(stageInfos[12], out cameraZ)
             )
         {
             Debug.LogError("Stage Info Parse Error");
@@ -148,6 +149,7 @@ public class StageDataParser : DataParserBase
         }
 
         _stageDataList[index].SetData(
-            stageId, stageName, stageWinCondition, targetIds, mainIds, turnLimit, map, unitPositionList, cameraInitialPosition);
+            stageId, stageName, stageWinCondition,targetIds, mainIds,
+            turnLimit, initialPlayerNum, initialEnemyNum, map, unitPositionList, cameraInitialPosition);
     }
 }
