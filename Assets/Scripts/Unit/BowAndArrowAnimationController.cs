@@ -39,6 +39,6 @@ public class BowAndArrowAnimationController : MonoBehaviour
 
     private void UnbindUnitEvents()
     {
-        _owner.OnAttackWeapon += Attack;
+        _owner.OnAttackWeapon -= Attack;
     }
 }
