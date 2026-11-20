@@ -58,7 +58,6 @@ public class UnitEffectController : MonoBehaviour
         }
     }
 
-
     private async UniTask NormalEffect(int delayTime, GameObject effect)
     {
         await UniTask.Delay(delayTime, DelayType.DeltaTime);
@@ -119,6 +118,6 @@ public class UnitEffectController : MonoBehaviour
 
     private void UnbindUnitEvents()
     {
-        _owner.OnAttackWeapon += Attack;
+        _owner.OnAttackWeapon -= Attack;
     }
 }
