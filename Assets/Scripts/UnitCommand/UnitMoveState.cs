@@ -208,7 +208,6 @@ public sealed class UnitMoveState : StateBase
         }
         else
         {
-            _controller.SelectedPlayerUnit.UnSelect();
             _controller.SetState(_controller.UnitSelectState);
         }
     }

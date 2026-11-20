@@ -207,6 +207,11 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         _commandUIController.KeyInfoUI.Show();
     }
 
+    public void ShowSelectAndDangerKeyInfo(int siblingIndex)
+    {
+        _commandUIController.KeyInfoUI.SetSelectAndDangerKey(siblingIndex);
+    }
+
     public void ShowSelectKeyInfo(int siblingIndex)
     {
         _commandUIController.KeyInfoUI.SetSelectKey(siblingIndex);

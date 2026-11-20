@@ -51,11 +51,6 @@ public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
         OnSelect?.Invoke();
     }
 
-    public void UnSelect()
-    {
-        Debug.Log("Unselect");
-    }
-
     public void ToggleMove()
     {
         _isMoving = !_isMoving;
