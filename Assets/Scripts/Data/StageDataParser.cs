@@ -61,7 +61,7 @@ public class StageDataParser : DataParserBase
             );
 
 
-        int stageId, mapSizeX, mapSizeY, cameraX, cameraY, cameraZ;
+        int stageId, mapSizeX, mapSizeY, turnLimit, cameraX, cameraY, cameraZ;
         string stageName;
         StageWinCondition stageWinCondition;
         TileType[,] map;
@@ -75,9 +75,10 @@ public class StageDataParser : DataParserBase
             || !int.TryParse(stageInfos[2], out mapSizeX)
             || !int.TryParse(stageInfos[3], out mapSizeY)
             || !Enum.TryParse<StageWinCondition>(stageInfos[4], out stageWinCondition)
-            || !int.TryParse(stageInfos[7], out cameraX)
-            || !int.TryParse(stageInfos[8], out cameraY)
-            || !int.TryParse(stageInfos[9], out cameraZ)
+            || !int.TryParse(stageInfos[7], out turnLimit)
+            || !int.TryParse(stageInfos[8], out cameraX)
+            || !int.TryParse(stageInfos[9], out cameraY)
+            || !int.TryParse(stageInfos[10], out cameraZ)
             )
         {
             Debug.LogError("Stage Info Parse Error");
@@ -147,7 +148,6 @@ public class StageDataParser : DataParserBase
         }
 
         _stageDataList[index].SetData(
-            stageId, stageName, stageWinCondition, targetIds, mainIds, map, unitPositionList, cameraInitialPosition);
-        // _stageDataList[index].PrintMap();
+            stageId, stageName, stageWinCondition, targetIds, mainIds, turnLimit, map, unitPositionList, cameraInitialPosition);
     }
 }

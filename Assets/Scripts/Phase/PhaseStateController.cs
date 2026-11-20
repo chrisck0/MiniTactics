@@ -22,6 +22,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     private StateBase _enemyPhaseState;
     private StateBase _phaseEndState;
     private int _turn;
+    private int _turnLimit;
     private int _initialPlayerNum;
     private int _initialEnemyNum;
     private List<UnitBase> _playerUnitList;
@@ -94,6 +95,8 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         _turnSaveDataList = turnSaveDataList;
 
         StageData stageData = GameManager.Instance.GetStageData();
+
+        _turnLimit = stageData.TurnLimit;
 
         _cameraMove.InitPosition(
             cameraPosition,
@@ -170,6 +173,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     public void StartPlayerPhase()
     {
         SaveTurnSaveData();
+        CheckGameTurnLimit();
         WaitPlayerPhaseUI().Forget();
     }
 
@@ -247,6 +251,11 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         if (CheckGameLose(unit)) ShowGameResult(false);
         if (CheckGameWin(unit)) ShowGameResult(true);
         UnbindUnitEvents(unit);
+    }
+
+    private void CheckGameTurnLimit()
+    {
+        if (_turn == _turnLimit) ShowGameResult(false);
     }
 
     private bool CheckGameWin(UnitBase unit)

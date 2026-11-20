@@ -13,14 +13,16 @@ public class GameWinLoseConditionUI : MonoBehaviour
     {
         StageData stageData = GameManager.Instance.GetStageData();
 
+        string stageWinText = "";
+        stageWinText += $"{stageData.TurnLimit}턴 이내 ";
+
         switch (stageData.StageWinCondition)
         {
             case StageWinCondition.Rout:
-                _gameWinConditionText.text = "적 전멸";
+                stageWinText += "적 전멸";
                 break;
 
             case StageWinCondition.Targets:
-                string stageWinText = "";
                 List<int> targetIds = stageData.TargetIds;
                 for (int i = 0; i < targetIds.Count; i++)
                 {
@@ -29,11 +31,14 @@ public class GameWinLoseConditionUI : MonoBehaviour
                     if (i == stageData.TargetIds.Count - 1) stageWinText += $"{targetData.Name} 처치";
                     else stageWinText += $"{targetData.Name}, ";
                 }
-                _gameWinConditionText.text = stageWinText;
                 break;
         }
 
+        _gameWinConditionText.text = stageWinText;
+
+
         string stageLoseText = "";
+        stageLoseText += $"{stageData.TurnLimit}턴 초과 또는 ";
         List<int> mainUnitIds = stageData.MainUnitIds;
         for (int i = 0; i < mainUnitIds.Count; i++)
         {
