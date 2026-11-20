@@ -48,6 +48,7 @@ public class BattleInfoUI : MonoBehaviour
             || !isPlayerPhase)
         {
             playerResultHealth = playerStat.Health - enemyWeaponData.Attack;
+            if (playerResultHealth < 0) playerResultHealth = 0;
         }
 
         _playerResultHealthGauge.transform.localScale = new Vector3(
@@ -90,6 +91,7 @@ public class BattleInfoUI : MonoBehaviour
             || isPlayerPhase)
         {
             enemyResultHealth = enemyStat.Health - playerWeaponData.Attack;
+            if (enemyResultHealth < 0) enemyResultHealth = 0;
         }
 
         _enemyResultHealthGauge.transform.localScale = new Vector3(

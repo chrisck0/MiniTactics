@@ -34,4 +34,25 @@ public static class VectorExtensions
             coord.y + .5f
             );
     }
+
+    public static Vector3 DirectionToVector3(this DirectionType direction)
+    {
+        switch (direction)
+        {
+            case DirectionType.Up:
+                return Vector3.forward;
+
+            case DirectionType.Right:
+                return Vector3.right;
+
+            case DirectionType.Down:
+                return Vector3.back;
+
+            case DirectionType.Left:
+                return Vector3.left;
+
+            default:
+                return Vector3.forward;
+        }
+    }
 }

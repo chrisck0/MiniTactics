@@ -250,6 +250,7 @@ public class UnitAI : MonoBehaviour
         if (!weapon.CanAttackTargets(weaponData)) return;
 
         _owner.Rotation.SetDirection(
+            _maxAttackScore.AttackWeaponData.WeaponType,
             _maxAttackScore.TargetCoord,
             _maxAttackScore.WeaponDirection
             );

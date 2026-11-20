@@ -192,6 +192,7 @@ public class TargetSelectState : StateBase
         Vector2Int targetCoord = _currentTile.transform.position.WorldToCoord();
 
         _controller.SelectedPlayerUnit.Rotation.SetDirection(
+            weaponData.WeaponType,
             targetCoord,
             _weaponDirection
             );

@@ -2,12 +2,13 @@ using UnityEngine;
 
 public static class ProbabilityCalculator
 {
-    public static bool CalculateProbability(int turn, int totalPlayerUnits, int currentTurnCount,
+    public static bool CalculateProbability(int initialSeed, int turn, int totalPlayerUnits, int currentTurnCount,
         UnitStat ownerStat, WeaponData weaponData, UnitStat targetStat)
     {
         float probability = ((float)ownerStat.Data.Accuracy / 100) * (1 - (float)targetStat.Data.Avoid / 100);
 
-        int seed = ownerStat.Data.Id * targetStat.Data.Id * weaponData.Id
+        int seed = initialSeed
+            + ownerStat.Data.Id * targetStat.Data.Id * weaponData.Id
             + ownerStat.Health + ownerStat.Energy
             + weaponData.Attack + weaponData.EnergyCost
             + targetStat.Health + targetStat.Energy

@@ -43,10 +43,16 @@ public class YesNoPopupUI : PopupUI
         GameManager.Instance.UnlockCursor();
         UnbindInputEvents();
     }
+    
+    private void Suspend()
+    {
+        _systemCommandUI.SaveDataAndLoadMainMenu();
+        ClosePopup();
+    }
 
     private void Retreat()
     {
-        _systemCommandUI.LoadMainMenu();
+        _systemCommandUI.ClearSaveDataAndLoadMainMenu();
         ClosePopup();
     }
 
@@ -67,6 +73,13 @@ public class YesNoPopupUI : PopupUI
     {
         _descriptionText.text = "오토를 활성화하시겠습니까?";
         _yesButton.onClick.AddListener(AutoOn);
+        _noButton.onClick.AddListener(ClosePopup);
+    }
+
+    public void BindSuspendEvents()
+    {
+        _descriptionText.text = "중단하시겠습니까?\n(현재 페이즈 시작 직전까지 저장됩니다)";
+        _yesButton.onClick.AddListener(Suspend);
         _noButton.onClick.AddListener(ClosePopup);
     }
 

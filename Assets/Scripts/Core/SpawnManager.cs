@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private DataManager _dataManager;
+    [SerializeField] private SaveLoader _saveLoader;
     [SerializeField] private CameraMove _cameraMove;
     [SerializeField] private List<UnitBase> _unitPrefabs;
     [SerializeField] private List<TileBase> _tilePrefabs;
@@ -18,13 +19,19 @@ public class SpawnManager : MonoBehaviour
     private Dictionary<UnitType, List<UnitBase>> _spawnedUnitDict = new();
     private TileBase[,] _tileMap;
     private UnitBase[,] _unitMap;
-    private Vector3[] _rotations = new Vector3[] {
-        Vector3.zero, Vector3.zero, new Vector3(0f, 90f, 0f), new Vector3(0f, 180f, 0f), new Vector3(0f, 270f, 0f), };
+    private int _turn = 1;
+    private List<TurnSaveData> _turnSaveDataList;
+    private Vector3 _cameraPosition;
+    private int _initialSeed;
 
     public StageData StageData => _stageData;
     public Dictionary<UnitType, List<UnitBase>> SpawnedUnitDict => _spawnedUnitDict;
     public TileBase[,] TileMap => _tileMap;
     public UnitBase[,] UnitMap => _unitMap;
+    public int Turn => _turn;
+    public List<TurnSaveData> TurnSaveDataList => _turnSaveDataList;
+    public Vector3 CameraPosition => _cameraPosition;
+    public int InitialSeed => _initialSeed;
 
     public event Action OnStageLoaded;
 
@@ -56,18 +63,29 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnStage()
     {
-        // if (!_dataManager.StageDataDict.TryGetValue(stageId, out StageData stageData)) return;
         _stageData = GameManager.Instance.GetStageData();
+        SaveData saveData = _saveLoader.Load();
+
+        if (saveData != null && saveData.StageId != _stageData.StageId)
+        {
+            _saveLoader.ClearSaveData();
+            saveData = null;
+        }
 
         CreateMapAndSpawnMap(_stageData.Map);
-        CreateMapAndSpawnUnits(_stageData.UnitPositionList);
-        _cameraMove.InitPosition(
-            _stageData.CameraInitialPosition,
-            new Vector3(0.5f, 0f, _stageData.Map.GetLength(0) - .5f),
-            new Vector3(0.5f, 0f, .5f),
-            new Vector3(_stageData.Map.GetLength(1) - .5f, 0f, _stageData.Map.GetLength(0) - .5f),
-            new Vector3(_stageData.Map.GetLength(1) - .5f, 0f, 0.5f)
-            );
+
+        _cameraPosition = _stageData.CameraInitialPosition;
+        if (saveData == null)
+        {
+            CreateMapAndSpawnUnits(_stageData.UnitPositionList);
+        }
+        else
+        {
+            CreateMapAndSpawnUnitsFromSave(saveData);
+            TurnSaveData turnSaveData = saveData.TurnSaveDataList[saveData.TurnSaveDataList.Count - 1];
+            _cameraPosition = turnSaveData.CameraPosition;
+        }
+
         OnStageLoaded?.Invoke();
     }
 
@@ -94,8 +112,11 @@ public class SpawnManager : MonoBehaviour
 
     private void CreateMapAndSpawnUnits(List<UnitPosition> unitPositionList)
     {
+        _turnSaveDataList = new();
+
         Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
         _unitMap = new UnitBase[_tileMap.GetLength(1), _tileMap.GetLength(0)];
+        GameManager.Instance.SetInitialSeed();
 
         foreach (UnitPosition unitPosition in unitPositionList)
         {
@@ -109,8 +130,49 @@ public class SpawnManager : MonoBehaviour
 
             Vector2Int coord = unitPosition.Position;
             unit.transform.position = coord.CoordToWorld();
-            unit.transform.eulerAngles = _rotations[(int)unitPosition.Direction];
+            unit.transform.forward = unitPosition.Direction;
             unit.Stat.InitStat(unitData);
+            unit.DistanceRange.SetMap(_tileMap);
+
+            Dictionary<int, WeaponData> weaponDataDict = _dataManager.WeaponDataDict;
+
+            foreach (int weaponId in unitData.WeaponIdList)
+            {
+                if (weaponDataDict.TryGetValue(weaponId, out WeaponData weaponData))
+                {
+                    unit.Weapon.AddWeapon(weaponData);
+                }
+            }
+
+            _unitMap[coord.x, coord.y] = unit;
+            AddSpawnedUnit(unitData.UnitType, unit);
+        }
+    }
+
+    private void CreateMapAndSpawnUnitsFromSave(SaveData saveData)
+    {
+        TurnSaveData turnSaveData = saveData.TurnSaveDataList[saveData.TurnSaveDataList.Count - 1];
+        _turn = turnSaveData.Turn;
+        _turnSaveDataList = saveData.TurnSaveDataList;
+        GameManager.Instance.SetInitialSeed(saveData.InitialSeed);
+
+        Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
+        _unitMap = new UnitBase[_tileMap.GetLength(1), _tileMap.GetLength(0)];
+
+        foreach (UnitSaveData unitSaveData in turnSaveData.UnitSaveDatas)
+        {
+            if (!unitDataDict.TryGetValue(unitSaveData.UnitPosition.Id, out UnitData unitData)) continue;
+
+            if (!_unitPrefabDict.TryGetValue(unitData.Id, out UnitBase unitPrefab)) continue;
+
+            UnitBase unit = _unitObjectPool.Take(unitPrefab);
+            unit.SetObjectPool(_unitObjectPool);
+            unit.EffectController.SetProjectileObjectPool(_projectileObjectPool);
+
+            Vector2Int coord = unitSaveData.UnitPosition.Position;
+            unit.transform.position = coord.CoordToWorld();
+            unit.transform.forward = unitSaveData.UnitPosition.Direction;
+            unit.Stat.InitStat(unitData, unitSaveData.Health, unitSaveData.Energy);
             unit.DistanceRange.SetMap(_tileMap);
 
             Dictionary<int, WeaponData> weaponDataDict = _dataManager.WeaponDataDict;
