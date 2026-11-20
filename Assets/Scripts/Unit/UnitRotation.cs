@@ -6,6 +6,8 @@ public class UnitRotation : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
     private Vector3 _direction;
     private bool _isRotating;
+    private WeaponType _weaponType;
+    private DirectionType _weaponDirection;
 
     public bool IsRotating => _isRotating;
 
@@ -14,8 +16,10 @@ public class UnitRotation : MonoBehaviour
     public void SetDirection(WeaponType weaponType, Vector2Int targetCoord, DirectionType weaponDirection)
     {
         _direction = transform.forward;
+        _weaponType = weaponType;
+        _weaponDirection = weaponDirection;
 
-        switch(weaponType)
+        switch (_weaponType)
         {
             case WeaponType.SelectTarget:
                 _direction = (targetCoord.CoordToWorld() - transform.position).normalized;
@@ -31,13 +35,17 @@ public class UnitRotation : MonoBehaviour
         }
     }
 
-    public void Rotate()
+    private void Rotate()
     {
         if (!_isRotating) return;
 
         if (Vector3.Dot(transform.forward, _direction) > 0.99f)
         {
             _isRotating = false;
+            if (_weaponType == WeaponType.SelectDirection)
+            {
+                transform.forward = _weaponDirection.DirectionToVector3();
+            }
             return;
         }
 
