@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -66,6 +67,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
 
     private void ShowGameCondition()
     {
+        InitCameraPosition();
         _selectAction.action.Enable();
         _selectAction.action.performed += StartPhase;
         _gameUIController.GameWinLoseConditionUI.Show();
@@ -80,22 +82,15 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         InitPhaseStates(
             _spawnManager.TurnSaveDataList,
             _spawnManager.SpawnedUnitDict, 
-            _spawnManager.Turn,
-            _spawnManager.CameraPosition
+            _spawnManager.Turn
             );
         StartPlayerPhase();
     }
 
-    private void InitPhaseStates(
-        List<TurnSaveData> turnSaveDataList, Dictionary<UnitType, List<UnitBase>> spawnedUnitDict,
-        int turn, Vector3 cameraPosition)
+    private void InitCameraPosition()
     {
-        _turn = turn - 1; // 시작하자마자 플레이어 페이즈이므로 1 줄이기
-        _turnSaveDataList = turnSaveDataList;
-
+        Vector3 cameraPosition = _spawnManager.CameraPosition;
         StageData stageData = GameManager.Instance.GetStageData();
-
-        _turnLimit = stageData.TurnLimit;
 
         _cameraMove.InitPosition(
             cameraPosition,
@@ -104,6 +99,18 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
             new Vector3(stageData.Map.GetLength(0) - .5f, 0f, stageData.Map.GetLength(1) - .5f),
             new Vector3(stageData.Map.GetLength(0) - .5f, 0f, 0.5f)
             );
+    }
+
+    private void InitPhaseStates(
+        List<TurnSaveData> turnSaveDataList, Dictionary<UnitType, List<UnitBase>> spawnedUnitDict,
+        int turn)
+    {
+        _turn = turn - 1; // 시작하자마자 플레이어 페이즈이므로 1 줄이기
+        _turnSaveDataList = turnSaveDataList;
+
+        StageData stageData = GameManager.Instance.GetStageData();
+
+        _turnLimit = stageData.TurnLimit;
 
         _playerPhaseState = new PlayerPhaseState(
             this, _unitCommandStateController, _mapManager, spawnedUnitDict);
