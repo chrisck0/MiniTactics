@@ -76,7 +76,6 @@ public class StageSelectUI : MonoBehaviour
             {
                 if (stageSelectController.StageData.StageId == _saveData.StageId)
                 {
-                    Debug.Log(stageSelectController.StageData.StageId);
                     _saveDataStage.transform.SetParent(stageSelectController.transform);
                     _saveDataStage.anchoredPosition = Vector2.zero;
                     _saveDataStage.gameObject.SetActive(true);
