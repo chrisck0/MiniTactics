@@ -172,7 +172,7 @@ public sealed class UnitSelectState : StateBase
     private void ShowKeyInfo()
     {
         _controller.ShowKeyInfo();
-        _controller.ShowSelectKeyInfo(1);
+        _controller.ShowSelectAndDangerKeyInfo(1);
         _controller.ShowInfoKeyInfo(2);
         _controller.ShowCancelKeyInfo(3);
     }

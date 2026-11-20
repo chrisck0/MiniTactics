@@ -37,13 +37,10 @@ public class UnitAI : MonoBehaviour
         _targetType = targetType;
     }
 
-    public void InitDanger()
+    public void SetIsShowingDanger(bool isShowingDanger)
     {
-        foreach (Vector2Int coord in _owner.DistanceRange.TargetableCoords)
-        {
-            _mapManager.TileMap[coord.x, coord.y].InitDanger();
-        }
-        OnDangerRangeVisibilityChanged?.Invoke(false);
+        _isShowingDanger = isShowingDanger;
+        OnDangerRangeVisibilityChanged?.Invoke(isShowingDanger);
     }
 
     public void ShowDanger()
@@ -52,8 +49,6 @@ public class UnitAI : MonoBehaviour
         {
             _mapManager.TileMap[coord.x, coord.y].ShowDanger();
         }
-        _isShowingDanger = true;
-        OnDangerRangeVisibilityChanged?.Invoke(true);
     }
 
     public void HideDanger()
@@ -62,8 +57,6 @@ public class UnitAI : MonoBehaviour
         {
             _mapManager.TileMap[coord.x, coord.y].HideDanger();
         }
-        _isShowingDanger = false;
-        OnDangerRangeVisibilityChanged?.Invoke(false);
     }
 
     public void CalculateScore()

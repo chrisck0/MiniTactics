@@ -17,6 +17,14 @@ public class KeyInfoUI : MonoBehaviour
         _containerObjectPool = new ObjectPool<KeyContainerUI>(keyContainers, transform, false);
     }
 
+    public void SetSelectAndDangerKey(int siblingIndex)
+    {
+        KeyContainerUI keyContainer = _containerObjectPool.Take(_keyContainerPrefab);
+        keyContainer.SetData("LMB", "선택 / 범위");
+        keyContainer.transform.SetSiblingIndex(siblingIndex);
+        _activatedContainers.Add(keyContainer);
+    }
+
     public void SetSelectKey(int siblingIndex)
     {
         KeyContainerUI keyContainer = _containerObjectPool.Take(_keyContainerPrefab);

@@ -197,7 +197,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     {
         _gameUIController.PhaseUI.SetEnemyPhaseText();
         _gameUIController.PhaseUI.Show();
-        _unitCommandStateController.InitAllDanger();
+        _unitCommandStateController.InitDanger();
         SetPlayerUnitActive();
 
         await UniTask.Delay(3000, DelayType.Realtime);
@@ -238,7 +238,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
                 EnemyUnit enemyUnit = unit as EnemyUnit;
                 if (enemyUnit == null) return;
                 _unitCommandStateController.ShowingDangerEnemyList.Remove(enemyUnit);
-                enemyUnit.UnitAI.HideDanger();
+                _unitCommandStateController.InitDanger();
                 break;
         }
 

@@ -114,17 +114,6 @@ public sealed class UnitMoveState : StateBase
                 ShowDistanceRange();
                 return;
             }
-            
-            if (unit.UnitType == UnitType.Enemy)
-            {
-                EnemyUnit enemyUnit = unit as EnemyUnit;
-
-                if (enemyUnit == null) return;
-
-                _controller.ToggleDanger(enemyUnit);
-                _controller.SetState(_controller.UnitSelectState);
-                return;
-            }
         }
 
         foreach (Vector2Int coord in _controller.SelectedPlayerUnit.DistanceRange.ReachableCoords)
@@ -219,7 +208,6 @@ public sealed class UnitMoveState : StateBase
         }
         else
         {
-            _controller.SelectedPlayerUnit.UnSelect();
             _controller.SetState(_controller.UnitSelectState);
         }
     }
