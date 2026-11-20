@@ -222,157 +222,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &146425055
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 146425061}
-  - component: {fileID: 146425060}
-  - component: {fileID: 146425059}
-  - component: {fileID: 146425058}
-  - component: {fileID: 146425057}
-  - component: {fileID: 146425056}
-  m_Layer: 0
-  m_Name: DataLoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &146425056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146425055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c16bb5ca6f2124fab1bc39ca31e6ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageDataParser
-  _stageDataUrlList:
-  - https://docs.google.com/spreadsheets/d/1bIZSTrHnG_7GN54o67o-1mHnkGwrN_21b4mPkCntOoc/export?format=csv&gid=1531065875
-  - https://docs.google.com/spreadsheets/d/1bIZSTrHnG_7GN54o67o-1mHnkGwrN_21b4mPkCntOoc/export?format=csv&gid=1499126030
-  _stageDataFileList:
-  - {fileID: 4900000, guid: c26b4dc4e031b104cbd66a56d7b8408c, type: 3}
-  - {fileID: 4900000, guid: c79c300df1e34f04bbe45baf75aae83f, type: 3}
-  _stageDataList:
-  - {fileID: 11400000, guid: 9a5e4202814396d4d9fa3327c571b73c, type: 2}
-  - {fileID: 11400000, guid: 2e6b3f4380ceb304887d7ce28f1d6842, type: 2}
---- !u!114 &146425057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146425055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03411e527afda2f429aecb1764ad68cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TileDataParser
-  _tileDataUrl: https://docs.google.com/spreadsheets/d/1bIZSTrHnG_7GN54o67o-1mHnkGwrN_21b4mPkCntOoc/export?format=csv&gid=289221209
-  _tileDataFile: {fileID: 4900000, guid: 2485e80434ce18443b6e1340064d535d, type: 3}
-  _tileDataList:
-  - {fileID: 11400000, guid: 5b43e775aa7bfd54e911bcf106e48412, type: 2}
-  - {fileID: 11400000, guid: 922f8ce7a43e768479f0cca59fdcbf78, type: 2}
-  - {fileID: 11400000, guid: 8bca44156da4d064eb1852b89e33535f, type: 2}
-  - {fileID: 11400000, guid: b94f4f6ac333ff04dbf8744172d879b8, type: 2}
-  - {fileID: 11400000, guid: acd244e71ea28bc44bad6337305842e6, type: 2}
---- !u!114 &146425058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146425055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d1bd2e34006d54baeb273ab5bf8d63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponDataParser
-  _weaponDataUrl: https://docs.google.com/spreadsheets/d/1bIZSTrHnG_7GN54o67o-1mHnkGwrN_21b4mPkCntOoc/export?format=csv&gid=1242300927
-  _weaponDataFile: {fileID: 4900000, guid: ffa1309b81dc4854db6de6bd71b9c93e, type: 3}
-  _weaponDataList:
-  - {fileID: 11400000, guid: 4bb8fa1f6eff69f418a16c9f1d8a5e85, type: 2}
-  - {fileID: 11400000, guid: d601eaaed1d1d5e4784f81645ac4fd06, type: 2}
-  - {fileID: 11400000, guid: c0c74b7e0415a5549a17dec01ad6f721, type: 2}
-  - {fileID: 11400000, guid: dd8f1e329abd5454da7881ba2cdca927, type: 2}
-  - {fileID: 11400000, guid: d2eb1e5da50c24f44b3072bde55f715e, type: 2}
-  - {fileID: 11400000, guid: 2cd8d8371bd9de1449c94347ee597de3, type: 2}
-  - {fileID: 11400000, guid: 8b6c6ec33b798fd4599df73ec42032c1, type: 2}
-  - {fileID: 11400000, guid: 4b8e4ab84200b3f4ab66667c8c41bce7, type: 2}
-  - {fileID: 11400000, guid: e1c4767e2b1480444a84e22dc216960b, type: 2}
-  - {fileID: 11400000, guid: 4f05e7bf046a1c145a50e87cab3647b0, type: 2}
-  - {fileID: 11400000, guid: 659e73b87cbe42c46a736ee8d97938b7, type: 2}
-  - {fileID: 11400000, guid: 8237ed3e5c85b8f409c528dca8bfd10e, type: 2}
-  - {fileID: 11400000, guid: 255622ce30d66a0489e968ae5d5d42ee, type: 2}
-  - {fileID: 11400000, guid: 88254518b8950244985e0143c789abc1, type: 2}
---- !u!114 &146425059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146425055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd7cde51502bdf64f83ca639a44b46ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UnitDataParser
-  _unitDataUrl: https://docs.google.com/spreadsheets/d/1bIZSTrHnG_7GN54o67o-1mHnkGwrN_21b4mPkCntOoc/export?format=csv&gid=0
-  _unitDataFile: {fileID: 4900000, guid: 70e55cccad03172478883022c263fcb8, type: 3}
-  _unitDataList:
-  - {fileID: 11400000, guid: dafbf3c5ff769f24fa573253dafe2656, type: 2}
-  - {fileID: 11400000, guid: 1571ac2411c6f1c4aaa065427969b2f8, type: 2}
-  - {fileID: 11400000, guid: 034dc1604b9e9c6449cb13ba5294a930, type: 2}
-  - {fileID: 11400000, guid: 2a58bbd38346ea44d972a1bf6e36f3f4, type: 2}
-  - {fileID: 11400000, guid: 5cec8136277a7b64ab647ea959eec7cd, type: 2}
-  - {fileID: 11400000, guid: b0dbbc8b0d0f73e4db58b3845620021f, type: 2}
-  - {fileID: 11400000, guid: 37ef9c688cb01d846961b2bfe1b1564b, type: 2}
-  - {fileID: 11400000, guid: ec45e0e3324b230409bcb1f61d3ade50, type: 2}
-  - {fileID: 11400000, guid: 5d73cafc6dd24c74cb10e91c9a8a797e, type: 2}
-  - {fileID: 11400000, guid: b427464e86eea07429d43ac625ec15a7, type: 2}
-  - {fileID: 11400000, guid: 320c85df318f71a498d495a40417d4c5, type: 2}
-  - {fileID: 11400000, guid: f016a2ad9123b2248afbd5f15b3befc7, type: 2}
-  - {fileID: 11400000, guid: 460c088cdd19dff4bb3177934b3bf621, type: 2}
---- !u!114 &146425060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146425055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95859ad3dbcb8684aa03fc8a7ab012d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DataLoader
-  _dataParsers:
-  - {fileID: 146425059}
-  - {fileID: 146425058}
-  - {fileID: 146425057}
-  - {fileID: 146425056}
---- !u!4 &146425061
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146425055}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &164759670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,10 +1620,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd612abdde881004bbcf64c55cc9afc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuSceneController
-  _nextScene:
-    _sceneAsset: {fileID: 102900000, guid: a4f50291a1eda4846a438bad83ef20b2, type: 3}
-    _scenePath: Assets/Scenes/GameScene.unity
-    _sceneName: GameScene
+  _loadingScene:
+    _sceneAsset: {fileID: 102900000, guid: 3c11c5e9ec1a8ed4b94c3d41150ff396, type: 3}
+    _scenePath: Assets/Scenes/LoadingScene.unity
+    _sceneName: LoadingScene
   _stageData: {fileID: 11400000, guid: 9a5e4202814396d4d9fa3327c571b73c, type: 2}
   _stageButton: {fileID: 315620136}
   _lockedBackground: {fileID: 468522693}
@@ -4599,10 +4448,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd612abdde881004bbcf64c55cc9afc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuSceneController
-  _nextScene:
-    _sceneAsset: {fileID: 102900000, guid: a4f50291a1eda4846a438bad83ef20b2, type: 3}
-    _scenePath: Assets/Scenes/GameScene.unity
-    _sceneName: GameScene
+  _loadingScene:
+    _sceneAsset: {fileID: 102900000, guid: 3c11c5e9ec1a8ed4b94c3d41150ff396, type: 3}
+    _scenePath: Assets/Scenes/LoadingScene.unity
+    _sceneName: LoadingScene
   _stageData: {fileID: 11400000, guid: 2e6b3f4380ceb304887d7ce28f1d6842, type: 2}
   _stageButton: {fileID: 1697698120}
   _lockedBackground: {fileID: 242913928}
@@ -5516,5 +5365,4 @@ SceneRoots:
   - {fileID: 164759672}
   - {fileID: 30799016}
   - {fileID: 979751785}
-  - {fileID: 146425061}
   - {fileID: 996906553}

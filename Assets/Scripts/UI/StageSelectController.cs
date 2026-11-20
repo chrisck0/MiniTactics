@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class StageSelectController : MonoBehaviour
 {
-    [SerializeField] private SceneReference _nextScene;
+    [SerializeField] private SceneReference _loadingScene;
     [SerializeField] private StageData _stageData;
     [SerializeField] private Button _stageButton;
     [SerializeField] private GameObject _lockedBackground;
@@ -36,7 +36,7 @@ public class StageSelectController : MonoBehaviour
     public void LoadScene()
     {
         GameManager.Instance.SetStageData(_stageData);
-        SceneManager.LoadScene(_nextScene.SceneName);
+        SceneManager.LoadScene(_loadingScene.SceneName);
     }
 
     private void BindButtonEvents()

@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScene.unity
     guid: a4f50291a1eda4846a438bad83ef20b2
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: e294e03940c4a654cb1bd3659a8f5b9f
+    path: Assets/Scenes/LoadingScene.unity
+    guid: 3c11c5e9ec1a8ed4b94c3d41150ff396
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

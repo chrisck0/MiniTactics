@@ -60,7 +60,7 @@ public class SaveLoader : MonoBehaviour
         if (prevData.LostPlayer < newData.LostPlayer) return false;
 
         if (prevData.KilledEnemy > newData.KilledEnemy) return false;
-        if (prevData.KilledEnemy > newData.KilledEnemy) return true;
+        if (prevData.KilledEnemy < newData.KilledEnemy) return true;
 
         return false;
     }
