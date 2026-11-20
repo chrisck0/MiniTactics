@@ -99,10 +99,10 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
 
         _cameraMove.InitPosition(
             cameraPosition,
-            new Vector3(0.5f, 0f, stageData.Map.GetLength(0) - .5f),
+            new Vector3(0.5f, 0f, stageData.Map.GetLength(1) - .5f),
             new Vector3(0.5f, 0f, .5f),
-            new Vector3(stageData.Map.GetLength(1) - .5f, 0f, stageData.Map.GetLength(0) - .5f),
-            new Vector3(stageData.Map.GetLength(1) - .5f, 0f, 0.5f)
+            new Vector3(stageData.Map.GetLength(0) - .5f, 0f, stageData.Map.GetLength(1) - .5f),
+            new Vector3(stageData.Map.GetLength(0) - .5f, 0f, 0.5f)
             );
 
         _playerPhaseState = new PlayerPhaseState(
