@@ -11,7 +11,6 @@ public class UnitListPopupUI : PopupUI
     private void OnEnable() => BindButtonEvents();
     private void OnDisable() => UnbindButtonEvents();
 
-    // TODO: 팝업 열리면 기존 턴 수랑 미행동 유닛 수 가리기
     public override void Show(IPopupController popupController)
     {
         base.Show(popupController);

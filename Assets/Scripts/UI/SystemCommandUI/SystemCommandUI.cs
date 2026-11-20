@@ -1,13 +1,15 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using static UnityEngine.Audio.GeneratorInstance;
 
 public class SystemCommandUI : MonoBehaviour, IPopupController
 {
     [SerializeField] private PhaseStateController _phaseStateController;
     [SerializeField] private UnitCommandStateController _unitCommandStateController;
     [SerializeField] private GameSceneController _gameSceneController;
+    [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private SaveLoader _saveLoader;
     [SerializeField] private GameObject _turn;
     [SerializeField] private GameObject _activeUnits;
@@ -15,6 +17,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
     [SerializeField] private TextMeshProUGUI _activeUnitsText;
     [SerializeField] private Button _phaseEndButton;
     [SerializeField] private Button _unitListButton;
+    [SerializeField] private Button _statusButton;
     [SerializeField] private Button _autoButton;
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _suspendButton;
@@ -23,14 +26,24 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
     [SerializeField] private YesNoPopupUI _yesNoPopup;
     [SerializeField] private UnitListPopupUI _unitListPopup;
     [SerializeField] private SettingsPopupUI _settingsPopup;
+    [SerializeField] private StatusPopupUI _statusPopup;
     [SerializeField] private GameObject _autoTextObject;
 
     private PopupUI _currentPopup;
     public bool IsPopupOpen => _currentPopup != null;
 
     private void Awake() => Init();
-    private void OnEnable() => BindButtonEvents();
-    private void OnDisable() => UnbindButtonEvents();
+    private void OnEnable()
+    {
+        BindButtonEvents();
+        BindSpawnManagerEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnbindButtonEvents();
+        UnbindSpawnManagerEvents();
+    }
 
     public void Show()
     {
@@ -78,6 +91,13 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _popupBackgroundButton.gameObject.SetActive(true);
         _unitListPopup.Show(this);
         _currentPopup = _unitListPopup;
+    }
+
+    private void ShowStatusPopup()
+    {
+        _popupBackgroundButton.gameObject.SetActive(true);
+        _statusPopup.Show(this);
+        _currentPopup = _statusPopup;
     }
 
     private void ShowAutoPopup()
@@ -157,11 +177,17 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         return _phaseStateController.EnemyUnitList;
     }
 
+    private void SetMap()
+    {
+        _statusPopup.SetMiniMap();
+    }
+
     private void BindButtonEvents()
     {
         _popupBackgroundButton.onClick.AddListener(HidePopup);
         _phaseEndButton.onClick.AddListener(ShowPhaseEndPopup);
         _unitListButton.onClick.AddListener(ShowUnitListPopup);
+        _statusButton.onClick.AddListener(ShowStatusPopup);
         _autoButton.onClick.AddListener(ShowAutoPopup);
         _settingsButton.onClick.AddListener(ShowSettingsPopup);
         _suspendButton.onClick.AddListener(ShowSuspendPopup);
@@ -173,10 +199,21 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _popupBackgroundButton.onClick.RemoveListener(HidePopup);
         _phaseEndButton.onClick.RemoveListener(ShowPhaseEndPopup);
         _unitListButton.onClick.RemoveListener(ShowUnitListPopup);
+        _statusButton.onClick.RemoveListener(ShowStatusPopup);
         _autoButton.onClick.RemoveListener(ShowAutoPopup);
         _settingsButton.onClick.RemoveListener(ShowSettingsPopup);
         _suspendButton.onClick.RemoveListener(ShowSuspendPopup);
         _retreatButton.onClick.RemoveListener(ShowRetreatPopup);
+    }
+
+    private void BindSpawnManagerEvents()
+    {
+        _spawnManager.OnStageLoaded += SetMap;
+    }
+
+    private void UnbindSpawnManagerEvents()
+    {
+        _spawnManager.OnStageLoaded -= SetMap;
     }
 
     private void Init()
@@ -184,6 +221,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _popupBackgroundButton.gameObject.SetActive(false);
         _yesNoPopup.gameObject.SetActive(false);
         _unitListPopup.gameObject.SetActive(false);
+        _statusPopup.gameObject.SetActive(false);
         _settingsPopup.gameObject.SetActive(false);
         _autoTextObject.SetActive(false);
     }
