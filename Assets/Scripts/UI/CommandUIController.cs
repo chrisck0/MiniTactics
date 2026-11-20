@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CommandUIController : MonoBehaviour
 {
+    [SerializeField] private PhaseInfoUI _phaseInfoUI;
     [SerializeField] private SystemCommandUI _systemCommandUI;
     [SerializeField] private UnitCommandUI _unitCommandUI;
     [SerializeField] private AttackCommandUI _attackCommandUI;
@@ -12,6 +13,7 @@ public class CommandUIController : MonoBehaviour
     [SerializeField] private BattleInfoUI _battleInfoUI;
     [SerializeField] private KeyInfoUI _keyInfoUI;
 
+    public PhaseInfoUI PhaseInfoUI => _phaseInfoUI;
     public SystemCommandUI SystemCommandUI => _systemCommandUI;
     public UnitCommandUI UnitCommandUI => _unitCommandUI;
     public AttackCommandUI AttackCommandUI => _attackCommandUI;
@@ -25,6 +27,7 @@ public class CommandUIController : MonoBehaviour
 
     public void DeactivateAll()
     {
+        _phaseInfoUI.gameObject.SetActive(false);
         _systemCommandUI.gameObject.SetActive(false);
         _unitCommandUI.gameObject.SetActive(false);
         _attackCommandUI.gameObject.SetActive(false);

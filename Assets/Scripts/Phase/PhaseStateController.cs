@@ -18,6 +18,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     [SerializeField] private SaveLoader _saveLoader; // 디버깅
     [SerializeField] private CameraMove _cameraMove;
     [SerializeField] private GameUIController _gameUIController;
+    [SerializeField] private CommandUIController _commandUIController;
     [SerializeField] private SystemCommandUI _systemCommandUI;
 
     private StateBase _playerPhaseState;
@@ -189,19 +190,24 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     private async UniTask WaitPlayerPhaseUI()
     {
         _turn++;
+        _commandUIController.PhaseInfoUI.Hide();
         _gameUIController.PhaseUI.SetPlayerPhaseText();
         _gameUIController.PhaseUI.Show();
+        _commandUIController.PhaseInfoUI.Hide();
         SetEnemyUnitActive();
 
         await UniTask.Delay(3000, DelayType.Realtime);
 
         _gameUIController.PhaseUI.Hide();
+        _commandUIController.PhaseInfoUI.SetPlayerPhase();
+        _commandUIController.PhaseInfoUI.Show();
         SetState(_playerPhaseState);
         OnPlayerPhaseStarted?.Invoke();
     }
 
     private async UniTask WaitEnemyPhaseUI()
     {
+        _commandUIController.PhaseInfoUI.Hide();
         _gameUIController.PhaseUI.SetEnemyPhaseText();
         _gameUIController.PhaseUI.Show();
         _unitCommandStateController.InitDanger();
@@ -210,6 +216,8 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         await UniTask.Delay(3000, DelayType.Realtime);
 
         _gameUIController.PhaseUI.Hide();
+        _commandUIController.PhaseInfoUI.SetEnemyPhase();
+        _commandUIController.PhaseInfoUI.Show();
         SetState(_enemyPhaseState);
         OnEnemyPhaseStarted?.Invoke();
     }

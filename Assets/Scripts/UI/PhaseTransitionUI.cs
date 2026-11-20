@@ -1,9 +1,8 @@
-using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PhaseUI : MonoBehaviour
+public class PhaseTransitionUI : MonoBehaviour
 {
     [SerializeField] private Image _phaseImage;
     [SerializeField] private TextMeshProUGUI _phaseText;
