@@ -8,6 +8,7 @@ public class StageSelectController : MonoBehaviour
     [SerializeField] private SceneReference _nextScene;
     [SerializeField] private StageData _stageData;
     [SerializeField] private Button _stageButton;
+    [SerializeField] private GameObject _lockedBackground;
 
     public event Action<StageSelectController> OnButtonClicked;
     public StageData StageData => _stageData;
@@ -20,6 +21,11 @@ public class StageSelectController : MonoBehaviour
     private void OnDisable()
     {
         UnbindButtonEvents();
+    }
+
+    public void Unlock()
+    {
+        _lockedBackground.SetActive(false);
     }
 
     private void ButtonClick()
