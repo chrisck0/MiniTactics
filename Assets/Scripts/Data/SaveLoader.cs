@@ -7,49 +7,28 @@ public class SaveLoader : MonoBehaviour
     private const string FILE_NAME = "save.json";
     [SerializeField] private PhaseStateController _phaseStateController;
 
-    private List<UnitSaveData> _unitDataList = new();
     private string _path;
 
     private void Awake() => CachePath();
 
     public void SaveNewData()
     {
-        _unitDataList.Clear();
-
-        foreach (UnitBase unit in _phaseStateController.PlayerUnitList)
-        {
-            UnitPosition unitPosition = new UnitPosition(
-                unit.Stat.Data.Id,
-                unit.transform.position.WorldToCoord(),
-                DirectionType.Up
-                );
-
-            _unitDataList.Add(new UnitSaveData(unitPosition, unit.Stat.Health, unit.Stat.Energy));
-        }
-
-        foreach (UnitBase unit in _phaseStateController.EnemyUnitList)
-        {
-            UnitPosition unitPosition = new UnitPosition(
-                unit.Stat.Data.Id,
-                unit.transform.position.WorldToCoord(),
-                DirectionType.Up
-                );
-
-            _unitDataList.Add(new UnitSaveData(unitPosition, unit.Stat.Health, unit.Stat.Energy));
-        }
-
         SaveData saveData = new SaveData(
-            GameManager.Instance.GetStageData().StageId,
-            _phaseStateController.Turn,
-            _unitDataList, 
-            Camera.main.transform.position
+            GameManager.Instance.StageData.StageId, 
+            _phaseStateController.TurnSaveDataList
             );
+
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(_path, json);
     }
 
     public void ClearSaveData()
     {
+        if (!File.Exists(_path))
+        {
+            return;
+        }
+
         File.Delete(_path);
     }
 

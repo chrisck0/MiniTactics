@@ -382,11 +382,11 @@ public class Weapon : MonoBehaviour
         int turn, int totalPlayerUnits, int currentTurnCount)
     {
         targetUnit.Rotation.SetDirection(
+            WeaponType.SelectTarget,
             _owner.transform.position.WorldToCoord(),
             DirectionType.None
             );
 
-        Debug.Log($"{targetUnit.transform.forward} {_owner.transform.position.WorldToCoord()}");
         await UniTask.WaitUntil(() => targetUnit.Rotation.IsRotating == false);
 
         WeaponData targetWeapon = targetUnit.Weapon.WeaponDataList[0];

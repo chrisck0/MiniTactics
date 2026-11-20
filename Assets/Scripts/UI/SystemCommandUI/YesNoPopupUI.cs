@@ -47,13 +47,12 @@ public class YesNoPopupUI : PopupUI
     private void Suspend()
     {
         _systemCommandUI.SaveDataAndLoadMainMenu();
-        Debug.Log("중단");
         ClosePopup();
     }
 
     private void Retreat()
     {
-        _systemCommandUI.LoadMainMenu();
+        _systemCommandUI.ClearSaveDataAndLoadMainMenu();
         ClosePopup();
     }
 

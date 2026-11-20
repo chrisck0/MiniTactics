@@ -21,6 +21,7 @@ public class UnitStat : MonoBehaviour
         _data = data;
         _health = _data.Health;
         _energy = _data.Energy;
+        OnHealthChanged?.Invoke(_health);
     }
 
     public void InitStat(UnitData data, int health, int energy)
@@ -28,6 +29,7 @@ public class UnitStat : MonoBehaviour
         _data = data;
         _health = health;
         _energy = energy;
+        OnHealthChanged?.Invoke(_health);
     }
 
     public void AddEnergy(int num)

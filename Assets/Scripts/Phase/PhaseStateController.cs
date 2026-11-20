@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     [SerializeField] private UnitCommandStateController _unitCommandStateController;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private MapManager _mapManager;
+    [SerializeField] private SaveLoader _saveLoader; // 디버깅
     [SerializeField] private CameraMove _cameraMove;
     [SerializeField] private GameUIController _gameUIController;
     [SerializeField] private SystemCommandUI _systemCommandUI;
@@ -25,6 +27,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     private List<UnitBase> _playerUnitList;
     private List<UnitBase> _enemyUnitList;
     private bool _isAuto;
+    private List<TurnSaveData> _turnSaveDataList;
 
     public event Action OnGameEnd;
 
@@ -43,6 +46,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     public StateBase EnemyPhaseState => _enemyPhaseState;
     public StateBase PhaseEndState => _phaseEndState;
     public CameraMove CameraMove => _cameraMove;
+    public List<TurnSaveData> TurnSaveDataList => _turnSaveDataList;
 
     private void OnEnable()
     {
@@ -73,12 +77,32 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         _selectAction.action.performed -= StartPhase;
         _gameUIController.GameWinLoseConditionUI.Hide();
 
-        InitPhaseStates(_spawnManager.SpawnedUnitDict);
+        InitPhaseStates(
+            _spawnManager.TurnSaveDataList,
+            _spawnManager.SpawnedUnitDict, 
+            _spawnManager.Turn,
+            _spawnManager.CameraPosition
+            );
         StartPlayerPhase();
     }
 
-    private void InitPhaseStates(Dictionary<UnitType, List<UnitBase>> spawnedUnitDict)
+    private void InitPhaseStates(
+        List<TurnSaveData> turnSaveDataList, Dictionary<UnitType, List<UnitBase>> spawnedUnitDict,
+        int turn, Vector3 cameraPosition)
     {
+        _turn = turn - 1; // 시작하자마자 플레이어 페이즈이므로 1 줄이기
+        _turnSaveDataList = turnSaveDataList;
+
+        StageData stageData = GameManager.Instance.StageData;
+
+        _cameraMove.InitPosition(
+            cameraPosition,
+            new Vector3(0.5f, 0f, stageData.Map.GetLength(0) - .5f),
+            new Vector3(0.5f, 0f, .5f),
+            new Vector3(stageData.Map.GetLength(1) - .5f, 0f, stageData.Map.GetLength(0) - .5f),
+            new Vector3(stageData.Map.GetLength(1) - .5f, 0f, 0.5f)
+            );
+
         _playerPhaseState = new PlayerPhaseState(
             this, _unitCommandStateController, _mapManager, spawnedUnitDict);
         _enemyPhaseState = new EnemyPhaseState(this, spawnedUnitDict);
@@ -111,8 +135,43 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         }
     }
 
+    private void SaveTurnSaveData()
+    {
+        List<UnitSaveData> unitSaveDatas = new();
+
+        foreach (UnitBase unit in _playerUnitList)
+        {
+            UnitPosition unitPosition = new UnitPosition(
+                unit.Stat.Data.Id, unit.transform.position.WorldToCoord(), unit.transform.forward);
+
+            unitSaveDatas.Add(new UnitSaveData(unitPosition, unit.Stat.Health, unit.Stat.Energy));
+        }
+
+        foreach (UnitBase unit in _enemyUnitList)
+        {
+            UnitPosition unitPosition = new UnitPosition(
+                unit.Stat.Data.Id, unit.transform.position.WorldToCoord(), unit.transform.forward);
+
+            unitSaveDatas.Add(new UnitSaveData(unitPosition, unit.Stat.Health, unit.Stat.Energy));
+        }
+
+        TurnSaveData saveData = new TurnSaveData(
+            GameManager.Instance.StageData.StageId,
+            _turn + 1,
+            unitSaveDatas,
+            _cameraMove.GetCameraPosition()
+            );
+
+        if (_turnSaveDataList.Count == 0
+            || _turnSaveDataList[_turnSaveDataList.Count - 1].Turn != _turn + 1)
+            _turnSaveDataList.Add(saveData);
+
+        Debug.Log("TurnSaveData Saved");
+    }
+
     public void StartPlayerPhase()
     {
+        SaveTurnSaveData();
         WaitPlayerPhaseUI().Forget();
     }
 
@@ -243,7 +302,6 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
 
     public void CameraTrackTarget(Vector2Int coord)
     {
-        Debug.Log($"TrackTarget {coord}");
         _cameraMove.SetCameraTrackTarget(coord);
     }
 

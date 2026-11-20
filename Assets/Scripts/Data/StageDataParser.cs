@@ -143,7 +143,7 @@ public class StageDataParser : DataParserBase
             }
 
             unitPosition = new Vector2Int(unitPositionX, unitPositionY);
-            unitPositionList.Add(new UnitPosition(unitId, unitPosition, directionType));
+            unitPositionList.Add(new UnitPosition(unitId, unitPosition, directionType.DirectionToVector3()));
         }
 
         _stageDataList[index].SetData(

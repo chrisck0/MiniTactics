@@ -200,7 +200,7 @@ public class UnitAI : MonoBehaviour
 
     private void MoveUnit()
     {
-        if (Vector3.Distance(transform.position, _moveTargetCoord.CoordToWorld()) >= 0.05f)
+        if (Vector3.Distance(transform.position, _moveTargetCoord.CoordToWorld()) >= 0.1f)
         {
             transform.Translate(Vector3.forward
                 * Time.deltaTime * _owner.MoveSpeed);
@@ -250,6 +250,7 @@ public class UnitAI : MonoBehaviour
         if (!weapon.CanAttackTargets(weaponData)) return;
 
         _owner.Rotation.SetDirection(
+            _maxAttackScore.AttackWeaponData.WeaponType,
             _maxAttackScore.TargetCoord,
             _maxAttackScore.WeaponDirection
             );

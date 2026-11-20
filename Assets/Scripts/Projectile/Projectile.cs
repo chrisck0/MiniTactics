@@ -34,7 +34,6 @@ public class Projectile : MonoBehaviour
             (targetPosition - ownerPosition).normalized.z
             ) * Mathf.Sqrt(-distance * Physics.gravity.y / 2);
 
-        Debug.Log($"Projectile Velocity {projectileVelocity}");
         _projectileObjectPool.Shoot(_projectilePrefab, firePosition, fireDirection, 10000, true, projectileVelocity);
     }
 

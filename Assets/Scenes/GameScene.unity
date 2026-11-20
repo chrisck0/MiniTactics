@@ -20283,6 +20283,7 @@ MonoBehaviour:
   _unitCommandStateController: {fileID: 2104199459}
   _spawnManager: {fileID: 496036547}
   _mapManager: {fileID: 1410229973}
+  _saveLoader: {fileID: 1509154576}
   _cameraMove: {fileID: 1940885650}
   _gameUIController: {fileID: 1008109717}
   _systemCommandUI: {fileID: 709007579}

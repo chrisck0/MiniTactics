@@ -219,4 +219,9 @@ public class CameraMove : MonoBehaviour
         _mapRightTopPosition = rightTopPosition;
         _mapRightBottomPosition = rightBottomPosition;
     }
+
+    public Vector3 GetCameraPosition()
+    {
+        return _camera.transform.position;
+    }
 }

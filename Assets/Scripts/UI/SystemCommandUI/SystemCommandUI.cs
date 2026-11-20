@@ -128,7 +128,13 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         LoadMainMenu();
     }
 
-    public void LoadMainMenu()
+    public void ClearSaveDataAndLoadMainMenu()
+    {
+        _saveLoader.ClearSaveData();
+        LoadMainMenu();
+    }
+
+    private void LoadMainMenu()
     {
         _unitCommandStateController.SetState(_unitCommandStateController.CommandEndState);
         _phaseStateController.SetState(_phaseStateController.PhaseEndState);

@@ -185,7 +185,7 @@ public sealed class UnitMoveState : StateBase
     private void MoveUnit()
     {
         if (Vector3.Distance(
-            _controller.SelectedPlayerUnit.transform.position, _targetCoord.CoordToWorld()) >= 0.05f)
+            _controller.SelectedPlayerUnit.transform.position, _targetCoord.CoordToWorld()) >= 0.1f)
         {
             _controller.SelectedPlayerUnit.transform.Translate(Vector3.forward
                 * Time.deltaTime * _controller.SelectedPlayerUnit.MoveSpeed);

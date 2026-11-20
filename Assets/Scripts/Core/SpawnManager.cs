@@ -19,13 +19,17 @@ public class SpawnManager : MonoBehaviour
     private Dictionary<UnitType, List<UnitBase>> _spawnedUnitDict = new();
     private TileBase[,] _tileMap;
     private UnitBase[,] _unitMap;
-    private Vector3[] _rotations = new Vector3[] {
-        Vector3.zero, Vector3.zero, new Vector3(0f, 90f, 0f), new Vector3(0f, 180f, 0f), new Vector3(0f, 270f, 0f), };
+    private int _turn = 1;
+    private List<TurnSaveData> _turnSaveDataList;
+    private Vector3 _cameraPosition;
 
     public StageData StageData => _stageData;
     public Dictionary<UnitType, List<UnitBase>> SpawnedUnitDict => _spawnedUnitDict;
     public TileBase[,] TileMap => _tileMap;
     public UnitBase[,] UnitMap => _unitMap;
+    public int Turn => _turn;
+    public List<TurnSaveData> TurnSaveDataList => _turnSaveDataList;
+    public Vector3 CameraPosition => _cameraPosition;
 
     public event Action OnStageLoaded;
 
@@ -69,7 +73,7 @@ public class SpawnManager : MonoBehaviour
 
         CreateMapAndSpawnMap(_stageData.Map);
 
-        Vector3 cameraPosition = _stageData.CameraInitialPosition;
+        _cameraPosition = _stageData.CameraInitialPosition;
         if (saveData == null)
         {
             CreateMapAndSpawnUnits(_stageData.UnitPositionList);
@@ -77,16 +81,10 @@ public class SpawnManager : MonoBehaviour
         else
         {
             CreateMapAndSpawnUnitsFromSave(saveData);
-            cameraPosition = saveData.CameraPosition;
+            TurnSaveData turnSaveData = saveData.TurnSaveDataList[saveData.TurnSaveDataList.Count - 1];
+            _cameraPosition = turnSaveData.CameraPosition;
         }
 
-        _cameraMove.InitPosition(
-            cameraPosition,
-            new Vector3(0.5f, 0f, _stageData.Map.GetLength(0) - .5f),
-            new Vector3(0.5f, 0f, .5f),
-            new Vector3(_stageData.Map.GetLength(1) - .5f, 0f, _stageData.Map.GetLength(0) - .5f),
-            new Vector3(_stageData.Map.GetLength(1) - .5f, 0f, 0.5f)
-            );
         OnStageLoaded?.Invoke();
     }
 
@@ -113,6 +111,8 @@ public class SpawnManager : MonoBehaviour
 
     private void CreateMapAndSpawnUnits(List<UnitPosition> unitPositionList)
     {
+        _turnSaveDataList = new();
+
         Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
         _unitMap = new UnitBase[_tileMap.GetLength(1), _tileMap.GetLength(0)];
 
@@ -128,7 +128,7 @@ public class SpawnManager : MonoBehaviour
 
             Vector2Int coord = unitPosition.Position;
             unit.transform.position = coord.CoordToWorld();
-            unit.transform.eulerAngles = _rotations[(int)unitPosition.Direction];
+            unit.transform.forward = unitPosition.Direction;
             unit.Stat.InitStat(unitData);
             unit.DistanceRange.SetMap(_tileMap);
 
@@ -149,10 +149,14 @@ public class SpawnManager : MonoBehaviour
 
     private void CreateMapAndSpawnUnitsFromSave(SaveData saveData)
     {
+        TurnSaveData turnSaveData = saveData.TurnSaveDataList[saveData.TurnSaveDataList.Count - 1];
+        _turn = turnSaveData.Turn;
+        _turnSaveDataList = saveData.TurnSaveDataList;
+
         Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
         _unitMap = new UnitBase[_tileMap.GetLength(1), _tileMap.GetLength(0)];
 
-        foreach (UnitSaveData unitSaveData in saveData.UnitSaveDatas)
+        foreach (UnitSaveData unitSaveData in turnSaveData.UnitSaveDatas)
         {
             if (!unitDataDict.TryGetValue(unitSaveData.UnitPosition.Id, out UnitData unitData)) continue;
 
@@ -164,7 +168,7 @@ public class SpawnManager : MonoBehaviour
 
             Vector2Int coord = unitSaveData.UnitPosition.Position;
             unit.transform.position = coord.CoordToWorld();
-            unit.transform.eulerAngles = _rotations[(int)unitSaveData.UnitPosition.Direction];
+            unit.transform.forward = unitSaveData.UnitPosition.Direction;
             unit.Stat.InitStat(unitData, unitSaveData.Health, unitSaveData.Energy);
             unit.DistanceRange.SetMap(_tileMap);
 

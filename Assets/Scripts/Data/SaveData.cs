@@ -1,25 +1,19 @@
-using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class SaveData
 {
     [SerializeField] private int _stageId;
-    [SerializeField] private int _turn;
-    [SerializeField] private List<UnitSaveData> _unitSaveDatas;
-    [SerializeField] private Vector3 _cameraPosition;
+    [SerializeField] private List<TurnSaveData> _turnSaveDataList;
 
     public int StageId => _stageId;
-    public int Turn => _turn;
-    public List<UnitSaveData> UnitSaveDatas => _unitSaveDatas;
-    public Vector3 CameraPosition => _cameraPosition;
+    public List<TurnSaveData> TurnSaveDataList => _turnSaveDataList;
 
-    public SaveData(int stageId, int turn, List<UnitSaveData> unitSaveDatas, Vector3 cameraPosition)
+    public SaveData(int stageId, List<TurnSaveData> turnSaveDataList)
     {
         _stageId = stageId;
-        _turn = turn;
-        _unitSaveDatas = unitSaveDatas;
-        _cameraPosition = cameraPosition;
+        _turnSaveDataList = turnSaveDataList;
     }
 }
