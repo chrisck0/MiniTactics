@@ -292,11 +292,14 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         }
     }
 
-    public void InitAllDanger()
+    public void InitDanger()
     {
-        foreach (EnemyUnit enemyUnit in _showingDangerEnemyList)
+        for (int i = 0; i < _mapManager.UnitMap.GetLength(1); i++)
         {
-            enemyUnit.UnitAI.InitDanger();
+            for (int j = 0; j < _mapManager.UnitMap.GetLength(0); j++)
+            {
+                _mapManager.TileMap[j, i].HideDanger();
+            }
         }
     }
 
@@ -304,14 +307,18 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     {
         if (enemyUnit.UnitAI.IsShowingDanger)
         {
-            enemyUnit.UnitAI.HideDanger();
+            enemyUnit.UnitAI.SetIsShowingDanger(false);
             ShowingDangerEnemyList.Remove(enemyUnit);
+            InitDanger();
+            ShowAllDanger();
         }
 
         else
         {
-            enemyUnit.UnitAI.ShowDanger();
+            enemyUnit.UnitAI.SetIsShowingDanger(true);
             ShowingDangerEnemyList.Add(enemyUnit);
+            InitDanger();
+            ShowAllDanger();
         }
     }
 

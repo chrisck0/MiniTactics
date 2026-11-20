@@ -160,7 +160,7 @@ public class TargetSelectState : StateBase
 
         if (playerWeapon.CanAttackTargets(weaponData))
         {
-            _controller.InitAllDanger();
+            _controller.InitDanger();
             _controller.HideAllTrajectories();
             Attack().Forget();
         }
