@@ -22,6 +22,7 @@ public class SpawnManager : MonoBehaviour
     private int _turn = 1;
     private List<TurnSaveData> _turnSaveDataList;
     private Vector3 _cameraPosition;
+    private int _initialSeed;
 
     public StageData StageData => _stageData;
     public Dictionary<UnitType, List<UnitBase>> SpawnedUnitDict => _spawnedUnitDict;
@@ -30,6 +31,7 @@ public class SpawnManager : MonoBehaviour
     public int Turn => _turn;
     public List<TurnSaveData> TurnSaveDataList => _turnSaveDataList;
     public Vector3 CameraPosition => _cameraPosition;
+    public int InitialSeed => _initialSeed;
 
     public event Action OnStageLoaded;
 
@@ -61,10 +63,9 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnStage()
     {
-        // if (!_dataManager.StageDataDict.TryGetValue(stageId, out StageData stageData)) return;
         _stageData = GameManager.Instance.GetStageData();
-
         SaveData saveData = _saveLoader.Load();
+
         if (saveData != null && saveData.StageId != _stageData.StageId)
         {
             _saveLoader.ClearSaveData();
@@ -115,6 +116,7 @@ public class SpawnManager : MonoBehaviour
 
         Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
         _unitMap = new UnitBase[_tileMap.GetLength(1), _tileMap.GetLength(0)];
+        GameManager.Instance.SetInitialSeed();
 
         foreach (UnitPosition unitPosition in unitPositionList)
         {
@@ -152,6 +154,7 @@ public class SpawnManager : MonoBehaviour
         TurnSaveData turnSaveData = saveData.TurnSaveDataList[saveData.TurnSaveDataList.Count - 1];
         _turn = turnSaveData.Turn;
         _turnSaveDataList = saveData.TurnSaveDataList;
+        GameManager.Instance.SetInitialSeed(saveData.InitialSeed);
 
         Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
         _unitMap = new UnitBase[_tileMap.GetLength(1), _tileMap.GetLength(0)];

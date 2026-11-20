@@ -1,10 +1,10 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private StageData _stageData;
-
-    public StageData StageData => _stageData;
+    [SerializeField] private int _initialSeed;
 
     public static GameManager Instance;
 
@@ -42,5 +42,20 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public void SetInitialSeed()
+    {
+        _initialSeed = Convert.ToInt32(DateTime.UtcNow.ToString("MMddHHmmss"));
+    }
+
+    public void SetInitialSeed(int initialSeed)
+    {
+        _initialSeed = initialSeed;
+    }
+
+    public int GetInitialSeed()
+    {
+        return _initialSeed;
     }
 }

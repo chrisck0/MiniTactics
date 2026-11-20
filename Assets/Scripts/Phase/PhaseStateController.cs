@@ -93,7 +93,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         _turn = turn - 1; // 시작하자마자 플레이어 페이즈이므로 1 줄이기
         _turnSaveDataList = turnSaveDataList;
 
-        StageData stageData = GameManager.Instance.StageData;
+        StageData stageData = GameManager.Instance.GetStageData();
 
         _cameraMove.InitPosition(
             cameraPosition,
@@ -156,7 +156,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         }
 
         TurnSaveData saveData = new TurnSaveData(
-            GameManager.Instance.StageData.StageId,
+            GameManager.Instance.GetStageData().StageId,
             _turn + 1,
             unitSaveDatas,
             _cameraMove.GetCameraPosition()
@@ -165,8 +165,6 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         if (_turnSaveDataList.Count == 0
             || _turnSaveDataList[_turnSaveDataList.Count - 1].Turn != _turn + 1)
             _turnSaveDataList.Add(saveData);
-
-        Debug.Log("TurnSaveData Saved");
     }
 
     public void StartPlayerPhase()

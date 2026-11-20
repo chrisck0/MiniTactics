@@ -255,6 +255,7 @@ public class Weapon : MonoBehaviour
             && targetWeapon.MaxRange >= distance)
         {
             isHit = ProbabilityCalculator.CalculateProbability(
+                GameManager.Instance.GetInitialSeed(),
                 turn,
                 totalPlayerUnits,
                 currentTurnCount,
@@ -362,6 +363,7 @@ public class Weapon : MonoBehaviour
         if (targetUnit != null)
         {
             bool canHit = ProbabilityCalculator.CalculateProbability(
+                GameManager.Instance.GetInitialSeed(),
                 turn,
                 totalPlayerUnits,
                 currentTurnCount,

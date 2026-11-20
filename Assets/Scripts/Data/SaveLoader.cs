@@ -14,7 +14,8 @@ public class SaveLoader : MonoBehaviour
     public void SaveNewData()
     {
         SaveData saveData = new SaveData(
-            GameManager.Instance.StageData.StageId, 
+            GameManager.Instance.GetInitialSeed(),
+            GameManager.Instance.GetStageData().StageId, 
             _phaseStateController.TurnSaveDataList
             );
 
@@ -52,7 +53,7 @@ public class SaveLoader : MonoBehaviour
         if (data.StageId != GameManager.Instance.GetStageData().StageId)
         {
             Debug.Log("세이브 데이터와 다른 스테이지");
-            return null;
+            return data;
         }
 
         return data;
