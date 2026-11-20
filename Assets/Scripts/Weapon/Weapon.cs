@@ -372,6 +372,10 @@ public class Weapon : MonoBehaviour
                 targetUnit.Stat
                 );
 
+
+            if (targetUnit.Stat.BehaviorType == BehaviorType.Defensive)
+                targetUnit.Stat.ChangeBehaviorType(BehaviorType.Aggressive);
+
             if (canHit) Attack(weaponData, targetUnit);
             else targetUnit.Avoid();
         }

@@ -7,17 +7,20 @@ public class UnitStat : MonoBehaviour
     [SerializeField] private UnitData _data;
     [SerializeField] private int _health;
     [SerializeField] private int _energy;
+    private BehaviorType _behaviorType;
 
     public event Action<int> OnHealthChanged;
 
     public UnitData Data => _data;
     public int Health => _health;
     public int Energy => _energy;
+    public BehaviorType BehaviorType => _behaviorType;
 
     private void Awake() => CacheComponents();
 
     public void InitStat(UnitData data)
     {
+        _behaviorType = data.BehaviorType;
         _data = data;
         _health = _data.Health;
         _energy = _data.Energy;
@@ -26,6 +29,7 @@ public class UnitStat : MonoBehaviour
 
     public void InitStat(UnitData data, int health, int energy)
     {
+        _behaviorType = data.BehaviorType;
         _data = data;
         _health = health;
         _energy = energy;
@@ -49,6 +53,11 @@ public class UnitStat : MonoBehaviour
             _unit.Die();
         }
         OnHealthChanged?.Invoke(_health);
+    }
+
+    public void ChangeBehaviorType(BehaviorType behaviorType)
+    {
+        _behaviorType = behaviorType;
     }
 
     private void CacheComponents()

@@ -88,7 +88,7 @@ public class UnitAI : MonoBehaviour
 
         _tileCostMap = _mapManager.TileRange.UnitMoveRangeAndCalculateTotal(_owner, currentCoord);
 
-        switch(_owner.Stat.Data.BehaviorType)
+        switch(_owner.Stat.BehaviorType)
         {
             case BehaviorType.Aggressive:
                 if (_maxAttackScore.Score == 0) MoveToTarget();
@@ -249,6 +249,10 @@ public class UnitAI : MonoBehaviour
 
         if (!weapon.CanAttackTargets(weaponData)) return;
 
+        
+        if (_owner.Stat.BehaviorType == BehaviorType.Defensive)
+            _owner.Stat.ChangeBehaviorType(BehaviorType.Aggressive);
+        
         _owner.Rotation.SetDirection(
             _maxAttackScore.AttackWeaponData.WeaponType,
             _maxAttackScore.TargetCoord,
