@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -48,12 +47,6 @@ public class SaveLoader : MonoBehaviour
         {
             Debug.Log("SaveLoader: 저장 파일이 비어 있음");
             return null;
-        }
-
-        if (data.StageId != GameManager.Instance.GetStageData().StageId)
-        {
-            Debug.Log("세이브 데이터와 다른 스테이지");
-            return data;
         }
 
         return data;

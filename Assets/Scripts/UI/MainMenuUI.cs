@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour, IPopupController
@@ -9,6 +10,7 @@ public class MainMenuUI : MonoBehaviour, IPopupController
     [SerializeField] private Button _quitButton;
     [SerializeField] private Button _popupBackgroundButton;
     [SerializeField] private SettingsPopupUI _settingsPopupUI;
+    [SerializeField] private InputActionReference _cancelAction;
 
     private void Awake() => HidePopup();
     private void OnEnable() => BindButtonEvents();
@@ -24,6 +26,7 @@ public class MainMenuUI : MonoBehaviour, IPopupController
     {
         _popupBackgroundButton.gameObject.SetActive(true);
         _settingsPopupUI.Show(this);
+        BindInputActions();
     }
 
     private void Quit()
@@ -35,10 +38,16 @@ public class MainMenuUI : MonoBehaviour, IPopupController
 #endif
     }
 
+    private void Hide(InputAction.CallbackContext context)
+    {
+        HidePopup();
+    }
+
     public void HidePopup()
     {
         _popupBackgroundButton.gameObject.SetActive(false);
         _settingsPopupUI.Hide();
+        UnbindInputActions();
     }
 
     private void BindButtonEvents()
@@ -55,5 +64,17 @@ public class MainMenuUI : MonoBehaviour, IPopupController
         _gameStartButton.onClick.RemoveListener(GameStart);
         _settingsButton.onClick.RemoveListener(Settings);
         _quitButton.onClick.RemoveListener(Quit);
+    }
+
+    private void BindInputActions()
+    {
+        _cancelAction.action.Enable();
+        _cancelAction.action.performed += Hide;
+    }
+
+    private void UnbindInputActions()
+    {
+        _cancelAction.action.Disable();
+        _cancelAction.action.performed -= Hide;
     }
 }

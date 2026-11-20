@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -8,6 +8,9 @@ public class StageSelectController : MonoBehaviour
     [SerializeField] private SceneReference _nextScene;
     [SerializeField] private StageData _stageData;
     [SerializeField] private Button _stageButton;
+
+    public event Action<StageSelectController> OnButtonClicked;
+    public StageData StageData => _stageData;
 
     private void OnEnable()
     {
@@ -19,7 +22,12 @@ public class StageSelectController : MonoBehaviour
         UnbindButtonEvents();
     }
 
-    private void LoadScene()
+    private void ButtonClick()
+    {
+        OnButtonClicked?.Invoke(this);
+    }
+
+    public void LoadScene()
     {
         GameManager.Instance.SetStageData(_stageData);
         SceneManager.LoadScene(_nextScene.SceneName);
@@ -27,11 +35,11 @@ public class StageSelectController : MonoBehaviour
 
     private void BindButtonEvents()
     {
-        _stageButton.onClick.AddListener(LoadScene);
+        _stageButton.onClick.AddListener(ButtonClick);
     }
 
     private void UnbindButtonEvents()
     {
-        _stageButton.onClick.RemoveListener(LoadScene);
+        _stageButton.onClick.RemoveListener(ButtonClick);
     }
 }
