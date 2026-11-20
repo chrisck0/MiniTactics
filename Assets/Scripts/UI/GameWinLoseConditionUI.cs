@@ -38,7 +38,7 @@ public class GameWinLoseConditionUI : MonoBehaviour
 
 
         string stageLoseText = "";
-        stageLoseText += $"{stageData.TurnLimit}턴 초과 또는 ";
+        stageLoseText += $"{stageData.TurnLimit}턴 초과, ";
         List<int> mainUnitIds = stageData.MainUnitIds;
         for (int i = 0; i < mainUnitIds.Count; i++)
         {

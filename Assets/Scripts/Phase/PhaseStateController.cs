@@ -285,6 +285,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
 
     private void ShowGameResult(bool isGameWin)
     {
+        _saveLoader.ClearSaveData();
         _gameUIController.ResultUI.SetData(isGameWin, _turn,
             _initialEnemyNum - _enemyUnitList.Count, _initialPlayerNum - _playerUnitList.Count);
         _stateMachine.enabled = false;
