@@ -63,7 +63,7 @@ public class StageSelectUI : MonoBehaviour
 
     private void ShowSaveDataStage()
     {
-        _saveData = _saveLoader.Load();
+        _saveData = _saveLoader.LoadSaveData();
         if (_saveData == null)
         {
             _saveDataStage.gameObject.SetActive(false);

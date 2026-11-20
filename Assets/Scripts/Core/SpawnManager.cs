@@ -64,7 +64,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnStage()
     {
         _stageData = GameManager.Instance.GetStageData();
-        SaveData saveData = _saveLoader.Load();
+        SaveData saveData = _saveLoader.LoadSaveData();
 
         if (saveData != null && saveData.StageId != _stageData.StageId)
         {
