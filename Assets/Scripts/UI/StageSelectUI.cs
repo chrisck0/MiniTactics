@@ -11,9 +11,11 @@ public class StageSelectUI : MonoBehaviour
     [SerializeField] private Button _popupBackgroundButton;
     [SerializeField] private StageSelectPopupUI _stageSameDataSelectPopupUI;
     [SerializeField] private StageSelectPopupUI _stageDifferentDataSelectPopupUI;
+    [SerializeField] private Button _bestRecordButton;
+    [SerializeField] private BestRecordPopupUI _bestRecordPopupUI;
     [SerializeField] private RectTransform _saveDataStage;
     private SaveData _saveData;
-    private StageSelectPopupUI _currentPopup;
+    private GameObject _currentPopup;
 
     public SaveLoader SaveLoader => _saveLoader;
 
@@ -34,7 +36,7 @@ public class StageSelectUI : MonoBehaviour
         UnbindControllerEvents();
     }
 
-    private void ShowPopup(StageSelectController stageSelectController)
+    private void ShowStageSelectPopup(StageSelectController stageSelectController)
     {
         if (_saveData == null)
         {
@@ -46,19 +48,19 @@ public class StageSelectUI : MonoBehaviour
         if (_saveData.StageId == stageSelectController.StageData.StageId)
         {
             _stageSameDataSelectPopupUI.Show(this, stageSelectController);
-            _currentPopup = _stageSameDataSelectPopupUI;
+            _currentPopup = _stageSameDataSelectPopupUI.gameObject;
         }
         else
         {
             _stageDifferentDataSelectPopupUI.Show(this, stageSelectController);
-            _currentPopup = _stageDifferentDataSelectPopupUI;
+            _currentPopup = _stageDifferentDataSelectPopupUI.gameObject;
         }
     }
 
     public void HidePopup()
     {
         if (_currentPopup == null) return;
-        _currentPopup.gameObject.SetActive(false);
+        _currentPopup.SetActive(false);
         _popupBackgroundButton.gameObject.SetActive(false);
     }
 
@@ -106,10 +108,18 @@ public class StageSelectUI : MonoBehaviour
         }
     }
 
+    private void ShowBestRecordPopup()
+    {
+        _bestRecordPopupUI.Show(_saveLoader.LoadClearData());
+        _currentPopup = _bestRecordPopupUI.gameObject;
+        _popupBackgroundButton.gameObject.SetActive(true);
+    }
+
     private void DeactivatePopups()
     {
         _stageSameDataSelectPopupUI.gameObject.SetActive(false);
         _stageDifferentDataSelectPopupUI.gameObject.SetActive(false);
+        _bestRecordPopupUI.gameObject.SetActive(false);
     }
 
     private void Cancel(InputAction.CallbackContext context)
@@ -121,7 +131,7 @@ public class StageSelectUI : MonoBehaviour
     {
         foreach (StageSelectController stageSelectController in _stageSelectControllers)
         {
-            stageSelectController.OnButtonClicked += ShowPopup;
+            stageSelectController.OnButtonClicked += ShowStageSelectPopup;
         }
     }
 
@@ -129,7 +139,7 @@ public class StageSelectUI : MonoBehaviour
     {
         foreach (StageSelectController stageSelectController in _stageSelectControllers)
         {
-            stageSelectController.OnButtonClicked -= ShowPopup;
+            stageSelectController.OnButtonClicked -= ShowStageSelectPopup;
         }
     }
 
@@ -148,10 +158,12 @@ public class StageSelectUI : MonoBehaviour
     private void BindButtonEvents()
     {
         _popupBackgroundButton.onClick.AddListener(HidePopup);
+        _bestRecordButton.onClick.AddListener(ShowBestRecordPopup);
     }
 
     private void UnbindButtonEvents()
     {
         _popupBackgroundButton.onClick.RemoveListener(HidePopup);
+        _bestRecordButton.onClick.RemoveListener(ShowBestRecordPopup);
     }
 }
