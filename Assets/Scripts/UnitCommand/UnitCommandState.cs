@@ -60,6 +60,7 @@ public sealed class UnitCommandState : StateBase
         MoveUnit(playerUnit,
             playerUnit.transform.position.WorldToCoord(),
             _controller.PreviousPlayerCoord);
+        playerUnit.transform.forward = _controller.PreviousPlayerDirection;
 
         _controller.HideAllTrajectories();
         _controller.SetState(_controller.UnitSelectState);

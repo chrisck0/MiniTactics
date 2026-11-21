@@ -1,11 +1,8 @@
 using Cysharp.Threading.Tasks;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 [RequireComponent(typeof(StateMachine))]
 public class PhaseStateController : MonoBehaviour, IStateEvent
@@ -312,10 +309,19 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
                 ));
         }
 
-        _gameUIController.ResultUI.SetData(isGameWin, _turn, killedEnemy, lostPlayer);
         _stateMachine.enabled = false;
-        // _mapManager.TileRange.InitTiles();
         OnGameEnd?.Invoke();
+
+        ShowResultUI(isGameWin, killedEnemy, lostPlayer).Forget();
+    }
+
+    private async UniTask ShowResultUI(bool isGameWin, int killedEnemy, int lostPlayer)
+    {
+        await UniTask.Delay(2000, DelayType.DeltaTime);
+        _gameUIController.ResultUI.SetData(isGameWin, _turn, killedEnemy, lostPlayer);
+        _systemCommandUI.ToggleAuto(false);
+        _systemCommandUI.UnbindAutoInputEvents();
+        GameManager.Instance.UnlockCursor();
     }
 
     public void ClearActivePlayerUnit()

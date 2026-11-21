@@ -32,6 +32,7 @@ public class YesNoPopupUI : PopupUI
         GameManager.Instance.LockCursor();
         _systemCommandUI.ToggleAuto(true);
         _systemCommandUI.HideCursor();
+        _systemCommandUI.HideKeyInfo();
         _systemCommandUI.Hide();
         ClosePopup();
         BindInputEvents();
@@ -103,7 +104,7 @@ public class YesNoPopupUI : PopupUI
         _anyAction.action.performed += AutoOff;
     }
 
-    private void UnbindInputEvents()
+    public void UnbindInputEvents()
     {
         _selectAction.action.actionMap.Enable();
         _anyAction.action.Disable();

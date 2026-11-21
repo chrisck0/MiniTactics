@@ -135,6 +135,11 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _unitCommandStateController.HideCursor();
     }
 
+    public void HideKeyInfo()
+    {
+        _unitCommandStateController.HideKeyInfo();
+    }
+
     public void PhaseEnd()
     {
         _phaseStateController.ClearActivePlayerUnit();
@@ -213,6 +218,11 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
     private void UnbindSpawnManagerEvents()
     {
         _spawnManager.OnStageLoaded -= SetMap;
+    }
+
+    public void UnbindAutoInputEvents()
+    {
+        _yesNoPopup.UnbindInputEvents();
     }
 
     private void Init()
