@@ -32,6 +32,7 @@ public class YesNoPopupUI : PopupUI
         GameManager.Instance.LockCursor();
         _systemCommandUI.ToggleAuto(true);
         _systemCommandUI.HideCursor();
+        _systemCommandUI.HideKeyInfo();
         _systemCommandUI.Hide();
         ClosePopup();
         BindInputEvents();

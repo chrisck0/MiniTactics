@@ -135,6 +135,11 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _unitCommandStateController.HideCursor();
     }
 
+    public void HideKeyInfo()
+    {
+        _unitCommandStateController.HideKeyInfo();
+    }
+
     public void PhaseEnd()
     {
         _phaseStateController.ClearActivePlayerUnit();
