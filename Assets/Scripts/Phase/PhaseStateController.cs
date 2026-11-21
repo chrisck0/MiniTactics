@@ -1,11 +1,8 @@
 using Cysharp.Threading.Tasks;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 [RequireComponent(typeof(StateMachine))]
 public class PhaseStateController : MonoBehaviour, IStateEvent
