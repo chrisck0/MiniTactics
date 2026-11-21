@@ -4,10 +4,8 @@ using UnityEngine.UI;
 
 public class PhaseTransitionUI : MonoBehaviour
 {
-    [SerializeField] private Image _phaseImage;
-    [SerializeField] private TextMeshProUGUI _phaseText;
-    private const string PLAYER_PHASE = "Player Phase";
-    private const string ENEMY_PHASE = "Enemy Phase";
+    [SerializeField] private GameObject _playerPhase;
+    [SerializeField] private GameObject _enemyPhase;
 
     public void Show()
     {
@@ -21,11 +19,13 @@ public class PhaseTransitionUI : MonoBehaviour
 
     public void SetPlayerPhaseText()
     {
-        _phaseText.text = PLAYER_PHASE;
+        _playerPhase.SetActive(true);
+        _enemyPhase.SetActive(false);
     }
 
     public void SetEnemyPhaseText()
     {
-        _phaseText.text = ENEMY_PHASE;
+        _playerPhase.SetActive(false);
+        _enemyPhase.SetActive(true);
     }
 }
