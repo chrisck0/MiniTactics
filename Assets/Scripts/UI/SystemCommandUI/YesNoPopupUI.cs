@@ -104,7 +104,7 @@ public class YesNoPopupUI : PopupUI
         _anyAction.action.performed += AutoOff;
     }
 
-    private void UnbindInputEvents()
+    public void UnbindInputEvents()
     {
         _selectAction.action.actionMap.Enable();
         _anyAction.action.Disable();

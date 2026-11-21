@@ -220,6 +220,11 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _spawnManager.OnStageLoaded -= SetMap;
     }
 
+    public void UnbindAutoInputEvents()
+    {
+        _yesNoPopup.UnbindInputEvents();
+    }
+
     private void Init()
     {
         _popupBackgroundButton.gameObject.SetActive(false);

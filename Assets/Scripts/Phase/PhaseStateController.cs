@@ -319,6 +319,9 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     {
         await UniTask.Delay(2000, DelayType.DeltaTime);
         _gameUIController.ResultUI.SetData(isGameWin, _turn, killedEnemy, lostPlayer);
+        _systemCommandUI.ToggleAuto(false);
+        _systemCommandUI.UnbindAutoInputEvents();
+        GameManager.Instance.UnlockCursor();
     }
 
     public void ClearActivePlayerUnit()
