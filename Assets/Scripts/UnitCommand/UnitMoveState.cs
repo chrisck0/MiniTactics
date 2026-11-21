@@ -15,6 +15,7 @@ public sealed class UnitMoveState : StateBase
     private Stack<Vector2Int> _pathCoordStack = new();
     private bool _hasSelected;
     private bool _isInfoOpen;
+    private Vector3 _prevDirection;
     private Vector2Int _targetCoord;
 
     public UnitMoveState(UnitCommandStateController controller,
@@ -34,6 +35,7 @@ public sealed class UnitMoveState : StateBase
 
     public override void Enter()
     {
+        _prevDirection = _controller.SelectedPlayerUnit.transform.forward;
         _controller.CanMoveCamera(true);
         BindInputActions();
         ShowDistanceRange();

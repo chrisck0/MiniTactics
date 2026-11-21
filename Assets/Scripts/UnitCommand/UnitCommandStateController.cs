@@ -26,6 +26,7 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     private StateBase _commandEndState;
     private PlayerUnit _selectedPlayerUnit;
     private Vector2Int _previousPlayerCoord;
+    private Vector3 _previousPlayerDirection;
     private WeaponData _selectedWeaponData;
     private int _currentTurnCount;
     private List<EnemyUnit> _showingDangerEnemyList = new();
@@ -41,6 +42,7 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     public StateBase CommandEndState => _commandEndState;
     public PlayerUnit SelectedPlayerUnit => _selectedPlayerUnit;
     public Vector2Int PreviousPlayerCoord => _previousPlayerCoord;
+    public Vector3 PreviousPlayerDirection => _previousPlayerDirection;
     public WeaponData SelectedWeaponData => _selectedWeaponData;
     public int Turn => _phaseStateController.Turn;
     public int TotalPlayerUnits => _phaseStateController.TotalPlayerUnits;
@@ -106,6 +108,7 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
 
         if (playerUnit == null) return;
         _previousPlayerCoord = playerUnit.transform.position.WorldToCoord();
+        _previousPlayerDirection = playerUnit.transform.forward;
     }
 
     public void SetSelectedWeaponData(WeaponData weaponData)
