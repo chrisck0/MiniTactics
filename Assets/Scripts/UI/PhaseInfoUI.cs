@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class PhaseInfoUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _playerPhaseText;
-    [SerializeField] private TextMeshProUGUI _enemyPhaseText;
+    [SerializeField] private GameObject _playerPhase;
+    [SerializeField] private GameObject _enemyPhase;
 
     public void SetPlayerPhase()
     {
-        _playerPhaseText.gameObject.SetActive(true);
-        _enemyPhaseText.gameObject.SetActive(false);
+        _playerPhase.SetActive(true);
+        _enemyPhase.SetActive(false);
     }
 
     public void SetEnemyPhase()
     {
-        _playerPhaseText.gameObject.SetActive(false);
-        _enemyPhaseText.gameObject.SetActive(true);
+        _playerPhase.SetActive(false);
+        _enemyPhase.SetActive(true);
     }
 
     public void Show()

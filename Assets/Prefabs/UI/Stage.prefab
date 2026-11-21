@@ -215,8 +215,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2A4\uD14C\uC774\uC9C0 1"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 07a4e8cbaa4df7b4a91f16bdbcc88d47, type: 2}
-  m_sharedMaterial: {fileID: -690210785418110854, guid: 07a4e8cbaa4df7b4a91f16bdbcc88d47, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a8272abf836b61542b18a5debb6c2f8d, type: 2}
+  m_sharedMaterial: {fileID: 5817955202847999496, guid: a8272abf836b61542b18a5debb6c2f8d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

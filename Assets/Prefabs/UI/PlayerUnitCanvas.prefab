@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4928496115938717062, guid: b8e25a7f1f46fbc4f8b27fcbfe3dd455, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7205119235802295629, guid: b8e25a7f1f46fbc4f8b27fcbfe3dd455, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8593723097851180871, guid: b8e25a7f1f46fbc4f8b27fcbfe3dd455, type: 3}
       propertyPath: m_Name
-      value: PlayerUnitHealthCanvas Variant
+      value: PlayerUnitCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
