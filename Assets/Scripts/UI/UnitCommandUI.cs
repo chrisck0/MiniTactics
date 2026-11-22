@@ -33,15 +33,24 @@ public class UnitCommandUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void PlayUISound()
+    {
+        AudioManager.Instance.PlayUISfx();
+    }
+
     private void BindButtonEvents()
     {
         _attackButton.onClick.AddListener(Attack);
         _waitButton.onClick.AddListener(Wait);
+        _attackButton.onClick.AddListener(PlayUISound);
+        _waitButton.onClick.AddListener(PlayUISound);
     }
 
     private void UnbindButtonEvents()
     {
         _attackButton.onClick.RemoveListener(Attack);
         _waitButton.onClick.RemoveListener(Wait);
+        _attackButton.onClick.RemoveListener(PlayUISound);
+        _waitButton.onClick.RemoveListener(PlayUISound);
     }
 }

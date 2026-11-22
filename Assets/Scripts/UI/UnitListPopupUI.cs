@@ -25,6 +25,11 @@ public class UnitListPopupUI : PopupUI
         _systemCommandUI.ShowCommandUIInfo();
     }
 
+    private void PlayUISound()
+    {
+        AudioManager.Instance.PlayUISfx();
+    }
+
     private void ShowPlayerUnit()
     {
         _containerList.HideAllUnitContainers();
@@ -41,11 +46,15 @@ public class UnitListPopupUI : PopupUI
     {
         _playerUnitButton.onClick.AddListener(ShowPlayerUnit);
         _enemyUnitButton.onClick.AddListener(ShowEnemyUnit);
+        _playerUnitButton.onClick.AddListener(PlayUISound);
+        _enemyUnitButton.onClick.AddListener(PlayUISound);
     }
 
     private void UnbindButtonEvents()
     {
         _playerUnitButton.onClick.RemoveListener(ShowPlayerUnit);
         _enemyUnitButton.onClick.RemoveListener(ShowEnemyUnit);
+        _playerUnitButton.onClick.RemoveListener(PlayUISound);
+        _enemyUnitButton.onClick.RemoveListener(PlayUISound);
     }
 }

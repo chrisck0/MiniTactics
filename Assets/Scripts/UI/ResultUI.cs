@@ -57,15 +57,24 @@ public class ResultUI : MonoBehaviour
         _gameSceneController.LoadMainMenu();
     }
 
+    private void PlayUISound()
+    {
+        AudioManager.Instance.PlayUISfx();
+    }
+
     private void BindButtonEvents()
     {
         _loadStageButton.onClick.AddListener(LoadStage);
         _mainMenuButton.onClick.AddListener(LoadMainMenu);
+        _loadStageButton.onClick.AddListener(PlayUISound);
+        _mainMenuButton.onClick.AddListener(PlayUISound);
     }
 
     private void UnbindButtonEvents()
     {
         _loadStageButton.onClick.RemoveListener(LoadStage);
         _mainMenuButton.onClick.RemoveListener(LoadMainMenu);
+        _loadStageButton.onClick.RemoveListener(PlayUISound);
+        _mainMenuButton.onClick.RemoveListener(PlayUISound);
     }
 }

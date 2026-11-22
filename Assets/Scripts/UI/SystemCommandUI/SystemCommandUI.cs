@@ -217,6 +217,11 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _statusPopup.SetMiniMap();
     }
 
+    private void PlayUISfx()
+    {
+        AudioManager.Instance.PlayUISfx();
+    }
+
     private void BindButtonEvents()
     {
         _popupBackgroundButton.onClick.AddListener(HidePopup);
@@ -228,6 +233,15 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _settingsButton.onClick.AddListener(ShowSettingsPopup);
         _suspendButton.onClick.AddListener(ShowSuspendPopup);
         _retreatButton.onClick.AddListener(ShowRetreatPopup);
+
+        _phaseEndButton.onClick.AddListener(PlayUISfx);
+        _unitListButton.onClick.AddListener(PlayUISfx);
+        _statusButton.onClick.AddListener(PlayUISfx);
+        _autoButton.onClick.AddListener(PlayUISfx);
+        _revertButton.onClick.AddListener(PlayUISfx);
+        _settingsButton.onClick.AddListener(PlayUISfx);
+        _suspendButton.onClick.AddListener(PlayUISfx);
+        _retreatButton.onClick.AddListener(PlayUISfx);
     }
 
     private void UnbindButtonEvents()
@@ -241,6 +255,15 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _settingsButton.onClick.RemoveListener(ShowSettingsPopup);
         _suspendButton.onClick.RemoveListener(ShowSuspendPopup);
         _retreatButton.onClick.RemoveListener(ShowRetreatPopup);
+
+        _phaseEndButton.onClick.RemoveListener(PlayUISfx);
+        _unitListButton.onClick.RemoveListener(PlayUISfx);
+        _statusButton.onClick.RemoveListener(PlayUISfx);
+        _autoButton.onClick.RemoveListener(PlayUISfx);
+        _revertButton.onClick.RemoveListener(PlayUISfx);
+        _settingsButton.onClick.RemoveListener(PlayUISfx);
+        _suspendButton.onClick.RemoveListener(PlayUISfx);
+        _retreatButton.onClick.RemoveListener(PlayUISfx);
     }
 
     private void BindSpawnManagerEvents()

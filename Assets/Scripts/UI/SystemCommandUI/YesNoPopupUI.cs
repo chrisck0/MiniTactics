@@ -63,6 +63,11 @@ public class YesNoPopupUI : PopupUI
         UnbindEvents();
     }
 
+    private void PlayUISound()
+    {
+        AudioManager.Instance.PlayUISfx();
+    }
+
     public void BindPhaseEndEvents()
     {
         _descriptionText.text = "페이즈를 종료하시겠습니까?";
@@ -89,6 +94,8 @@ public class YesNoPopupUI : PopupUI
         _descriptionText.text = "퇴각하시겠습니까?\n(현재 진행 상황은 저장되지 않습니다)";
         _yesButton.onClick.AddListener(Retreat);
         _noButton.onClick.AddListener(ClosePopup);
+        _yesButton.onClick.AddListener(PlayUISound);
+        _noButton.onClick.AddListener(PlayUISound);
     }
 
     public void UnbindEvents()
