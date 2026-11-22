@@ -34,6 +34,7 @@ public class SpawnManager : MonoBehaviour
     public int InitialSeed => _initialSeed;
 
     public event Action OnStageLoaded;
+    public event Action OnUnitSpawned;
 
     private void Awake()
     {
@@ -117,6 +118,7 @@ public class SpawnManager : MonoBehaviour
         _unitMap = new UnitBase[_tileMap.GetLength(0), _tileMap.GetLength(1)];
         
         GameManager.Instance.SetInitialSeed();
+        GameManager.Instance.SetLeftRevertTime();
 
         foreach (UnitPosition unitPosition in unitPositionList)
         {
@@ -136,6 +138,7 @@ public class SpawnManager : MonoBehaviour
 
             Dictionary<int, WeaponData> weaponDataDict = _dataManager.WeaponDataDict;
 
+            unit.Weapon.ClearWeapons();
             foreach (int weaponId in unitData.WeaponIdList)
             {
                 if (weaponDataDict.TryGetValue(weaponId, out WeaponData weaponData))
@@ -149,12 +152,71 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    public void ResetAndSpawnUnits(List<UnitBase> unitList, List<UnitSaveData> unitSaveDataList)
+    {
+        unitList.Clear();
+
+        for (int i = 0; i < _unitMap.GetLength(1); i++)
+        {
+            for (int j = 0; j < _unitMap.GetLength(0); j++)
+            {
+                _unitMap[j, i] = null;
+            }
+        }
+
+        Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
+
+        foreach (UnitSaveData unitSaveData in unitSaveDataList)
+        {
+            if (!unitDataDict.TryGetValue(unitSaveData.UnitPosition.Id, out UnitData unitData)) continue;
+
+            if (!_unitPrefabDict.TryGetValue(unitData.Id, out UnitBase unitPrefab)) continue;
+
+            UnitBase unit = _unitObjectPool.Take(unitPrefab);
+            unit.SetObjectPool(_unitObjectPool);
+            unit.EffectController.SetProjectileObjectPool(_projectileObjectPool);
+
+            Vector2Int coord = unitSaveData.UnitPosition.Position;
+            unit.transform.position = coord.CoordToWorld();
+            unit.transform.forward = unitSaveData.UnitPosition.Direction;
+            unit.Stat.InitStat(unitData, unitSaveData.Health, unitSaveData.Energy);
+            unit.DistanceRange.SetMap(_tileMap);
+
+            Dictionary<int, WeaponData> weaponDataDict = _dataManager.WeaponDataDict;
+
+            unit.Weapon.ClearWeapons();
+            foreach (int weaponId in unitData.WeaponIdList)
+            {
+                if (weaponDataDict.TryGetValue(weaponId, out WeaponData weaponData))
+                {
+                    unit.Weapon.AddWeapon(weaponData);
+                }
+            }
+
+            unitList.Add(unit);
+
+            _unitMap[coord.x, coord.y] = unit;
+        }
+    }
+
+    public void SetRevertTurn(List<UnitBase> unitList)
+    {
+        _spawnedUnitDict[UnitType.Player].Clear();
+        _spawnedUnitDict[UnitType.Enemy].Clear();
+
+        foreach (UnitBase unit in unitList)
+        {
+            AddSpawnedUnit(unit.UnitType, unit);
+        }
+    }
+
     private void CreateMapAndSpawnUnitsFromSave(SaveData saveData)
     {
         TurnSaveData turnSaveData = saveData.TurnSaveDataList[saveData.TurnSaveDataList.Count - 1];
         _turn = turnSaveData.Turn;
         _turnSaveDataList = saveData.TurnSaveDataList;
         GameManager.Instance.SetInitialSeed(saveData.InitialSeed);
+        GameManager.Instance.SetLeftRevertTime(saveData.LeftRevertTime);
 
         Dictionary<int, UnitData> unitDataDict = _dataManager.UnitDataDict;
         _unitMap = new UnitBase[_tileMap.GetLength(0), _tileMap.GetLength(1)];
@@ -177,6 +239,7 @@ public class SpawnManager : MonoBehaviour
 
             Dictionary<int, WeaponData> weaponDataDict = _dataManager.WeaponDataDict;
 
+            unit.Weapon.ClearWeapons();
             foreach (int weaponId in unitData.WeaponIdList)
             {
                 if (weaponDataDict.TryGetValue(weaponId, out WeaponData weaponData))

@@ -33,7 +33,6 @@ public class MinimapUI : MonoBehaviour
 
     public void SetMap()
     {
-        Debug.Log("SetMap");
         _tileMap = _spawnManager.TileMap;
         _unitMap = _spawnManager.UnitMap;
 

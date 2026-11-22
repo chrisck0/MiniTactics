@@ -26,6 +26,7 @@ public sealed class EnemyPhaseState : StateBase
         _isStateEnd = false;
         foreach (EnemyUnit enemyUnit in _enemyUnitList)
         {
+            Debug.Log(enemyUnit.Stat.Data.Name);
             enemyUnit.Stat.AddEnergy(5);
             _activeEnemyUnit.Enqueue(enemyUnit);
         }

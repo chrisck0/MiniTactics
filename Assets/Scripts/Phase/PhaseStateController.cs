@@ -12,7 +12,7 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
     [SerializeField] private UnitCommandStateController _unitCommandStateController;
     [SerializeField] private SpawnManager _spawnManager;
     [SerializeField] private MapManager _mapManager;
-    [SerializeField] private SaveLoader _saveLoader; // 디버깅
+    [SerializeField] private SaveLoader _saveLoader;
     [SerializeField] private CameraMove _cameraMove;
     [SerializeField] private GameUIController _gameUIController;
     [SerializeField] private CommandUIController _commandUIController;
@@ -97,6 +97,56 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
             new Vector3(stageData.Map.GetLength(0) - .5f, 0f, stageData.Map.GetLength(1) - .5f),
             new Vector3(stageData.Map.GetLength(0) - .5f, 0f, 0.5f)
             );
+    }
+
+    public void RevertTurn(List<UnitBase> unitList, int turn)
+    {
+        TurnSaveData turnSaveData = _turnSaveDataList[turn - 1];
+
+        foreach (UnitBase unit in unitList)
+        {
+            UnbindUnitEvents(unit);
+
+            (unit as PlayerUnit)?.InitAction();
+            unit.ReturnToPool();
+        }
+
+        _spawnManager.ResetAndSpawnUnits(unitList, turnSaveData.UnitSaveDatas);
+    }
+
+    public void SetRevertTurn(List<UnitBase> unitList, int turn)
+    {
+        _spawnManager.SetRevertTurn(unitList);
+
+        SetState(_phaseEndState);
+        _unitCommandStateController.SetState(_unitCommandStateController.CommandEndState);
+
+        for (int i = _turnSaveDataList.Count - 1; i >= turn - 1; i--)
+        {
+            _turnSaveDataList.RemoveAt(i);
+        }
+        _turn = turn - 1;
+
+        foreach (UnitBase playerUnitBase in _playerUnitList)
+        {
+            PlayerUnit playerUnit = playerUnitBase as PlayerUnit;
+
+            if (playerUnit == null) continue;
+            UnbindUnitEvents(playerUnit);
+            BindUnitEvents(playerUnit);
+            playerUnit.UnitAI.SetData(_mapManager, UnitType.Enemy);
+        }
+
+        foreach (UnitBase enemyUnitBase in _enemyUnitList)
+        {
+            EnemyUnit enemyUnit = enemyUnitBase as EnemyUnit;
+
+            if (enemyUnit == null) continue;
+            UnbindUnitEvents(enemyUnit);
+            BindUnitEvents(enemyUnit);
+            enemyUnit.UnitAI.SetData(_mapManager, UnitType.Player);
+        }
+        StartPlayerPhase();
     }
 
     private void InitPhaseStates(
@@ -232,6 +282,17 @@ public class PhaseStateController : MonoBehaviour, IStateEvent
         foreach (EnemyUnit enemyUnit in _enemyUnitList)
         {
             enemyUnit.OnUnitCanAction?.Invoke();
+        }
+    }
+
+    public void ResetDanger()
+    {
+        _unitCommandStateController.InitDanger();
+        _unitCommandStateController.ShowingDangerEnemyList.Clear();
+
+        foreach (EnemyUnit enemyUnit in _enemyUnitList)
+        {
+            enemyUnit.UnitAI.SetIsShowingDanger(false);
         }
     }
 

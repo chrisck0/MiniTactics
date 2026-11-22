@@ -296,6 +296,8 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     {
         foreach (EnemyUnit enemyUnit in _showingDangerEnemyList)
         {
+            AttackScoreCalculator.CalculateScore(
+                enemyUnit, _mapManager, enemyUnit.transform.position.WorldToCoord());
             enemyUnit.UnitAI.ShowDanger();
         }
     }
@@ -309,6 +311,11 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
                 _mapManager.TileMap[j, i].HideDanger();
             }
         }
+    }
+
+    public void TurnOffDanger(EnemyUnit enemyUnit)
+    {
+        enemyUnit.UnitAI.SetIsShowingDanger(false);
     }
 
     public void ToggleDanger(EnemyUnit enemyUnit)

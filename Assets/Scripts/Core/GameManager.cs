@@ -5,7 +5,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private StageData _stageData;
     [SerializeField] private int _initialSeed;
+    [SerializeField] private int _leftRevertTime;
 
+    private const int REVERT_TIME = 3;
     public static GameManager Instance;
 
     private void Awake() => SetSingleton();
@@ -54,8 +56,23 @@ public class GameManager : MonoBehaviour
         _initialSeed = initialSeed;
     }
 
+    public void SetLeftRevertTime()
+    {
+        _leftRevertTime = REVERT_TIME;
+    }
+
+    public void SetLeftRevertTime(int leftRevertTime)
+    {
+        _leftRevertTime = leftRevertTime;
+    }
+
     public int GetInitialSeed()
     {
         return _initialSeed;
+    }
+
+    public int GetLeftRevertTime()
+    {
+        return _leftRevertTime;
     }
 }
