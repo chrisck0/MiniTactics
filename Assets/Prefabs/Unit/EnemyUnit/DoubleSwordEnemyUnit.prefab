@@ -839,6 +839,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitAnimationController
   _owner: {fileID: 657801919055516018}
   _animator: {fileID: 5738107306895514316}
+  _attackClip: {fileID: 8300000, guid: 036ce44bbfc5ac84285dbe6017b8ba9f, type: 3}
+  _damageClip: {fileID: 8300000, guid: a769d49a0db4f7a4da7d621d1c932bad, type: 3}
 --- !u!114 &5070346187896471758
 MonoBehaviour:
   m_ObjectHideFlags: 0
