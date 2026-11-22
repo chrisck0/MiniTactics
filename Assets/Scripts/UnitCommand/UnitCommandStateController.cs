@@ -296,6 +296,8 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
     {
         foreach (EnemyUnit enemyUnit in _showingDangerEnemyList)
         {
+            AttackScoreCalculator.CalculateScore(
+                enemyUnit, _mapManager, enemyUnit.transform.position.WorldToCoord());
             enemyUnit.UnitAI.ShowDanger();
         }
     }
