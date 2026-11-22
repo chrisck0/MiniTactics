@@ -13,6 +13,10 @@ public class RevertPopupUI : MonoBehaviour
     [SerializeField] private InputActionReference _selectAction;
     [SerializeField] private InputActionReference _cancelAction;
     [SerializeField] private GameObject _revertBackground;
+    [SerializeField] private GameObject _leftArrowKey;
+    [SerializeField] private GameObject _rightArrowKey;
+    [SerializeField] private GameObject _escapeKey;
+    [SerializeField] private GameObject _lmbKey;
 
     private SystemCommandUI _systemCommandUI;
     private List<UnitBase> _unitList = new();
@@ -30,7 +34,13 @@ public class RevertPopupUI : MonoBehaviour
         _systemCommandUI = systemCommandUI;
         _systemCommandUI.HideCommandUIInfo();
         _systemCommandUI.HideCommandButtons();
+        _systemCommandUI.HideCursor();
+
         _revertBackground.SetActive(false);
+        _leftArrowKey.SetActive(true);
+        _rightArrowKey.SetActive(true);
+        _escapeKey.SetActive(true);
+        _lmbKey.SetActive(false);
 
         foreach (UnitBase unit in _phaseStateController.PlayerUnitList)
         {
@@ -54,6 +64,10 @@ public class RevertPopupUI : MonoBehaviour
         _systemCommandUI.ShowCommandUIInfo();
         _systemCommandUI.ShowCommandButtons();
         gameObject.SetActive(false);
+        _leftArrowKey.SetActive(false);
+        _rightArrowKey.SetActive(false);
+        _escapeKey.SetActive(false);
+        _lmbKey.SetActive(false);
     }
 
     private void SetTurnText()
@@ -77,6 +91,8 @@ public class RevertPopupUI : MonoBehaviour
                 ShowTurnSituation();
                 SetLeftRevertTimeText();
                 _revertBackground.SetActive(true);
+                _escapeKey.SetActive(false);
+                _lmbKey.SetActive(true);
                 _cancelAction.action.Disable();
             }
         }
