@@ -21,9 +21,9 @@ public class SettingsPopupUI : PopupUI
 
     private void BindSliderEvents()
     {
-        float bgmVolume = AudioManager.Instance.GetBgmVolume();
+        float bgmVolume = AudioManager.Instance.GetBgmVolume() * AudioManager.AUDIO_RATE;
         _bgmSlider.value = bgmVolume;
-        float sfxVolume = AudioManager.Instance.GetSfxVolume();
+        float sfxVolume = AudioManager.Instance.GetSfxVolume() * AudioManager.AUDIO_RATE;
         _sfxSlider.value = sfxVolume;
         _bgmSlider.onValueChanged.AddListener(BgmChange);
         _sfxSlider.onValueChanged.AddListener(SfxChange);

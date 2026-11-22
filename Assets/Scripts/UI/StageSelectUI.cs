@@ -127,11 +127,22 @@ public class StageSelectUI : MonoBehaviour
         HidePopup();
     }
 
+    private void PlayUISound()
+    {
+        AudioManager.Instance.PlayUISfx();
+    }
+
+    private void PlayUISound(StageSelectController stageSelectController)
+    {
+        AudioManager.Instance.PlayUISfx();
+    }
+
     private void BindControllerEvents()
     {
         foreach (StageSelectController stageSelectController in _stageSelectControllers)
         {
             stageSelectController.OnButtonClicked += ShowStageSelectPopup;
+            stageSelectController.OnButtonClicked += PlayUISound;
         }
     }
 
@@ -140,6 +151,7 @@ public class StageSelectUI : MonoBehaviour
         foreach (StageSelectController stageSelectController in _stageSelectControllers)
         {
             stageSelectController.OnButtonClicked -= ShowStageSelectPopup;
+            stageSelectController.OnButtonClicked -= PlayUISound;
         }
     }
 
@@ -159,11 +171,13 @@ public class StageSelectUI : MonoBehaviour
     {
         _popupBackgroundButton.onClick.AddListener(HidePopup);
         _bestRecordButton.onClick.AddListener(ShowBestRecordPopup);
+        _bestRecordButton.onClick.AddListener(PlayUISound);
     }
 
     private void UnbindButtonEvents()
     {
         _popupBackgroundButton.onClick.RemoveListener(HidePopup);
         _bestRecordButton.onClick.RemoveListener(ShowBestRecordPopup);
+        _bestRecordButton.onClick.RemoveListener(PlayUISound);
     }
 }

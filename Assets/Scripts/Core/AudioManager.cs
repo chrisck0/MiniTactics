@@ -7,10 +7,12 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioPlayer _audioPlayerPrefab;
     [SerializeField] private AudioClip _bgmAudioClip;
+    [SerializeField] private AudioClip _uiClickAudioClip;
 
-    private const int AUDIO_RATE = 10;
+    public const int AUDIO_RATE = 10;
     private ObjectPool<AudioPlayer> _audioPlayerObjectPool;
     private AudioPlayer _bgmPlayer;
+    private AudioPlayer _uiClickPlayer;
     private float _bgmVolume;
     private float _sfxVolume;
 
@@ -41,11 +43,19 @@ public class AudioManager : MonoBehaviour
     {
         _bgmPlayer = Take();
         _bgmPlayer
-            .SetVolume(_bgmVolume)
+            .SetVolume(_bgmVolume / AUDIO_RATE)
             .SetLoop(true)
             .SetAudioClip(_bgmAudioClip)
             .Play();
-        SetBgmVolume(_bgmVolume);
+    }
+
+    public void PlayUISfx()
+    {
+        _uiClickPlayer = Take();
+        _uiClickPlayer
+            .SetVolume(_sfxVolume / AUDIO_RATE)
+            .SetAudioClip(_uiClickAudioClip)
+            .Play();
     }
 
     private void Init()
@@ -71,12 +81,12 @@ public class AudioManager : MonoBehaviour
 
     public float GetBgmVolume()
     {
-        return _bgmVolume;
+        return _bgmVolume / AUDIO_RATE;
     }
 
     public float GetSfxVolume()
     {
-        return _sfxVolume;
+        return _sfxVolume / AUDIO_RATE;
     }
 
     public void SetBgmVolume(float bgmVolume)
@@ -89,7 +99,7 @@ public class AudioManager : MonoBehaviour
     public void SetSfxVolume(float sfxVolume)
     {
         _sfxVolume = sfxVolume;
-        _bgmPlayer.SetVolume(_sfxVolume / AUDIO_RATE);
+        _uiClickPlayer.SetVolume(_sfxVolume / AUDIO_RATE);
         PlayerPrefs.SetFloat("SfxVolume", sfxVolume);
     }
 

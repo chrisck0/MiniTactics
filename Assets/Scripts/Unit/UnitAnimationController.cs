@@ -65,7 +65,9 @@ public class UnitAnimationController : MonoBehaviour
             _animator.SetTrigger(_isSecondWeaponAttackId);
         }
         _audioPlayer.gameObject.SetActive(true);
-        _audioPlayer.SetAudioClip(_attackClip).Play();
+        _audioPlayer
+            .SetVolume(AudioManager.Instance.GetSfxVolume())
+            .SetAudioClip(_attackClip).Play();
     }
 
     private void Select()
@@ -94,14 +96,18 @@ public class UnitAnimationController : MonoBehaviour
         Debug.Log($"{_owner.Stat.Data.Name} Got Damage");
         _animator.SetTrigger(_isDamageId);
         _audioPlayer.gameObject.SetActive(true);
-        _audioPlayer.SetAudioClip(_damageClip).Play();
+        _audioPlayer
+            .SetVolume(AudioManager.Instance.GetSfxVolume())
+            .SetAudioClip(_damageClip).Play();
     }
 
     private void Dead(UnitBase unit)
     {
         _animator.SetTrigger(_isDeadId);
         _audioPlayer.gameObject.SetActive(true);
-        _audioPlayer.SetAudioClip(_damageClip).Play();
+        _audioPlayer
+            .SetVolume(AudioManager.Instance.GetSfxVolume())
+            .SetAudioClip(_damageClip).Play();
     }
 
     private void BindUnitEvents()
