@@ -4925,6 +4925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   _audioPlayerPrefab: {fileID: 7088283002273109258, guid: 5d75deb042dbcd040a412f4f62dc21cb, type: 3}
+  _bgmAudioClip: {fileID: 8300000, guid: 06906d718be5b6a4cb2df8732bf39832, type: 3}
 --- !u!1 &1365202801
 GameObject:
   m_ObjectHideFlags: 0

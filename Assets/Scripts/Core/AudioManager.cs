@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
     [SerializeField] private AudioPlayer _audioPlayerPrefab;
+    [SerializeField] private AudioClip _bgmAudioClip;
+
+    private const int AUDIO_RATE = 10;
     private ObjectPool<AudioPlayer> _audioPlayerObjectPool;
+    private AudioPlayer _bgmPlayer;
     private float _bgmVolume;
     private float _sfxVolume;
 
@@ -16,6 +19,11 @@ public class AudioManager : MonoBehaviour
         SetSingleton();
         CreateObjectPool();
         Init();
+    }
+
+    private void Start()
+    {
+        PlayBgm();
     }
 
     public AudioPlayer Take()
@@ -27,6 +35,17 @@ public class AudioManager : MonoBehaviour
     public void Return(AudioPlayer audioPlayer)
     {
         _audioPlayerObjectPool.Return(audioPlayer);
+    }
+
+    private void PlayBgm()
+    {
+        _bgmPlayer = Take();
+        _bgmPlayer
+            .SetVolume(_bgmVolume)
+            .SetLoop(true)
+            .SetAudioClip(_bgmAudioClip)
+            .Play();
+        SetBgmVolume(_bgmVolume);
     }
 
     private void Init()
@@ -63,12 +82,14 @@ public class AudioManager : MonoBehaviour
     public void SetBgmVolume(float bgmVolume)
     {
         _bgmVolume = bgmVolume;
+        _bgmPlayer.SetVolume(_bgmVolume / AUDIO_RATE);
         PlayerPrefs.SetFloat("BgmVolume", bgmVolume);
     }
 
     public void SetSfxVolume(float sfxVolume)
     {
         _sfxVolume = sfxVolume;
+        _bgmPlayer.SetVolume(_sfxVolume / AUDIO_RATE);
         PlayerPrefs.SetFloat("SfxVolume", sfxVolume);
     }
 
