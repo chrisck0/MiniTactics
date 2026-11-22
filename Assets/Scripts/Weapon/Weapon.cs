@@ -23,6 +23,11 @@ public class Weapon : MonoBehaviour
         _weaponDataList.Add(weaponData);
     }
 
+    public void ClearWeapons()
+    {
+        _weaponDataList.Clear();
+    }
+
     /// <summary>
     /// 무기로 타겟 공격
     /// </summary>

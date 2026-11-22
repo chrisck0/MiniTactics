@@ -19,6 +19,7 @@ public class SaveLoader : MonoBehaviour
         SaveData saveData = new SaveData(
             GameManager.Instance.GetInitialSeed(),
             GameManager.Instance.GetStageData().StageId, 
+            GameManager.Instance.GetLeftRevertTime(),
             _phaseStateController.TurnSaveDataList
             );
 

@@ -18,12 +18,14 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
     [SerializeField] private Button _unitListButton;
     [SerializeField] private Button _statusButton;
     [SerializeField] private Button _autoButton;
+    [SerializeField] private Button _revertButton;
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _suspendButton;
     [SerializeField] private Button _retreatButton;
     [SerializeField] private Button _popupBackgroundButton;
     [SerializeField] private YesNoPopupUI _yesNoPopup;
     [SerializeField] private UnitListPopupUI _unitListPopup;
+    [SerializeField] private RevertPopupUI _revertPopup;
     [SerializeField] private SettingsPopupUI _settingsPopup;
     [SerializeField] private StatusPopupUI _statusPopup;
     [SerializeField] private GameObject _autoTextObject;
@@ -68,6 +70,18 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _activeUnits.gameObject.SetActive(false);
     }
 
+    public void HideCommandButtons()
+    {
+        _phaseEndButton.gameObject.SetActive(false);
+        _unitListButton.gameObject.SetActive(false);
+        _statusButton.gameObject.SetActive(false);
+        _autoButton.gameObject.SetActive(false);
+        _revertButton.gameObject.SetActive(false);
+        _settingsButton.gameObject.SetActive(false);
+        _suspendButton.gameObject.SetActive(false);
+        _retreatButton.gameObject.SetActive(false);
+    }
+
     public void HidePopup()
     {
         if (_currentPopup == null) return;
@@ -75,6 +89,18 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _popupBackgroundButton.gameObject.SetActive(false);
         _currentPopup.Hide();
         _currentPopup = null;
+    }
+
+    public void ShowCommandButtons()
+    {
+        _phaseEndButton.gameObject.SetActive(true);
+        _unitListButton.gameObject.SetActive(true);
+        _statusButton.gameObject.SetActive(true);
+        _autoButton.gameObject.SetActive(true);
+        _revertButton.gameObject.SetActive(true);
+        _settingsButton.gameObject.SetActive(true);
+        _suspendButton.gameObject.SetActive(true);
+        _retreatButton.gameObject.SetActive(true);
     }
 
     private void ShowPhaseEndPopup()
@@ -105,6 +131,11 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _yesNoPopup.Show(this);
         _yesNoPopup.BindAutoEvents();
         _currentPopup = _yesNoPopup;
+    }
+
+    private void ShowRevertPopup()
+    {
+        _revertPopup.Show(this);
     }
 
     private void ShowSettingsPopup()
@@ -193,6 +224,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _unitListButton.onClick.AddListener(ShowUnitListPopup);
         _statusButton.onClick.AddListener(ShowStatusPopup);
         _autoButton.onClick.AddListener(ShowAutoPopup);
+        _revertButton.onClick.AddListener(ShowRevertPopup);
         _settingsButton.onClick.AddListener(ShowSettingsPopup);
         _suspendButton.onClick.AddListener(ShowSuspendPopup);
         _retreatButton.onClick.AddListener(ShowRetreatPopup);
@@ -205,6 +237,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _unitListButton.onClick.RemoveListener(ShowUnitListPopup);
         _statusButton.onClick.RemoveListener(ShowStatusPopup);
         _autoButton.onClick.RemoveListener(ShowAutoPopup);
+        _revertButton.onClick.RemoveListener(ShowRevertPopup);
         _settingsButton.onClick.RemoveListener(ShowSettingsPopup);
         _suspendButton.onClick.RemoveListener(ShowSuspendPopup);
         _retreatButton.onClick.RemoveListener(ShowRetreatPopup);
@@ -231,6 +264,7 @@ public class SystemCommandUI : MonoBehaviour, IPopupController
         _yesNoPopup.gameObject.SetActive(false);
         _unitListPopup.gameObject.SetActive(false);
         _statusPopup.gameObject.SetActive(false);
+        _revertPopup.gameObject.SetActive(false);
         _settingsPopup.gameObject.SetActive(false);
         _autoTextObject.SetActive(false);
     }

@@ -311,6 +311,11 @@ public class UnitCommandStateController : MonoBehaviour, IStateEvent
         }
     }
 
+    public void TurnOffDanger(EnemyUnit enemyUnit)
+    {
+        enemyUnit.UnitAI.SetIsShowingDanger(false);
+    }
+
     public void ToggleDanger(EnemyUnit enemyUnit)
     {
         if (enemyUnit.UnitAI.IsShowingDanger)

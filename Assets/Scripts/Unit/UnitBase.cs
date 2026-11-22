@@ -92,6 +92,7 @@ public abstract class UnitBase : MonoBehaviour, IPoolable, IDamageable
 
     public void ReturnToPool()
     {
+        OnUnitCanAction?.Invoke();
         _objectPool.Return(this);
     }
 }
