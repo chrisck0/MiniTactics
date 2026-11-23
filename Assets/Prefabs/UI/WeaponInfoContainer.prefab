@@ -12,6 +12,22 @@ PrefabInstance:
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 7128954013490693752}
+    - target: {fileID: 2739938677784378955, guid: caed35237b4a8fb4090db15bc8235b95, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 48.8571
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739938677784378955, guid: caed35237b4a8fb4090db15bc8235b95, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 48.857
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739938677784378955, guid: caed35237b4a8fb4090db15bc8235b95, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -176.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739938677784378955, guid: caed35237b4a8fb4090db15bc8235b95, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4385151536222697096, guid: caed35237b4a8fb4090db15bc8235b95, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

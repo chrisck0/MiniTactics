@@ -26,6 +26,7 @@ public class WeaponInfoContainerUI : MonoBehaviour, IPoolable
 
     public void SetData(WeaponData weaponData)
     {
+        _weaponIcon.sprite = weaponData.Sprite;
         _nameText.text = weaponData.Name;
         _attackText.text = weaponData.Attack.ToString();
         _energyCostText.text = weaponData.EnergyCost.ToString();

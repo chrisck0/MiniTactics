@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   _id: 0
   _name: 
+  _sprite: {fileID: 956540638, guid: cf90cc3b030b6d344b75c87dca2b70d9, type: 3}
   _health: 0
   _energy: 0
   _move: 0
   _accuracy: 0
   _avoid: 0
   _weaponIdList: 
+  _unitType: 0
+  _behaviorType: 0

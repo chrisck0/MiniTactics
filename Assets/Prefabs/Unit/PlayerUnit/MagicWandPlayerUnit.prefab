@@ -685,6 +685,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4816923133123803349, guid: a3bea36c10199f24f9e5dbca66cac826, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8214467499490730516, guid: a3bea36c10199f24f9e5dbca66cac826, type: 3}
       propertyPath: m_Name
       value: PlayerUnitHealthCanvas

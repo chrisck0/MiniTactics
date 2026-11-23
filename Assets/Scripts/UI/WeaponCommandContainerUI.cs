@@ -32,6 +32,7 @@ public class WeaponCommandContainerUI : MonoBehaviour, IPoolable
 
     public void SetData(WeaponData weaponData, AttackCommandUI attackCommandUI, int currentEnergy)
     {
+        _weaponIcon.sprite = weaponData.Sprite;
         _weaponData = weaponData;
         _nameText.text = weaponData.Name;
         _attackText.text = weaponData.Attack.ToString();

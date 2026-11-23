@@ -304,6 +304,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyUnitCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4597879271368671068, guid: a95c175f124b4124ca8a81443891f2bf, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4799539379794509816, guid: a95c175f124b4124ca8a81443891f2bf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

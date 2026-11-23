@@ -38,7 +38,7 @@ public class BattleInfoUI : MonoBehaviour
         _playerUnitNameText.text = playerStat.Data.Name.ToString();
         _playerUnitWeaponText.text = playerWeaponData.Name.ToString();
         _playerUnitEnergyCostText.text = playerWeaponData.EnergyCost.ToString();
-        // _playerUnitImage TODO: 나중에 추가
+        _playerUnitImage.sprite = playerStat.Data.Sprite;
 
         int playerMaxHealth = playerStat.Data.Health;
         int playerCurrentHealth = playerStat.Health;
@@ -74,14 +74,14 @@ public class BattleInfoUI : MonoBehaviour
         else
         {
             _playerAttackText.text = playerWeaponData.Attack.ToString();
-            _playerProbabilityText.text = ProbabilityCalculator.GetAttackProbability(playerStat, enemyStat).ToString();
+            _playerProbabilityText.text = ProbabilityCalculator.GetAttackProbability(playerStat, enemyStat).ToString("F2");
         }
 
         // Enemy Info
         _enemyUnitNameText.text = enemyStat.Data.Name.ToString();
         _enemyUnitWeaponText.text = enemyWeaponData.Name.ToString();
         _enemyUnitEnergyCostText.text = enemyWeaponData.EnergyCost.ToString();
-        // _enemyUnitImage TODO: 나중에 추가
+        _enemyUnitImage.sprite = enemyStat.Data.Sprite;
 
         int enemyMaxHealth = enemyStat.Data.Health;
         int enemyCurrentHealth = enemyStat.Health;
@@ -117,7 +117,7 @@ public class BattleInfoUI : MonoBehaviour
         else
         {
             _enemyAttackText.text = enemyWeaponData.Attack.ToString();
-            _enemyProbabilityText.text = ProbabilityCalculator.GetAttackProbability(enemyStat, playerStat).ToString();
+            _enemyProbabilityText.text = ProbabilityCalculator.GetAttackProbability(enemyStat, playerStat).ToString("F2");
         }
     }
 

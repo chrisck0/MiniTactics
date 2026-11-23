@@ -7,6 +7,7 @@ public class WeaponData : ScriptableObject
 {
     [SerializeField] private int _id;
     [SerializeField] private string _name;
+    [SerializeField] private Sprite _sprite;
     [SerializeField] private int _attack;
     [SerializeField] private int _energyCost;
     [SerializeField] private WeaponType _weaponType;
@@ -17,6 +18,7 @@ public class WeaponData : ScriptableObject
 
     public int Id => _id;
     public string Name => _name;
+    public Sprite Sprite => _sprite;
     public int Attack => _attack;
     public int EnergyCost => _energyCost;
     public WeaponType WeaponType => _weaponType;

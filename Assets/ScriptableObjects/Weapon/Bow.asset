@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   _id: 305
   _name: "\uD65C"
+  _sprite: {fileID: 21300000, guid: f4af8c4e00311469fa5f3ef60a21891d, type: 3}
   _attack: 50
   _energyCost: 10
   _weaponType: 0

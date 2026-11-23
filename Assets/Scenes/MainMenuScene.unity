@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 535876736960898031, guid: b455a39d787006f46afc3b696e507170, type: 3}
       propertyPath: _stageData
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 8e04a4c71ee3ee44b9d1c3e98b391fd4, type: 2}
     - target: {fileID: 6619108428248329695, guid: b455a39d787006f46afc3b696e507170, type: 3}
       propertyPath: m_text
       value: "\uC2A4\uD14C\uC774\uC9C0 3"
@@ -230,6 +230,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7670959231659655236, guid: b455a39d787006f46afc3b696e507170, type: 3}
   m_PrefabInstance: {fileID: 882392}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &882394 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 535876736960898031, guid: b455a39d787006f46afc3b696e507170, type: 3}
+  m_PrefabInstance: {fileID: 882392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd612abdde881004bbcf64c55cc9afc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuSceneController
 --- !u!1 &30799012
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,6 +946,7 @@ MonoBehaviour:
   _stageSelectControllers:
   - {fileID: 426366436}
   - {fileID: 1129459295}
+  - {fileID: 882394}
   _popupBackgroundButton: {fileID: 1863688924}
   _stageSameDataSelectPopupUI: {fileID: 735469795}
   _stageDifferentDataSelectPopupUI: {fileID: 1226063736}

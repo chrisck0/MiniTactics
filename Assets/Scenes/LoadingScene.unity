@@ -405,6 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageDataParser
   _stageDataUrlList:
   - https://docs.google.com/spreadsheets/d/1bIZSTrHnG_7GN54o67o-1mHnkGwrN_21b4mPkCntOoc/export?format=csv&gid=1531065875
+  - https://docs.google.com/spreadsheets/d/1bIZSTrHnG_7GN54o67o-1mHnkGwrN_21b4mPkCntOoc/export?format=csv&gid=298364288
   - https://docs.google.com/spreadsheets/d/1bIZSTrHnG_7GN54o67o-1mHnkGwrN_21b4mPkCntOoc/export?format=csv&gid=1499126030
   _stageDataFileList:
   - {fileID: 4900000, guid: c26b4dc4e031b104cbd66a56d7b8408c, type: 3}
@@ -412,6 +413,7 @@ MonoBehaviour:
   _stageDataList:
   - {fileID: 11400000, guid: 9a5e4202814396d4d9fa3327c571b73c, type: 2}
   - {fileID: 11400000, guid: 2e6b3f4380ceb304887d7ce28f1d6842, type: 2}
+  - {fileID: 11400000, guid: 8e04a4c71ee3ee44b9d1c3e98b391fd4, type: 2}
 --- !u!114 &1456981348
 MonoBehaviour:
   m_ObjectHideFlags: 0

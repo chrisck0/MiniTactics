@@ -6,6 +6,7 @@ public class UnitData : ScriptableObject
 {
     [SerializeField] private int _id;
     [SerializeField] private string _name;
+    [SerializeField] private Sprite _sprite;
     [SerializeField] private int _health;
     [SerializeField] private int _energy;
     [SerializeField] private int _move;
@@ -17,6 +18,7 @@ public class UnitData : ScriptableObject
 
     public int Id => _id;
     public string Name => _name;
+    public Sprite Sprite => _sprite;
     public int Health => _health;
     public int Energy => _energy;
     public int Move => _move;
