@@ -10,6 +10,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private List<UnitBase> _unitPrefabs;
     [SerializeField] private List<TileBase> _tilePrefabs;
     [SerializeField] private ProjectileObjectPool _projectileObjectPool;
+    [SerializeField] private GameObject _grassBackgroundTilePrefab;
+    [SerializeField] private Transform _backgroundTransform;
 
     private StageData _stageData;
     private ObjectPool<UnitBase> _unitObjectPool;
@@ -74,6 +76,7 @@ public class SpawnManager : MonoBehaviour
         }
 
         CreateMapAndSpawnMap(_stageData.Map);
+        CreateMapBackground();
 
         _cameraPosition = _stageData.CameraInitialPosition;
         if (saveData == null)
@@ -106,6 +109,61 @@ public class SpawnManager : MonoBehaviour
                 _tileMap[j, i] = tile;
 
                 tile.transform.position = coord.CoordToWorld(-1f);
+            }
+        }
+    }
+
+    private void CreateMapBackground()
+    {
+        int width = _stageData.Map.GetLength(1);
+        int height = _stageData.Map.GetLength(0);
+
+
+        // 아래쪽
+        for (int i = -2; i <= -1; i++)
+        {
+            for (int j = -2; j <= height + 1; j++)
+            {
+                GameObject backgroundTile = Instantiate(_grassBackgroundTilePrefab, _backgroundTransform);
+                Vector2Int coord = new Vector2Int(j, i);
+
+                backgroundTile.transform.position = coord.CoordToWorld(-1f);
+            }
+        }
+
+        // 위쪽
+        for (int i = width; i <= width + 1; i++)
+        {
+            for (int j = -2; j <= height + 1; j++)
+            {
+                GameObject backgroundTile = Instantiate(_grassBackgroundTilePrefab, _backgroundTransform);
+                Vector2Int coord = new Vector2Int(j, i);
+
+                backgroundTile.transform.position = coord.CoordToWorld(0f);
+            }
+        }
+
+        // 왼쪽
+        for (int i = -2; i < width; i++)
+        {
+            for (int j = -2; j <= -1; j++)
+            {
+                GameObject backgroundTile = Instantiate(_grassBackgroundTilePrefab, _backgroundTransform);
+                Vector2Int coord = new Vector2Int(j, i);
+
+                backgroundTile.transform.position = coord.CoordToWorld(0f);
+            }
+        }
+
+        // 오른쪽
+        for (int i = -2; i < width; i++)
+        {
+            for (int j = height; j <= height + 1; j++)
+            {
+                GameObject backgroundTile = Instantiate(_grassBackgroundTilePrefab, _backgroundTransform);
+                Vector2Int coord = new Vector2Int(j, i);
+
+                backgroundTile.transform.position = coord.CoordToWorld(0f);
             }
         }
     }
