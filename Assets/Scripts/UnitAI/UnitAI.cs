@@ -195,9 +195,14 @@ public class UnitAI : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _moveTargetCoord.CoordToWorld()) >= 0.1f)
         {
-            transform.Translate(Vector3.forward
+            if (Vector3.Dot(_moveTargetCoord.CoordToWorld() - transform.position,
+                transform.forward) >= 0)
+            {
+
+                transform.Translate(Vector3.forward
                 * Time.deltaTime * _owner.MoveSpeed);
-            return;
+                return;
+            }
         }
 
         if (_pathCoordStack.Count == 0)

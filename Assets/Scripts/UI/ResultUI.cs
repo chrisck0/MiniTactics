@@ -24,11 +24,19 @@ public class ResultUI : MonoBehaviour
     {
         _isGameClear = isGameClear;
 
-        if (isGameClear && _dataManager.StageDataDict.ContainsKey(GameManager.Instance.GetStageData().StageId + 1))
+        if (isGameClear)
         {
             _gameClearText.SetActive(true);
             _gameOverText.SetActive(false);
-            _loadStageButtonText.text = "다음 스테이지";
+
+            if (_dataManager.StageDataDict.ContainsKey(GameManager.Instance.GetStageData().StageId + 1))
+            {
+                _loadStageButtonText.text = "다음 스테이지";
+            }
+            else
+            {
+                _loadStageButtonText.text = "다시하기";
+            }
         }
         else
         {

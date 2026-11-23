@@ -178,9 +178,13 @@ public sealed class UnitMoveState : StateBase
         if (Vector3.Distance(
             _controller.SelectedPlayerUnit.transform.position, _targetCoord.CoordToWorld()) >= 0.1f)
         {
-            _controller.SelectedPlayerUnit.transform.Translate(Vector3.forward
+            if (Vector3.Dot(_targetCoord.CoordToWorld() - _controller.SelectedPlayerUnit.transform.position,
+                _controller.SelectedPlayerUnit.transform.forward) >= 0) {
+
+                _controller.SelectedPlayerUnit.transform.Translate(Vector3.forward
                 * Time.deltaTime * _controller.SelectedPlayerUnit.MoveSpeed);
-            return;
+                return;
+            }
         }
 
         if (_pathCoordStack.Count == 0)
