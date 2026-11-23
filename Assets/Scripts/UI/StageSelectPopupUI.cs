@@ -8,6 +8,9 @@ public class StageSelectPopupUI : MonoBehaviour
     private StageSelectUI _stageSelectUI;
     private StageSelectController _stageSelectController;
 
+    private void OnEnable() => BindButtonEvents();
+    private void OnDisable() => UnbindButtonEvents();
+
     public void Show(StageSelectUI stageSelectUI, StageSelectController stageSelectController)
     {
         _stageSelectUI = stageSelectUI;
@@ -29,5 +32,22 @@ public class StageSelectPopupUI : MonoBehaviour
     public void LoadDataStage()
     {
         _stageSelectController.LoadScene();
+    }
+
+    private void PlayUISound()
+    {
+        AudioManager.Instance.PlayUISfx();
+    }
+
+    private void BindButtonEvents()
+    {
+        _yesButton.onClick.AddListener(PlayUISound);
+        _noButton.onClick.AddListener(PlayUISound);
+    }
+
+    private void UnbindButtonEvents()
+    {
+        _yesButton.onClick.RemoveListener(PlayUISound);
+        _noButton.onClick.RemoveListener(PlayUISound);
     }
 }

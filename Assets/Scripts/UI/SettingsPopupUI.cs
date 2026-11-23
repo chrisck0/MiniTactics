@@ -11,16 +11,20 @@ public class SettingsPopupUI : PopupUI
 
     private void BgmChange(float volume)
     {
-        Debug.Log($"BGM Changed {volume}");
+        AudioManager.Instance.SetBgmVolume(volume);
     }
 
     private void SfxChange(float volume)
     {
-        Debug.Log($"SFX Changed {volume}");
+        AudioManager.Instance.SetSfxVolume(volume);
     }
 
     private void BindSliderEvents()
     {
+        float bgmVolume = AudioManager.Instance.GetBgmVolume() * AudioManager.AUDIO_RATE;
+        _bgmSlider.value = bgmVolume;
+        float sfxVolume = AudioManager.Instance.GetSfxVolume() * AudioManager.AUDIO_RATE;
+        _sfxSlider.value = sfxVolume;
         _bgmSlider.onValueChanged.AddListener(BgmChange);
         _sfxSlider.onValueChanged.AddListener(SfxChange);
     }

@@ -13,8 +13,17 @@ public class MainMenuUI : MonoBehaviour, IPopupController
     [SerializeField] private InputActionReference _cancelAction;
 
     private void Awake() => HidePopup();
-    private void OnEnable() => BindButtonEvents();
-    private void OnDisable() => UnbindButtonEvents();
+    private void OnEnable()
+    {
+        BindButtonEvents();
+        BindSoundEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnbindButtonEvents();
+        UnbindSoundEvents();
+    }
 
     private void GameStart()
     {
@@ -50,6 +59,11 @@ public class MainMenuUI : MonoBehaviour, IPopupController
         UnbindInputActions();
     }
 
+    private void PlayUISound()
+    {
+        AudioManager.Instance.PlayUISfx();
+    }
+
     private void BindButtonEvents()
     {
         _popupBackgroundButton.onClick.AddListener(HidePopup);
@@ -64,6 +78,20 @@ public class MainMenuUI : MonoBehaviour, IPopupController
         _gameStartButton.onClick.RemoveListener(GameStart);
         _settingsButton.onClick.RemoveListener(Settings);
         _quitButton.onClick.RemoveListener(Quit);
+    }
+
+    private void BindSoundEvents()
+    {
+        _gameStartButton.onClick.AddListener(PlayUISound);
+        _settingsButton.onClick.AddListener(PlayUISound);
+        _quitButton.onClick.AddListener(PlayUISound);
+    }
+
+    private void UnbindSoundEvents()
+    {
+        _gameStartButton.onClick.RemoveListener(PlayUISound);
+        _settingsButton.onClick.RemoveListener(PlayUISound);
+        _quitButton.onClick.RemoveListener(PlayUISound);
     }
 
     private void BindInputActions()

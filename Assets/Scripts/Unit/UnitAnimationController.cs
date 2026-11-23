@@ -5,9 +5,9 @@ public class UnitAnimationController : MonoBehaviour
 {
     [SerializeField] private UnitBase _owner;
     [SerializeField] private Animator _animator;
-    // [SerializeField] private InputActionReference _lmbAction;
-    // [SerializeField] private InputActionReference _rmbAction;
-
+    [SerializeField] private AudioClip _attackClip;
+    [SerializeField] private AudioClip _damageClip;
+    private AudioPlayer _audioPlayer;
     private const string PARAM_IS_FIRST_WEAPON_ATTACK = "IsFirstWeaponAttack";
     private const string PARAM_IS_SECOND_WEAPON_ATTACK = "IsSecondWeaponAttack";
     private const string PARAM_IS_SELECT = "IsSelect";
@@ -28,8 +28,31 @@ public class UnitAnimationController : MonoBehaviour
 
     private bool _isMoving;
 
-    private void OnEnable() => BindUnitEvents();
-    private void OnDisable() => UnbindUnitEvents();
+    private void OnEnable()
+    {
+        TakeAudioPlayer();
+        BindUnitEvents();
+    }
+
+    private void OnDisable()
+    {
+        ReturnAudioPlayer();
+        UnbindUnitEvents();
+    }
+
+    private void TakeAudioPlayer()
+    {
+        _audioPlayer = AudioManager.Instance.Take();
+        _audioPlayer.gameObject.SetActive(false);
+        _audioPlayer
+            .SetVolume(AudioManager.Instance.GetSfxVolume())
+            .SetAudioClip(_attackClip);
+    }
+
+    private void ReturnAudioPlayer()
+    {
+        AudioManager.Instance.Return(_audioPlayer);
+    }
 
     private void Attack(AttackScore attackScore)
     {
@@ -41,6 +64,10 @@ public class UnitAnimationController : MonoBehaviour
         {
             _animator.SetTrigger(_isSecondWeaponAttackId);
         }
+        _audioPlayer.gameObject.SetActive(true);
+        _audioPlayer
+            .SetVolume(AudioManager.Instance.GetSfxVolume())
+            .SetAudioClip(_attackClip).Play();
     }
 
     private void Select()
@@ -68,21 +95,19 @@ public class UnitAnimationController : MonoBehaviour
     {
         Debug.Log($"{_owner.Stat.Data.Name} Got Damage");
         _animator.SetTrigger(_isDamageId);
+        _audioPlayer.gameObject.SetActive(true);
+        _audioPlayer
+            .SetVolume(AudioManager.Instance.GetSfxVolume())
+            .SetAudioClip(_damageClip).Play();
     }
 
     private void Dead(UnitBase unit)
     {
         _animator.SetTrigger(_isDeadId);
-    }
-
-    private void AttackWeapon1(InputAction.CallbackContext context)
-    {
-        _animator.SetTrigger(_isFirstWeaponAttackId);
-    }
-
-    private void AttackWeapon2(InputAction.CallbackContext context)
-    {
-        _animator.SetTrigger(_isSecondWeaponAttackId);
+        _audioPlayer.gameObject.SetActive(true);
+        _audioPlayer
+            .SetVolume(AudioManager.Instance.GetSfxVolume())
+            .SetAudioClip(_damageClip).Play();
     }
 
     private void BindUnitEvents()
@@ -94,10 +119,6 @@ public class UnitAnimationController : MonoBehaviour
         _owner.OnAvoid += Avoid;
         _owner.OnDamage += Damage;
         _owner.OnDead += Dead;
-        // _lmbAction.action.Enable();
-        // _lmbAction.action.performed += AttackWeapon1;
-        // _rmbAction.action.Enable();
-        // _rmbAction.action.performed += AttackWeapon2;
     }
 
     private void UnbindUnitEvents()
@@ -109,9 +130,5 @@ public class UnitAnimationController : MonoBehaviour
         _owner.OnAvoid -= Avoid;
         _owner.OnDamage -= Damage;
         _owner.OnDead -= Dead;
-        // _lmbAction.action.Disable();
-        // _lmbAction.action.performed -= AttackWeapon1;
-        // _rmbAction.action.Disable();
-        // _rmbAction.action.performed -= AttackWeapon2;
     }
 }
