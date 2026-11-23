@@ -21,7 +21,7 @@ public abstract class TileBase : MonoBehaviour, IPoolable
         _canSelect = true;
     }
 
-    public void ShowDistance(int distance)
+    public void ShowDistance()
     {
         _blueTransparentTile.gameObject.SetActive(true);
         _redTransparentTile.gameObject.SetActive(false);

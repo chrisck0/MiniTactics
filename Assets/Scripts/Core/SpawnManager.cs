@@ -36,7 +36,6 @@ public class SpawnManager : MonoBehaviour
     public int InitialSeed => _initialSeed;
 
     public event Action OnStageLoaded;
-    public event Action OnUnitSpawned;
 
     private void Awake()
     {

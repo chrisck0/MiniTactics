@@ -26,7 +26,7 @@ public class UnitDistanceRange : MonoBehaviour
         foreach (Vector2Int coord in _reachableCoords)
         {
             TileBase tile = _tileMap[coord.x, coord.y];
-            tile.ShowDistance(0);
+            tile.ShowDistance();
         }
     }
 
@@ -63,7 +63,7 @@ public class UnitDistanceRange : MonoBehaviour
         {
             TileBase tile = _tileMap[coord.x, coord.y];
             int distance = tileCostMap[coord.x, coord.y].Distance;
-            tile.ShowDistance(distance);
+            tile.ShowDistance();
         }
     }
 
