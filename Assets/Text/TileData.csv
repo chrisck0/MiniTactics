@@ -1,6 +1,7 @@
-TileType,Name,Cost
-0,None,2147483647
-1,Grass,1
-2,Forest,2
-3,Obstacle,2147483647
-4,Water,2147483647
+TileType,Name,Cost,Description
+TileType,string,int,string
+0,없음,2147483647,없음
+1,풀,1,효과 없음
+2,숲,2,이동이 어려움
+3,장애물,2147483647,이동 불가
+4,물,2147483647,이동 불가

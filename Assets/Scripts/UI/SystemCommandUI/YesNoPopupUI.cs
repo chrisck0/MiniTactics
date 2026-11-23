@@ -73,6 +73,8 @@ public class YesNoPopupUI : PopupUI
         _descriptionText.text = "페이즈를 종료하시겠습니까?";
         _yesButton.onClick.AddListener(PhaseEnd);
         _noButton.onClick.AddListener(ClosePopup);
+        _yesButton.onClick.AddListener(PlayUISound);
+        _noButton.onClick.AddListener(PlayUISound);
     }
 
     public void BindAutoEvents()
@@ -80,6 +82,8 @@ public class YesNoPopupUI : PopupUI
         _descriptionText.text = "오토를 활성화하시겠습니까?";
         _yesButton.onClick.AddListener(AutoOn);
         _noButton.onClick.AddListener(ClosePopup);
+        _yesButton.onClick.AddListener(PlayUISound);
+        _noButton.onClick.AddListener(PlayUISound);
     }
 
     public void BindSuspendEvents()
@@ -87,6 +91,8 @@ public class YesNoPopupUI : PopupUI
         _descriptionText.text = "중단하시겠습니까?\n(현재 페이즈 시작 직전까지 저장됩니다)";
         _yesButton.onClick.AddListener(Suspend);
         _noButton.onClick.AddListener(ClosePopup);
+        _yesButton.onClick.AddListener(PlayUISound);
+        _noButton.onClick.AddListener(PlayUISound);
     }
 
     public void BindRetreatEvents()

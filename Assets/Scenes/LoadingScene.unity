@@ -410,6 +410,7 @@ MonoBehaviour:
   _stageDataFileList:
   - {fileID: 4900000, guid: c26b4dc4e031b104cbd66a56d7b8408c, type: 3}
   - {fileID: 4900000, guid: c79c300df1e34f04bbe45baf75aae83f, type: 3}
+  - {fileID: 4900000, guid: e580dbf4592e2cf4a8fd7ec2c6928eaf, type: 3}
   _stageDataList:
   - {fileID: 11400000, guid: 9a5e4202814396d4d9fa3327c571b73c, type: 2}
   - {fileID: 11400000, guid: 2e6b3f4380ceb304887d7ce28f1d6842, type: 2}
@@ -477,7 +478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitDataParser
   _unitDataUrl: https://docs.google.com/spreadsheets/d/1bIZSTrHnG_7GN54o67o-1mHnkGwrN_21b4mPkCntOoc/export?format=csv&gid=0
-  _unitDataFile: {fileID: 4900000, guid: 70e55cccad03172478883022c263fcb8, type: 3}
+  _unitDataFile: {fileID: 4900000, guid: 2bbd50384d131e34f90333451e96c3a2, type: 3}
   _unitDataList:
   - {fileID: 11400000, guid: dafbf3c5ff769f24fa573253dafe2656, type: 2}
   - {fileID: 11400000, guid: 1571ac2411c6f1c4aaa065427969b2f8, type: 2}
