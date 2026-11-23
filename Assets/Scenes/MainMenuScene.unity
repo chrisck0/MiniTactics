@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: _stageData
       value: 
       objectReference: {fileID: 11400000, guid: 8e04a4c71ee3ee44b9d1c3e98b391fd4, type: 2}
+    - target: {fileID: 4583478969278579131, guid: b455a39d787006f46afc3b696e507170, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6619108428248329695, guid: b455a39d787006f46afc3b696e507170, type: 3}
       propertyPath: m_text
       value: "\uC2A4\uD14C\uC774\uC9C0 3"
@@ -4182,6 +4186,10 @@ PrefabInstance:
       propertyPath: _stageData
       value: 
       objectReference: {fileID: 11400000, guid: 2e6b3f4380ceb304887d7ce28f1d6842, type: 2}
+    - target: {fileID: 4583478969278579131, guid: b455a39d787006f46afc3b696e507170, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6619108428248329695, guid: b455a39d787006f46afc3b696e507170, type: 3}
       propertyPath: m_text
       value: "\uC2A4\uD14C\uC774\uC9C0 2"
@@ -7406,7 +7414,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4583478969278579131, guid: b455a39d787006f46afc3b696e507170, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6854514107025814627, guid: b455a39d787006f46afc3b696e507170, type: 3}
       propertyPath: m_Name
