@@ -7114,6 +7114,7 @@ MonoBehaviour:
   _saveLoader: {fileID: 1509154576}
   _cameraMove: {fileID: 1940885650}
   _unitPrefabs:
+  - {fileID: 8532842111232346743, guid: 2da5792b62987a44ba83e2875697b6a0, type: 3}
   - {fileID: 5980962426623233296, guid: 18aa4d3b6bacc2b428dc6f9ed9106d47, type: 3}
   - {fileID: 5098266066512719581, guid: 89419352583f5fe47854cd4a9c3dfd66, type: 3}
   - {fileID: 5098266066512719581, guid: f17d2ad66f7894c4194ad5fcb5668739, type: 3}
