@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 2038564922136003141}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2024352259235845960}
@@ -161,17 +161,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4537262713617441959}
   m_SourcePrefab: {fileID: 100100000, guid: 9f0b60e58eb44c6449ccc05851203e49, type: 3}
---- !u!114 &497994804564364253 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8281106215790351267, guid: 9f0b60e58eb44c6449ccc05851203e49, type: 3}
-  m_PrefabInstance: {fileID: 8360191192871868542}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &2024352259235845960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7499245716132925238, guid: 9f0b60e58eb44c6449ccc05851203e49, type: 3}
@@ -208,7 +197,6 @@ MonoBehaviour:
   _blueTransparentTile: {fileID: 6132869095339244990}
   _redTransparentTile: {fileID: 4505274809179664123}
   _darkRedTransparentTile: {fileID: 8321311705860811616}
-  _distanceText: {fileID: 497994804564364253}
 --- !u!1 &8321311705860811616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 539976139068158750, guid: 9f0b60e58eb44c6449ccc05851203e49, type: 3}

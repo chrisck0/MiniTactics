@@ -116,9 +116,9 @@ Transform:
   m_GameObject: {fileID: 3339793514235214885}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.672, z: 0}
-  m_LocalScale: {x: 0.59999996, y: 0.59999996, z: 0.59999996}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 1.063, z: 0}
+  m_LocalScale: {x: 0.59999996, y: 0.3, z: 0.59999996}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 612001796265217026}
   - {fileID: 3128165632921488560}
@@ -505,7 +505,6 @@ MonoBehaviour:
   _blueTransparentTile: {fileID: 6132869095339244990}
   _redTransparentTile: {fileID: 4505274809179664123}
   _darkRedTransparentTile: {fileID: 8321311705860811616}
-  _distanceText: {fileID: 0}
 --- !u!1 &8321311705860811616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 539976139068158750, guid: 9f0b60e58eb44c6449ccc05851203e49, type: 3}

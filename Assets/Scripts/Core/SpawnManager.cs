@@ -127,7 +127,10 @@ public class SpawnManager : MonoBehaviour
                 GameObject backgroundTile = Instantiate(_grassBackgroundTilePrefab, _backgroundTransform);
                 Vector2Int coord = new Vector2Int(j, i);
 
-                backgroundTile.transform.position = coord.CoordToWorld(-1f);
+                if (i == -1)
+                    backgroundTile.transform.position = coord.CoordToWorld(-1f);
+                else
+                    backgroundTile.transform.position = coord.CoordToWorld(0f);
             }
         }
 
