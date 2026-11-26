@@ -31,6 +31,16 @@
 
 - **아군/적군 페이즈 전환 (`StartPlayerPhase`, `StartEnemyPhase`)**: 아군/적군 페이즈를 전환시키고, 전환될 때 외부에게 전달
 
+- **상태 변화 시 이벤트 발화 (`OnStateChanged`)**: 상태가 전환되면 `StateMachine`에게 이벤트 전달
+
+<br>
+
+### `StateMachine.cs`
+
+- **상태 전환 (`ChangeState()`)**: 현재 상태를 보관하여, 상태가 변화될 때 각 상태의 `Exit()`과 `Enter()`를 실행
+
+- **현재 상태의 Update 실행 (`Update()`)**: 현재 상태의 `Update()`를 실행해서 현재 상태에서 매 프레임 실행되어야 하는 함수 실행
+
 <br>
 
 ### `PlayerPhaseState.cs`
